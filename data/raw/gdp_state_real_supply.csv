@@ -1,0 +1,2164 @@
+date,state,value,sector,series
+2015-01-01,Johor,110002.221,p0,abs
+2015-01-01,Johor,15610.314,p1,abs
+2015-01-01,Johor,475.64,p2,abs
+2015-01-01,Johor,32358.659,p3,abs
+2015-01-01,Johor,7269.16,p4,abs
+2015-01-01,Johor,53058.447,p5,abs
+2015-01-01,Johor,1230.001,p6,abs
+2015-01-01,Kedah,39549.581,p0,abs
+2015-01-01,Kedah,5423.368,p1,abs
+2015-01-01,Kedah,83.056,p2,abs
+2015-01-01,Kedah,11427.051,p3,abs
+2015-01-01,Kedah,862.638,p4,abs
+2015-01-01,Kedah,21465.109,p5,abs
+2015-01-01,Kedah,288.359,p6,abs
+2015-01-01,Kelantan,21407.736,p0,abs
+2015-01-01,Kelantan,5101.864,p1,abs
+2015-01-01,Kelantan,229.021,p2,abs
+2015-01-01,Kelantan,1147.468,p3,abs
+2015-01-01,Kelantan,444.65,p4,abs
+2015-01-01,Kelantan,14454.747,p5,abs
+2015-01-01,Kelantan,29.985,p6,abs
+2015-01-01,Melaka,36077.257,p0,abs
+2015-01-01,Melaka,4141.42,p1,abs
+2015-01-01,Melaka,43.988,p2,abs
+2015-01-01,Melaka,14068.303,p3,abs
+2015-01-01,Melaka,947.012,p4,abs
+2015-01-01,Melaka,16810.973,p5,abs
+2015-01-01,Melaka,65.56,p6,abs
+2015-01-01,Negeri Sembilan,40185.677,p0,abs
+2015-01-01,Negeri Sembilan,3235.335,p1,abs
+2015-01-01,Negeri Sembilan,165.377,p2,abs
+2015-01-01,Negeri Sembilan,15678.075,p3,abs
+2015-01-01,Negeri Sembilan,1339.339,p4,abs
+2015-01-01,Negeri Sembilan,18950.586,p5,abs
+2015-01-01,Negeri Sembilan,816.964,p6,abs
+2015-01-01,Pahang,49449.712,p0,abs
+2015-01-01,Pahang,11665.23,p1,abs
+2015-01-01,Pahang,1311.294,p2,abs
+2015-01-01,Pahang,10416.952,p3,abs
+2015-01-01,Pahang,2105.062,p4,abs
+2015-01-01,Pahang,23884.728,p5,abs
+2015-01-01,Pahang,66.445,p6,abs
+2015-01-01,Perak,63175.555,p0,abs
+2015-01-01,Perak,10351.594,p1,abs
+2015-01-01,Perak,354.095,p2,abs
+2015-01-01,Perak,11190.469,p3,abs
+2015-01-01,Perak,2578.368,p4,abs
+2015-01-01,Perak,38627.926,p5,abs
+2015-01-01,Perak,73.103,p6,abs
+2015-01-01,Perlis,5352.875,p0,abs
+2015-01-01,Perlis,1161.077,p1,abs
+2015-01-01,Perlis,31.698,p2,abs
+2015-01-01,Perlis,458.197,p3,abs
+2015-01-01,Perlis,193.228,p4,abs
+2015-01-01,Perlis,3414.264,p5,abs
+2015-01-01,Perlis,94.412,p6,abs
+2015-01-01,Pulau Pinang,78146.215,p0,abs
+2015-01-01,Pulau Pinang,2083.789,p1,abs
+2015-01-01,Pulau Pinang,124.145,p2,abs
+2015-01-01,Pulau Pinang,33596.784,p3,abs
+2015-01-01,Pulau Pinang,2711.965,p4,abs
+2015-01-01,Pulau Pinang,38917.261,p5,abs
+2015-01-01,Pulau Pinang,712.27,p6,abs
+2015-01-01,Sabah,73776.128,p0,abs
+2015-01-01,Sabah,14816.807,p1,abs
+2015-01-01,Sabah,18207.153,p2,abs
+2015-01-01,Sabah,6265.78,p3,abs
+2015-01-01,Sabah,2446.413,p4,abs
+2015-01-01,Sabah,31754.571,p5,abs
+2015-01-01,Sabah,285.404,p6,abs
+2015-01-01,Sarawak,121585.277,p0,abs
+2015-01-01,Sarawak,16987.941,p1,abs
+2015-01-01,Sarawak,29852.444,p2,abs
+2015-01-01,Sarawak,32128.287,p3,abs
+2015-01-01,Sarawak,3842.61,p4,abs
+2015-01-01,Sarawak,38369.702,p5,abs
+2015-01-01,Sarawak,404.294,p6,abs
+2015-01-01,Selangor,268824.995,p0,abs
+2015-01-01,Selangor,4075.799,p1,abs
+2015-01-01,Selangor,498.594,p2,abs
+2015-01-01,Selangor,75537.402,p3,abs
+2015-01-01,Selangor,16674.165,p4,abs
+2015-01-01,Selangor,163967.04,p5,abs
+2015-01-01,Selangor,8071.995,p6,abs
+2015-01-01,Terengganu,31124.445,p0,abs
+2015-01-01,Terengganu,2764.756,p1,abs
+2015-01-01,Terengganu,145.627,p2,abs
+2015-01-01,Terengganu,11296.446,p3,abs
+2015-01-01,Terengganu,903.75,p4,abs
+2015-01-01,Terengganu,15965.109,p5,abs
+2015-01-01,Terengganu,48.757,p6,abs
+2015-01-01,W.P. Kuala Lumpur,180864.541,p0,abs
+2015-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2015-01-01,W.P. Kuala Lumpur,117.469,p2,abs
+2015-01-01,W.P. Kuala Lumpur,5641.072,p3,abs
+2015-01-01,W.P. Kuala Lumpur,12915.189,p4,abs
+2015-01-01,W.P. Kuala Lumpur,159751.802,p5,abs
+2015-01-01,W.P. Kuala Lumpur,2437.469,p6,abs
+2015-01-01,W.P. Labuan,5999.225,p0,abs
+2015-01-01,W.P. Labuan,118.109,p1,abs
+2015-01-01,W.P. Labuan,0.0,p2,abs
+2015-01-01,W.P. Labuan,1168.465,p3,abs
+2015-01-01,W.P. Labuan,148.418,p4,abs
+2015-01-01,W.P. Labuan,4490.305,p5,abs
+2015-01-01,W.P. Labuan,73.928,p6,abs
+2016-01-01,Johor,116682.227,p0,abs
+2016-01-01,Johor,15029.966,p1,abs
+2016-01-01,Johor,569.326,p2,abs
+2016-01-01,Johor,34121.545,p3,abs
+2016-01-01,Johor,8978.486,p4,abs
+2016-01-01,Johor,56266.132,p5,abs
+2016-01-01,Johor,1716.772,p6,abs
+2016-01-01,Kedah,41155.715,p0,abs
+2016-01-01,Kedah,5202.482,p1,abs
+2016-01-01,Kedah,95.702,p2,abs
+2016-01-01,Kedah,11933.93,p3,abs
+2016-01-01,Kedah,997.847,p4,abs
+2016-01-01,Kedah,22603.916,p5,abs
+2016-01-01,Kedah,321.838,p6,abs
+2016-01-01,Kelantan,22475.73,p0,abs
+2016-01-01,Kelantan,5287.474,p1,abs
+2016-01-01,Kelantan,257.197,p2,abs
+2016-01-01,Kelantan,1171.974,p3,abs
+2016-01-01,Kelantan,575.397,p4,abs
+2016-01-01,Kelantan,15158.95,p5,abs
+2016-01-01,Kelantan,24.739,p6,abs
+2016-01-01,Melaka,37712.736,p0,abs
+2016-01-01,Melaka,4312.324,p1,abs
+2016-01-01,Melaka,52.608,p2,abs
+2016-01-01,Melaka,14626.228,p3,abs
+2016-01-01,Melaka,997.69,p4,abs
+2016-01-01,Melaka,17655.431,p5,abs
+2016-01-01,Melaka,68.455,p6,abs
+2016-01-01,Negeri Sembilan,41771.246,p0,abs
+2016-01-01,Negeri Sembilan,3056.453,p1,abs
+2016-01-01,Negeri Sembilan,197.694,p2,abs
+2016-01-01,Negeri Sembilan,16132.922,p3,abs
+2016-01-01,Negeri Sembilan,1466.149,p4,abs
+2016-01-01,Negeri Sembilan,19975.95,p5,abs
+2016-01-01,Negeri Sembilan,942.078,p6,abs
+2016-01-01,Pahang,50875.222,p0,abs
+2016-01-01,Pahang,11193.044,p1,abs
+2016-01-01,Pahang,878.802,p2,abs
+2016-01-01,Pahang,10820.351,p3,abs
+2016-01-01,Pahang,2726.442,p4,abs
+2016-01-01,Pahang,25173.04,p5,abs
+2016-01-01,Pahang,83.543,p6,abs
+2016-01-01,Perak,65958.409,p0,abs
+2016-01-01,Perak,10151.488,p1,abs
+2016-01-01,Perak,413.624,p2,abs
+2016-01-01,Perak,11752.31,p3,abs
+2016-01-01,Perak,2785.886,p4,abs
+2016-01-01,Perak,40762.08,p5,abs
+2016-01-01,Perak,93.021,p6,abs
+2016-01-01,Perlis,5569.584,p0,abs
+2016-01-01,Perlis,1200.073,p1,abs
+2016-01-01,Perlis,28.359,p2,abs
+2016-01-01,Perlis,448.56,p3,abs
+2016-01-01,Perlis,212.035,p4,abs
+2016-01-01,Perlis,3578.896,p5,abs
+2016-01-01,Perlis,101.661,p6,abs
+2016-01-01,Pulau Pinang,82493.279,p0,abs
+2016-01-01,Pulau Pinang,1987.813,p1,abs
+2016-01-01,Pulau Pinang,135.366,p2,abs
+2016-01-01,Pulau Pinang,35410.767,p3,abs
+2016-01-01,Pulau Pinang,2984.449,p4,abs
+2016-01-01,Pulau Pinang,41166.781,p5,abs
+2016-01-01,Pulau Pinang,808.102,p6,abs
+2016-01-01,Sabah,77518.046,p0,abs
+2016-01-01,Sabah,13255.092,p1,abs
+2016-01-01,Sabah,21992.315,p2,abs
+2016-01-01,Sabah,6036.734,p3,abs
+2016-01-01,Sabah,2357.442,p4,abs
+2016-01-01,Sabah,33574.808,p5,abs
+2016-01-01,Sabah,301.656,p6,abs
+2016-01-01,Sarawak,124512.946,p0,abs
+2016-01-01,Sarawak,16631.881,p1,abs
+2016-01-01,Sarawak,29252.866,p2,abs
+2016-01-01,Sarawak,33566.582,p3,abs
+2016-01-01,Sarawak,3633.388,p4,abs
+2016-01-01,Sarawak,40981.962,p5,abs
+2016-01-01,Sarawak,446.268,p6,abs
+2016-01-01,Selangor,281838.865,p0,abs
+2016-01-01,Selangor,3872.074,p1,abs
+2016-01-01,Selangor,642.954,p2,abs
+2016-01-01,Selangor,78710.259,p3,abs
+2016-01-01,Selangor,16242.991,p4,abs
+2016-01-01,Selangor,173869.515,p5,abs
+2016-01-01,Selangor,8501.073,p6,abs
+2016-01-01,Terengganu,32133.081,p0,abs
+2016-01-01,Terengganu,2681.315,p1,abs
+2016-01-01,Terengganu,159.386,p2,abs
+2016-01-01,Terengganu,12115.969,p3,abs
+2016-01-01,Terengganu,919.66,p4,abs
+2016-01-01,Terengganu,16207.034,p5,abs
+2016-01-01,Terengganu,49.718,p6,abs
+2016-01-01,W.P. Kuala Lumpur,191640.985,p0,abs
+2016-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2016-01-01,W.P. Kuala Lumpur,129.065,p2,abs
+2016-01-01,W.P. Kuala Lumpur,5794.6,p3,abs
+2016-01-01,W.P. Kuala Lumpur,14509.479,p4,abs
+2016-01-01,W.P. Kuala Lumpur,168742.436,p5,abs
+2016-01-01,W.P. Kuala Lumpur,2463.885,p6,abs
+2016-01-01,W.P. Labuan,6412.031,p0,abs
+2016-01-01,W.P. Labuan,114.448,p1,abs
+2016-01-01,W.P. Labuan,0.0,p2,abs
+2016-01-01,W.P. Labuan,1255.813,p3,abs
+2016-01-01,W.P. Labuan,120.57,p4,abs
+2016-01-01,W.P. Labuan,4844.388,p5,abs
+2016-01-01,W.P. Labuan,76.813,p6,abs
+2017-01-01,Johor,123561.327,p0,abs
+2017-01-01,Johor,16169.986,p1,abs
+2017-01-01,Johor,655.514,p2,abs
+2017-01-01,Johor,36465.306,p3,abs
+2017-01-01,Johor,8407.258,p4,abs
+2017-01-01,Johor,59999.052,p5,abs
+2017-01-01,Johor,1864.21,p6,abs
+2017-01-01,Kedah,43066.583,p0,abs
+2017-01-01,Kedah,5465.003,p1,abs
+2017-01-01,Kedah,109.592,p2,abs
+2017-01-01,Kedah,12449.393,p3,abs
+2017-01-01,Kedah,928.052,p4,abs
+2017-01-01,Kedah,23808.188,p5,abs
+2017-01-01,Kedah,306.354,p6,abs
+2017-01-01,Kelantan,23501.175,p0,abs
+2017-01-01,Kelantan,5476.893,p1,abs
+2017-01-01,Kelantan,300.233,p2,abs
+2017-01-01,Kelantan,1277.854,p3,abs
+2017-01-01,Kelantan,520.898,p4,abs
+2017-01-01,Kelantan,15899.029,p5,abs
+2017-01-01,Kelantan,26.268,p6,abs
+2017-01-01,Melaka,40829.986,p0,abs
+2017-01-01,Melaka,4625.117,p1,abs
+2017-01-01,Melaka,56.59,p2,abs
+2017-01-01,Melaka,15620.547,p3,abs
+2017-01-01,Melaka,1720.331,p4,abs
+2017-01-01,Melaka,18613.275,p5,abs
+2017-01-01,Melaka,194.127,p6,abs
+2017-01-01,Negeri Sembilan,43815.729,p0,abs
+2017-01-01,Negeri Sembilan,3321.278,p1,abs
+2017-01-01,Negeri Sembilan,217.007,p2,abs
+2017-01-01,Negeri Sembilan,16653.928,p3,abs
+2017-01-01,Negeri Sembilan,1715.817,p4,abs
+2017-01-01,Negeri Sembilan,20915.752,p5,abs
+2017-01-01,Negeri Sembilan,991.945,p6,abs
+2017-01-01,Pahang,54591.139,p0,abs
+2017-01-01,Pahang,12253.554,p1,abs
+2017-01-01,Pahang,709.071,p2,abs
+2017-01-01,Pahang,11531.092,p3,abs
+2017-01-01,Pahang,3230.848,p4,abs
+2017-01-01,Pahang,26719.548,p5,abs
+2017-01-01,Pahang,147.025,p6,abs
+2017-01-01,Perak,69336.571,p0,abs
+2017-01-01,Perak,10941.99,p1,abs
+2017-01-01,Perak,438.054,p2,abs
+2017-01-01,Perak,12691.378,p3,abs
+2017-01-01,Perak,2113.067,p4,abs
+2017-01-01,Perak,43027.708,p5,abs
+2017-01-01,Perak,124.374,p6,abs
+2017-01-01,Perlis,5694.648,p0,abs
+2017-01-01,Perlis,1248.989,p1,abs
+2017-01-01,Perlis,30.706,p2,abs
+2017-01-01,Perlis,458.684,p3,abs
+2017-01-01,Perlis,121.183,p4,abs
+2017-01-01,Perlis,3722.87,p5,abs
+2017-01-01,Perlis,112.216,p6,abs
+2017-01-01,Pulau Pinang,86767.823,p0,abs
+2017-01-01,Pulau Pinang,2034.414,p1,abs
+2017-01-01,Pulau Pinang,143.794,p2,abs
+2017-01-01,Pulau Pinang,37425.53,p3,abs
+2017-01-01,Pulau Pinang,2688.806,p4,abs
+2017-01-01,Pulau Pinang,43458.075,p5,abs
+2017-01-01,Pulau Pinang,1017.204,p6,abs
+2017-01-01,Sabah,83793.257,p0,abs
+2017-01-01,Sabah,13882.585,p1,abs
+2017-01-01,Sabah,25440.572,p2,abs
+2017-01-01,Sabah,6362.349,p3,abs
+2017-01-01,Sabah,2322.385,p4,abs
+2017-01-01,Sabah,35433.648,p5,abs
+2017-01-01,Sabah,351.717,p6,abs
+2017-01-01,Sarawak,130168.608,p0,abs
+2017-01-01,Sarawak,16728.012,p1,abs
+2017-01-01,Sarawak,30213.547,p2,abs
+2017-01-01,Sarawak,34811.03,p3,abs
+2017-01-01,Sarawak,4354.593,p4,abs
+2017-01-01,Sarawak,43541.213,p5,abs
+2017-01-01,Sarawak,520.213,p6,abs
+2017-01-01,Selangor,302186.45,p0,abs
+2017-01-01,Selangor,4319.285,p1,abs
+2017-01-01,Selangor,691.631,p2,abs
+2017-01-01,Selangor,84963.994,p3,abs
+2017-01-01,Selangor,17580.447,p4,abs
+2017-01-01,Selangor,186017.921,p5,abs
+2017-01-01,Selangor,8613.171,p6,abs
+2017-01-01,Terengganu,33978.557,p0,abs
+2017-01-01,Terengganu,2921.319,p1,abs
+2017-01-01,Terengganu,173.812,p2,abs
+2017-01-01,Terengganu,12586.427,p3,abs
+2017-01-01,Terengganu,1275.923,p4,abs
+2017-01-01,Terengganu,16916.309,p5,abs
+2017-01-01,Terengganu,104.767,p6,abs
+2017-01-01,W.P. Kuala Lumpur,206175.307,p0,abs
+2017-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2017-01-01,W.P. Kuala Lumpur,145.62,p2,abs
+2017-01-01,W.P. Kuala Lumpur,5870.658,p3,abs
+2017-01-01,W.P. Kuala Lumpur,16406.305,p4,abs
+2017-01-01,W.P. Kuala Lumpur,180195.571,p5,abs
+2017-01-01,W.P. Kuala Lumpur,3555.524,p6,abs
+2017-01-01,W.P. Labuan,6789.806,p0,abs
+2017-01-01,W.P. Labuan,118.722,p1,abs
+2017-01-01,W.P. Labuan,0.0,p2,abs
+2017-01-01,W.P. Labuan,1295.515,p3,abs
+2017-01-01,W.P. Labuan,135.768,p4,abs
+2017-01-01,W.P. Labuan,5092.569,p5,abs
+2017-01-01,W.P. Labuan,147.231,p6,abs
+2018-01-01,Johor,130585.945,p0,abs
+2018-01-01,Johor,16246.395,p1,abs
+2018-01-01,Johor,711.119,p2,abs
+2018-01-01,Johor,38337.729,p3,abs
+2018-01-01,Johor,9217.347,p4,abs
+2018-01-01,Johor,64401.807,p5,abs
+2018-01-01,Johor,1671.547,p6,abs
+2018-01-01,Kedah,44803.83,p0,abs
+2018-01-01,Kedah,5467.96,p1,abs
+2018-01-01,Kedah,114.924,p2,abs
+2018-01-01,Kedah,12827.215,p3,abs
+2018-01-01,Kedah,1008.855,p4,abs
+2018-01-01,Kedah,25104.159,p5,abs
+2018-01-01,Kedah,280.717,p6,abs
+2018-01-01,Kelantan,24142.691,p0,abs
+2018-01-01,Kelantan,5430.623,p1,abs
+2018-01-01,Kelantan,359.496,p2,abs
+2018-01-01,Kelantan,1281.173,p3,abs
+2018-01-01,Kelantan,324.425,p4,abs
+2018-01-01,Kelantan,16721.126,p5,abs
+2018-01-01,Kelantan,25.848,p6,abs
+2018-01-01,Melaka,42375.671,p0,abs
+2018-01-01,Melaka,4567.438,p1,abs
+2018-01-01,Melaka,61.964,p2,abs
+2018-01-01,Melaka,16334.858,p3,abs
+2018-01-01,Melaka,1495.597,p4,abs
+2018-01-01,Melaka,19730.706,p5,abs
+2018-01-01,Melaka,185.109,p6,abs
+2018-01-01,Negeri Sembilan,45694.04,p0,abs
+2018-01-01,Negeri Sembilan,3323.09,p1,abs
+2018-01-01,Negeri Sembilan,223.609,p2,abs
+2018-01-01,Negeri Sembilan,17208.037,p3,abs
+2018-01-01,Negeri Sembilan,1915.685,p4,abs
+2018-01-01,Negeri Sembilan,22126.197,p5,abs
+2018-01-01,Negeri Sembilan,897.422,p6,abs
+2018-01-01,Pahang,56289.94,p0,abs
+2018-01-01,Pahang,12418.561,p1,abs
+2018-01-01,Pahang,705.115,p2,abs
+2018-01-01,Pahang,12194.343,p3,abs
+2018-01-01,Pahang,2399.236,p4,abs
+2018-01-01,Pahang,28453.955,p5,abs
+2018-01-01,Pahang,118.73,p6,abs
+2018-01-01,Perak,73030.81,p0,abs
+2018-01-01,Perak,10993.834,p1,abs
+2018-01-01,Perak,460.602,p2,abs
+2018-01-01,Perak,13221.631,p3,abs
+2018-01-01,Perak,2336.763,p4,abs
+2018-01-01,Perak,45910.8,p5,abs
+2018-01-01,Perak,107.18,p6,abs
+2018-01-01,Perlis,5885.364,p0,abs
+2018-01-01,Perlis,1260.332,p1,abs
+2018-01-01,Perlis,32.582,p2,abs
+2018-01-01,Perlis,465.657,p3,abs
+2018-01-01,Perlis,147.251,p4,abs
+2018-01-01,Perlis,3881.139,p5,abs
+2018-01-01,Perlis,98.404,p6,abs
+2018-01-01,Pulau Pinang,91234.235,p0,abs
+2018-01-01,Pulau Pinang,1969.23,p1,abs
+2018-01-01,Pulau Pinang,156.363,p2,abs
+2018-01-01,Pulau Pinang,39458.422,p3,abs
+2018-01-01,Pulau Pinang,2619.567,p4,abs
+2018-01-01,Pulau Pinang,46120.484,p5,abs
+2018-01-01,Pulau Pinang,910.17,p6,abs
+2018-01-01,Sabah,85012.016,p0,abs
+2018-01-01,Sabah,13836.318,p1,abs
+2018-01-01,Sabah,23993.921,p2,abs
+2018-01-01,Sabah,6513.729,p3,abs
+2018-01-01,Sabah,2918.088,p4,abs
+2018-01-01,Sabah,37423.047,p5,abs
+2018-01-01,Sabah,326.914,p6,abs
+2018-01-01,Sarawak,133009.823,p0,abs
+2018-01-01,Sarawak,16614.458,p1,abs
+2018-01-01,Sarawak,29626.577,p2,abs
+2018-01-01,Sarawak,35579.068,p3,abs
+2018-01-01,Sarawak,4402.37,p4,abs
+2018-01-01,Sarawak,46312.482,p5,abs
+2018-01-01,Sarawak,474.869,p6,abs
+2018-01-01,Selangor,323215.439,p0,abs
+2018-01-01,Selangor,4534.651,p1,abs
+2018-01-01,Selangor,737.317,p2,abs
+2018-01-01,Selangor,91132.978,p3,abs
+2018-01-01,Selangor,18645.768,p4,abs
+2018-01-01,Selangor,200323.506,p5,abs
+2018-01-01,Selangor,7841.217,p6,abs
+2018-01-01,Terengganu,34838.208,p0,abs
+2018-01-01,Terengganu,2846.927,p1,abs
+2018-01-01,Terengganu,183.225,p2,abs
+2018-01-01,Terengganu,13055.539,p3,abs
+2018-01-01,Terengganu,1161.133,p4,abs
+2018-01-01,Terengganu,17527.333,p5,abs
+2018-01-01,Terengganu,64.051,p6,abs
+2018-01-01,W.P. Kuala Lumpur,220358.974,p0,abs
+2018-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2018-01-01,W.P. Kuala Lumpur,145.724,p2,abs
+2018-01-01,W.P. Kuala Lumpur,5867.619,p3,abs
+2018-01-01,W.P. Kuala Lumpur,17446.124,p4,abs
+2018-01-01,W.P. Kuala Lumpur,193472.341,p5,abs
+2018-01-01,W.P. Kuala Lumpur,3425.512,p6,abs
+2018-01-01,W.P. Labuan,7244.941,p0,abs
+2018-01-01,W.P. Labuan,125.608,p1,abs
+2018-01-01,W.P. Labuan,0.0,p2,abs
+2018-01-01,W.P. Labuan,1364.66,p3,abs
+2018-01-01,W.P. Labuan,156.064,p4,abs
+2018-01-01,W.P. Labuan,5480.777,p5,abs
+2018-01-01,W.P. Labuan,117.831,p6,abs
+2019-01-01,Johor,134225.938,p0,abs
+2019-01-01,Johor,16403.246,p1,abs
+2019-01-01,Johor,812.547,p2,abs
+2019-01-01,Johor,40124.896,p3,abs
+2019-01-01,Johor,6699.7,p4,abs
+2019-01-01,Johor,68576.722,p5,abs
+2019-01-01,Johor,1608.826,p6,abs
+2019-01-01,Kedah,46841.199,p0,abs
+2019-01-01,Kedah,5645.724,p1,abs
+2019-01-01,Kedah,125.34,p2,abs
+2019-01-01,Kedah,13429.618,p3,abs
+2019-01-01,Kedah,1090.383,p4,abs
+2019-01-01,Kedah,26326.519,p5,abs
+2019-01-01,Kedah,223.615,p6,abs
+2019-01-01,Kelantan,25479.178,p0,abs
+2019-01-01,Kelantan,5813.752,p1,abs
+2019-01-01,Kelantan,416.804,p2,abs
+2019-01-01,Kelantan,1300.391,p3,abs
+2019-01-01,Kelantan,383.135,p4,abs
+2019-01-01,Kelantan,17535.366,p5,abs
+2019-01-01,Kelantan,29.729,p6,abs
+2019-01-01,Melaka,43583.397,p0,abs
+2019-01-01,Melaka,4433.169,p1,abs
+2019-01-01,Melaka,67.905,p2,abs
+2019-01-01,Melaka,16744.806,p3,abs
+2019-01-01,Melaka,1357.797,p4,abs
+2019-01-01,Melaka,20917.737,p5,abs
+2019-01-01,Melaka,61.984,p6,abs
+2019-01-01,Negeri Sembilan,48033.554,p0,abs
+2019-01-01,Negeri Sembilan,3556.781,p1,abs
+2019-01-01,Negeri Sembilan,235.759,p2,abs
+2019-01-01,Negeri Sembilan,17630.391,p3,abs
+2019-01-01,Negeri Sembilan,1842.634,p4,abs
+2019-01-01,Negeri Sembilan,24037.373,p5,abs
+2019-01-01,Negeri Sembilan,730.616,p6,abs
+2019-01-01,Pahang,58434.372,p0,abs
+2019-01-01,Pahang,12849.208,p1,abs
+2019-01-01,Pahang,819.669,p2,abs
+2019-01-01,Pahang,12766.618,p3,abs
+2019-01-01,Pahang,1726.92,p4,abs
+2019-01-01,Pahang,30217.041,p5,abs
+2019-01-01,Pahang,54.917,p6,abs
+2019-01-01,Perak,75992.708,p0,abs
+2019-01-01,Perak,11312.41,p1,abs
+2019-01-01,Perak,504.554,p2,abs
+2019-01-01,Perak,13683.259,p3,abs
+2019-01-01,Perak,2490.203,p4,abs
+2019-01-01,Perak,47970.594,p5,abs
+2019-01-01,Perak,31.687,p6,abs
+2019-01-01,Perlis,6151.334,p0,abs
+2019-01-01,Perlis,1333.94,p1,abs
+2019-01-01,Perlis,33.318,p2,abs
+2019-01-01,Perlis,470.377,p3,abs
+2019-01-01,Perlis,166.658,p4,abs
+2019-01-01,Perlis,4074.923,p5,abs
+2019-01-01,Perlis,72.118,p6,abs
+2019-01-01,Pulau Pinang,94645.352,p0,abs
+2019-01-01,Pulau Pinang,2067.787,p1,abs
+2019-01-01,Pulau Pinang,171.449,p2,abs
+2019-01-01,Pulau Pinang,40510.378,p3,abs
+2019-01-01,Pulau Pinang,2644.079,p4,abs
+2019-01-01,Pulau Pinang,48645.481,p5,abs
+2019-01-01,Pulau Pinang,606.177,p6,abs
+2019-01-01,Sabah,85641.69,p0,abs
+2019-01-01,Sabah,13719.07,p1,abs
+2019-01-01,Sabah,22736.44,p2,abs
+2019-01-01,Sabah,6471.818,p3,abs
+2019-01-01,Sabah,3098.682,p4,abs
+2019-01-01,Sabah,39428.467,p5,abs
+2019-01-01,Sabah,187.213,p6,abs
+2019-01-01,Sarawak,136759.184,p0,abs
+2019-01-01,Sarawak,16578.352,p1,abs
+2019-01-01,Sarawak,30012.841,p2,abs
+2019-01-01,Sarawak,36612.585,p3,abs
+2019-01-01,Sarawak,4476.115,p4,abs
+2019-01-01,Sarawak,48761.022,p5,abs
+2019-01-01,Sarawak,318.269,p6,abs
+2019-01-01,Selangor,345008.461,p0,abs
+2019-01-01,Selangor,4708.902,p1,abs
+2019-01-01,Selangor,859.075,p2,abs
+2019-01-01,Selangor,95941.82,p3,abs
+2019-01-01,Selangor,20663.954,p4,abs
+2019-01-01,Selangor,214347.881,p5,abs
+2019-01-01,Selangor,8486.83,p6,abs
+2019-01-01,Terengganu,36000.52,p0,abs
+2019-01-01,Terengganu,3016.084,p1,abs
+2019-01-01,Terengganu,200.918,p2,abs
+2019-01-01,Terengganu,13093.274,p3,abs
+2019-01-01,Terengganu,1165.429,p4,abs
+2019-01-01,Terengganu,18508.873,p5,abs
+2019-01-01,Terengganu,15.941,p6,abs
+2019-01-01,W.P. Kuala Lumpur,233793.693,p0,abs
+2019-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2019-01-01,W.P. Kuala Lumpur,152.637,p2,abs
+2019-01-01,W.P. Kuala Lumpur,6119.096,p3,abs
+2019-01-01,W.P. Kuala Lumpur,18469.697,p4,abs
+2019-01-01,W.P. Kuala Lumpur,205330.858,p5,abs
+2019-01-01,W.P. Kuala Lumpur,3719.753,p6,abs
+2019-01-01,W.P. Labuan,7623.268,p0,abs
+2019-01-01,W.P. Labuan,133.251,p1,abs
+2019-01-01,W.P. Labuan,0.0,p2,abs
+2019-01-01,W.P. Labuan,1383.647,p3,abs
+2019-01-01,W.P. Labuan,177.184,p4,abs
+2019-01-01,W.P. Labuan,5897.621,p5,abs
+2019-01-01,W.P. Labuan,31.566,p6,abs
+2020-01-01,Johor,128073.564,p0,abs
+2020-01-01,Johor,16856.55,p1,abs
+2020-01-01,Johor,657.515,p2,abs
+2020-01-01,Johor,38650.689,p3,abs
+2020-01-01,Johor,4175.525,p4,abs
+2020-01-01,Johor,66406.166,p5,abs
+2020-01-01,Johor,1327.119,p6,abs
+2020-01-01,Kedah,46042.458,p0,abs
+2020-01-01,Kedah,5517.843,p1,abs
+2020-01-01,Kedah,111.892,p2,abs
+2020-01-01,Kedah,13618.773,p3,abs
+2020-01-01,Kedah,1112.621,p4,abs
+2020-01-01,Kedah,25433.746,p5,abs
+2020-01-01,Kedah,247.582,p6,abs
+2020-01-01,Kelantan,25187.708,p0,abs
+2020-01-01,Kelantan,5817.503,p1,abs
+2020-01-01,Kelantan,341.892,p2,abs
+2020-01-01,Kelantan,1234.011,p3,abs
+2020-01-01,Kelantan,396.456,p4,abs
+2020-01-01,Kelantan,17374.192,p5,abs
+2020-01-01,Kelantan,23.653,p6,abs
+2020-01-01,Melaka,41030.449,p0,abs
+2020-01-01,Melaka,4583.532,p1,abs
+2020-01-01,Melaka,59.283,p2,abs
+2020-01-01,Melaka,15322.431,p3,abs
+2020-01-01,Melaka,991.943,p4,abs
+2020-01-01,Melaka,19969.693,p5,abs
+2020-01-01,Melaka,103.567,p6,abs
+2020-01-01,Negeri Sembilan,46336.101,p0,abs
+2020-01-01,Negeri Sembilan,3318.702,p1,abs
+2020-01-01,Negeri Sembilan,199.668,p2,abs
+2020-01-01,Negeri Sembilan,16760.978,p3,abs
+2020-01-01,Negeri Sembilan,1370.22,p4,abs
+2020-01-01,Negeri Sembilan,23822.068,p5,abs
+2020-01-01,Negeri Sembilan,864.466,p6,abs
+2020-01-01,Pahang,54885.462,p0,abs
+2020-01-01,Pahang,13001.464,p1,abs
+2020-01-01,Pahang,613.576,p2,abs
+2020-01-01,Pahang,12246.086,p3,abs
+2020-01-01,Pahang,1351.98,p4,abs
+2020-01-01,Pahang,27597.184,p5,abs
+2020-01-01,Pahang,75.173,p6,abs
+2020-01-01,Perak,74263.987,p0,abs
+2020-01-01,Perak,11430.364,p1,abs
+2020-01-01,Perak,432.138,p2,abs
+2020-01-01,Perak,14155.88,p3,abs
+2020-01-01,Perak,2057.417,p4,abs
+2020-01-01,Perak,46136.819,p5,abs
+2020-01-01,Perak,51.37,p6,abs
+2020-01-01,Perlis,5785.067,p0,abs
+2020-01-01,Perlis,1087.742,p1,abs
+2020-01-01,Perlis,30.067,p2,abs
+2020-01-01,Perlis,443.996,p3,abs
+2020-01-01,Perlis,150.603,p4,abs
+2020-01-01,Perlis,4032.247,p5,abs
+2020-01-01,Perlis,40.41,p6,abs
+2020-01-01,Pulau Pinang,92690.682,p0,abs
+2020-01-01,Pulau Pinang,2048.85,p1,abs
+2020-01-01,Pulau Pinang,139.141,p2,abs
+2020-01-01,Pulau Pinang,41626.57,p3,abs
+2020-01-01,Pulau Pinang,2234.118,p4,abs
+2020-01-01,Pulau Pinang,45978.568,p5,abs
+2020-01-01,Pulau Pinang,663.435,p6,abs
+2020-01-01,Sabah,77840.052,p0,abs
+2020-01-01,Sabah,12798.329,p1,abs
+2020-01-01,Sabah,19935.969,p2,abs
+2020-01-01,Sabah,6042.344,p3,abs
+2020-01-01,Sabah,2196.533,p4,abs
+2020-01-01,Sabah,36597.415,p5,abs
+2020-01-01,Sabah,269.462,p6,abs
+2020-01-01,Sarawak,127556.288,p0,abs
+2020-01-01,Sarawak,14907.463,p1,abs
+2020-01-01,Sarawak,28591.412,p2,abs
+2020-01-01,Sarawak,33427.691,p3,abs
+2020-01-01,Sarawak,4081.745,p4,abs
+2020-01-01,Sarawak,46160.302,p5,abs
+2020-01-01,Sarawak,387.676,p6,abs
+2020-01-01,Selangor,326805.3,p0,abs
+2020-01-01,Selangor,4721.221,p1,abs
+2020-01-01,Selangor,755.167,p2,abs
+2020-01-01,Selangor,95113.627,p3,abs
+2020-01-01,Selangor,18664.936,p4,abs
+2020-01-01,Selangor,200127.437,p5,abs
+2020-01-01,Selangor,7422.912,p6,abs
+2020-01-01,Terengganu,33994.032,p0,abs
+2020-01-01,Terengganu,2902.817,p1,abs
+2020-01-01,Terengganu,175.891,p2,abs
+2020-01-01,Terengganu,11861.58,p3,abs
+2020-01-01,Terengganu,1080.445,p4,abs
+2020-01-01,Terengganu,17942.611,p5,abs
+2020-01-01,Terengganu,30.687,p6,abs
+2020-01-01,W.P. Kuala Lumpur,217447.043,p0,abs
+2020-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2020-01-01,W.P. Kuala Lumpur,138.272,p2,abs
+2020-01-01,W.P. Kuala Lumpur,5733.447,p3,abs
+2020-01-01,W.P. Kuala Lumpur,13589.06,p4,abs
+2020-01-01,W.P. Kuala Lumpur,194204.167,p5,abs
+2020-01-01,W.P. Kuala Lumpur,3780.403,p6,abs
+2020-01-01,W.P. Labuan,7613.361,p0,abs
+2020-01-01,W.P. Labuan,115.129,p1,abs
+2020-01-01,W.P. Labuan,0.0,p2,abs
+2020-01-01,W.P. Labuan,1367.505,p3,abs
+2020-01-01,W.P. Labuan,162.59,p4,abs
+2020-01-01,W.P. Labuan,5910.296,p5,abs
+2020-01-01,W.P. Labuan,57.841,p6,abs
+2021-01-01,Johor,131242.981,p0,abs
+2021-01-01,Johor,16882.569,p1,abs
+2021-01-01,Johor,586.874,p2,abs
+2021-01-01,Johor,40726.902,p3,abs
+2021-01-01,Johor,3417.687,p4,abs
+2021-01-01,Johor,68360.034,p5,abs
+2021-01-01,Johor,1268.915,p6,abs
+2021-01-01,Kedah,47505.068,p0,abs
+2021-01-01,Kedah,5668.731,p1,abs
+2021-01-01,Kedah,103.154,p2,abs
+2021-01-01,Kedah,14465.165,p3,abs
+2021-01-01,Kedah,1018.949,p4,abs
+2021-01-01,Kedah,25925.347,p5,abs
+2021-01-01,Kedah,323.722,p6,abs
+2021-01-01,Kelantan,25781.895,p0,abs
+2021-01-01,Kelantan,5869.39,p1,abs
+2021-01-01,Kelantan,352.629,p2,abs
+2021-01-01,Kelantan,1259.726,p3,abs
+2021-01-01,Kelantan,400.86,p4,abs
+2021-01-01,Kelantan,17866.211,p5,abs
+2021-01-01,Kelantan,33.078,p6,abs
+2021-01-01,Melaka,41871.632,p0,abs
+2021-01-01,Melaka,4517.274,p1,abs
+2021-01-01,Melaka,55.351,p2,abs
+2021-01-01,Melaka,15835.427,p3,abs
+2021-01-01,Melaka,896.499,p4,abs
+2021-01-01,Melaka,20508.12,p5,abs
+2021-01-01,Melaka,58.961,p6,abs
+2021-01-01,Negeri Sembilan,47787.092,p0,abs
+2021-01-01,Negeri Sembilan,3303.506,p1,abs
+2021-01-01,Negeri Sembilan,186.343,p2,abs
+2021-01-01,Negeri Sembilan,17962.246,p3,abs
+2021-01-01,Negeri Sembilan,1365.234,p4,abs
+2021-01-01,Negeri Sembilan,24359.904,p5,abs
+2021-01-01,Negeri Sembilan,609.859,p6,abs
+2021-01-01,Pahang,55440.104,p0,abs
+2021-01-01,Pahang,13005.688,p1,abs
+2021-01-01,Pahang,507.224,p2,abs
+2021-01-01,Pahang,12990.245,p3,abs
+2021-01-01,Pahang,1600.807,p4,abs
+2021-01-01,Pahang,27285.399,p5,abs
+2021-01-01,Pahang,50.74,p6,abs
+2021-01-01,Perak,76900.997,p0,abs
+2021-01-01,Perak,11768.73,p1,abs
+2021-01-01,Perak,401.822,p2,abs
+2021-01-01,Perak,15453.346,p3,abs
+2021-01-01,Perak,1919.248,p4,abs
+2021-01-01,Perak,47322.899,p5,abs
+2021-01-01,Perak,34.953,p6,abs
+2021-01-01,Perlis,5866.65,p0,abs
+2021-01-01,Perlis,1023.525,p1,abs
+2021-01-01,Perlis,28.553,p2,abs
+2021-01-01,Perlis,467.888,p3,abs
+2021-01-01,Perlis,150.799,p4,abs
+2021-01-01,Perlis,4119.515,p5,abs
+2021-01-01,Perlis,76.371,p6,abs
+2021-01-01,Pulau Pinang,99123.944,p0,abs
+2021-01-01,Pulau Pinang,1999.831,p1,abs
+2021-01-01,Pulau Pinang,129.979,p2,abs
+2021-01-01,Pulau Pinang,46768.162,p3,abs
+2021-01-01,Pulau Pinang,2521.324,p4,abs
+2021-01-01,Pulau Pinang,47079.905,p5,abs
+2021-01-01,Pulau Pinang,624.743,p6,abs
+2021-01-01,Sabah,79000.069,p0,abs
+2021-01-01,Sabah,12517.988,p1,abs
+2021-01-01,Sabah,20574.499,p2,abs
+2021-01-01,Sabah,5931.064,p3,abs
+2021-01-01,Sabah,2368.222,p4,abs
+2021-01-01,Sabah,37368.739,p5,abs
+2021-01-01,Sabah,239.556,p6,abs
+2021-01-01,Sarawak,131593.878,p0,abs
+2021-01-01,Sarawak,14465.913,p1,abs
+2021-01-01,Sarawak,27875.384,p2,abs
+2021-01-01,Sarawak,37092.353,p3,abs
+2021-01-01,Sarawak,4490.408,p4,abs
+2021-01-01,Sarawak,47314.523,p5,abs
+2021-01-01,Sarawak,355.297,p6,abs
+2021-01-01,Selangor,344102.741,p0,abs
+2021-01-01,Selangor,4950.204,p1,abs
+2021-01-01,Selangor,707.8,p2,abs
+2021-01-01,Selangor,107456.098,p3,abs
+2021-01-01,Selangor,17473.8,p4,abs
+2021-01-01,Selangor,205429.698,p5,abs
+2021-01-01,Selangor,8085.14,p6,abs
+2021-01-01,Terengganu,35235.898,p0,abs
+2021-01-01,Terengganu,2751.573,p1,abs
+2021-01-01,Terengganu,177.668,p2,abs
+2021-01-01,Terengganu,12984.114,p3,abs
+2021-01-01,Terengganu,1105.7,p4,abs
+2021-01-01,Terengganu,18200.843,p5,abs
+2021-01-01,Terengganu,15.999,p6,abs
+2021-01-01,W.P. Kuala Lumpur,219883.721,p0,abs
+2021-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2021-01-01,W.P. Kuala Lumpur,134.235,p2,abs
+2021-01-01,W.P. Kuala Lumpur,5977.909,p3,abs
+2021-01-01,W.P. Kuala Lumpur,11966.1,p4,abs
+2021-01-01,W.P. Kuala Lumpur,197978.504,p5,abs
+2021-01-01,W.P. Kuala Lumpur,3825.288,p6,abs
+2021-01-01,W.P. Labuan,7649.669,p0,abs
+2021-01-01,W.P. Labuan,116.628,p1,abs
+2021-01-01,W.P. Labuan,0.0,p2,abs
+2021-01-01,W.P. Labuan,1353.715,p3,abs
+2021-01-01,W.P. Labuan,143.3,p4,abs
+2021-01-01,W.P. Labuan,5996.655,p5,abs
+2021-01-01,W.P. Labuan,39.372,p6,abs
+2022-01-01,Johor,142369.692,p0,abs
+2022-01-01,Johor,17402.664,p1,abs
+2022-01-01,Johor,648.636,p2,abs
+2022-01-01,Johor,42948.216,p3,abs
+2022-01-01,Johor,3962.15,p4,abs
+2022-01-01,Johor,75875.363,p5,abs
+2022-01-01,Johor,1532.664,p6,abs
+2022-01-01,Kedah,50982.123,p0,abs
+2022-01-01,Kedah,5687.965,p1,abs
+2022-01-01,Kedah,114.256,p2,abs
+2022-01-01,Kedah,15633.475,p3,abs
+2022-01-01,Kedah,1205.493,p4,abs
+2022-01-01,Kedah,27992.38,p5,abs
+2022-01-01,Kedah,348.554,p6,abs
+2022-01-01,Kelantan,26934.566,p0,abs
+2022-01-01,Kelantan,5640.233,p1,abs
+2022-01-01,Kelantan,392.951,p2,abs
+2022-01-01,Kelantan,1298.632,p3,abs
+2022-01-01,Kelantan,479.777,p4,abs
+2022-01-01,Kelantan,19077.743,p5,abs
+2022-01-01,Kelantan,45.229,p6,abs
+2022-01-01,Melaka,45579.035,p0,abs
+2022-01-01,Melaka,4544.829,p1,abs
+2022-01-01,Melaka,61.137,p2,abs
+2022-01-01,Melaka,16904.765,p3,abs
+2022-01-01,Melaka,942.579,p4,abs
+2022-01-01,Melaka,23058.978,p5,abs
+2022-01-01,Melaka,66.747,p6,abs
+2022-01-01,Negeri Sembilan,50939.264,p0,abs
+2022-01-01,Negeri Sembilan,3321.034,p1,abs
+2022-01-01,Negeri Sembilan,206.612,p2,abs
+2022-01-01,Negeri Sembilan,19394.015,p3,abs
+2022-01-01,Negeri Sembilan,1444.138,p4,abs
+2022-01-01,Negeri Sembilan,26255.402,p5,abs
+2022-01-01,Negeri Sembilan,318.062,p6,abs
+2022-01-01,Pahang,61746.204,p0,abs
+2022-01-01,Pahang,13887.161,p1,abs
+2022-01-01,Pahang,571.949,p2,abs
+2022-01-01,Pahang,13745.04,p3,abs
+2022-01-01,Pahang,1584.062,p4,abs
+2022-01-01,Pahang,31906.849,p5,abs
+2022-01-01,Pahang,51.142,p6,abs
+2022-01-01,Perak,80426.886,p0,abs
+2022-01-01,Perak,11466.447,p1,abs
+2022-01-01,Perak,449.423,p2,abs
+2022-01-01,Perak,15606.298,p3,abs
+2022-01-01,Perak,2036.458,p4,abs
+2022-01-01,Perak,50816.522,p5,abs
+2022-01-01,Perak,51.737,p6,abs
+2022-01-01,Perlis,6209.957,p0,abs
+2022-01-01,Perlis,1058.373,p1,abs
+2022-01-01,Perlis,31.391,p2,abs
+2022-01-01,Perlis,489.059,p3,abs
+2022-01-01,Perlis,152.461,p4,abs
+2022-01-01,Perlis,4350.08,p5,abs
+2022-01-01,Perlis,128.592,p6,abs
+2022-01-01,Pulau Pinang,112281.052,p0,abs
+2022-01-01,Pulau Pinang,2094.675,p1,abs
+2022-01-01,Pulau Pinang,143.903,p2,abs
+2022-01-01,Pulau Pinang,54187.835,p3,abs
+2022-01-01,Pulau Pinang,2721.224,p4,abs
+2022-01-01,Pulau Pinang,52490.218,p5,abs
+2022-01-01,Pulau Pinang,643.197,p6,abs
+2022-01-01,Sabah,82106.428,p0,abs
+2022-01-01,Sabah,12543.031,p1,abs
+2022-01-01,Sabah,20454.838,p2,abs
+2022-01-01,Sabah,5780.032,p3,abs
+2022-01-01,Sabah,2514.425,p4,abs
+2022-01-01,Sabah,40544.43,p5,abs
+2022-01-01,Sabah,269.672,p6,abs
+2022-01-01,Sarawak,140698.831,p0,abs
+2022-01-01,Sarawak,14727.061,p1,abs
+2022-01-01,Sarawak,29911.17,p2,abs
+2022-01-01,Sarawak,39229.048,p3,abs
+2022-01-01,Sarawak,4671.277,p4,abs
+2022-01-01,Sarawak,51732.671,p5,abs
+2022-01-01,Sarawak,427.604,p6,abs
+2022-01-01,Selangor,385158.798,p0,abs
+2022-01-01,Selangor,4925.552,p1,abs
+2022-01-01,Selangor,796.664,p2,abs
+2022-01-01,Selangor,117172.055,p3,abs
+2022-01-01,Selangor,18208.686,p4,abs
+2022-01-01,Selangor,233372.832,p5,abs
+2022-01-01,Selangor,10683.01,p6,abs
+2022-01-01,Terengganu,37353.84,p0,abs
+2022-01-01,Terengganu,2659.501,p1,abs
+2022-01-01,Terengganu,197.155,p2,abs
+2022-01-01,Terengganu,14061.235,p3,abs
+2022-01-01,Terengganu,1143.569,p4,abs
+2022-01-01,Terengganu,19284.074,p5,abs
+2022-01-01,Terengganu,8.308,p6,abs
+2022-01-01,W.P. Kuala Lumpur,240517.538,p0,abs
+2022-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2022-01-01,W.P. Kuala Lumpur,147.775,p2,abs
+2022-01-01,W.P. Kuala Lumpur,6297.152,p3,abs
+2022-01-01,W.P. Kuala Lumpur,12212.196,p4,abs
+2022-01-01,W.P. Kuala Lumpur,219683.46,p5,abs
+2022-01-01,W.P. Kuala Lumpur,2175.199,p6,abs
+2022-01-01,W.P. Labuan,7962.511,p0,abs
+2022-01-01,W.P. Labuan,122.137,p1,abs
+2022-01-01,W.P. Labuan,0.0,p2,abs
+2022-01-01,W.P. Labuan,1376.733,p3,abs
+2022-01-01,W.P. Labuan,147.96,p4,abs
+2022-01-01,W.P. Labuan,6281.577,p5,abs
+2022-01-01,W.P. Labuan,34.104,p6,abs
+2023-01-01,Johor,148710.224,p0,abs
+2023-01-01,Johor,17296.531,p1,abs
+2023-01-01,Johor,692.38,p2,abs
+2023-01-01,Johor,44165.268,p3,abs
+2023-01-01,Johor,4474.065,p4,abs
+2023-01-01,Johor,80384.213,p5,abs
+2023-01-01,Johor,1697.769,p6,abs
+2023-01-01,Kedah,51897.111,p0,abs
+2023-01-01,Kedah,5506.617,p1,abs
+2023-01-01,Kedah,122.028,p2,abs
+2023-01-01,Kedah,15137.514,p3,abs
+2023-01-01,Kedah,1599.896,p4,abs
+2023-01-01,Kedah,29228.51,p5,abs
+2023-01-01,Kedah,302.547,p6,abs
+2023-01-01,Kelantan,27674.208,p0,abs
+2023-01-01,Kelantan,5609.804,p1,abs
+2023-01-01,Kelantan,427.947,p2,abs
+2023-01-01,Kelantan,1265.084,p3,abs
+2023-01-01,Kelantan,465.42,p4,abs
+2023-01-01,Kelantan,19868.996,p5,abs
+2023-01-01,Kelantan,36.957,p6,abs
+2023-01-01,Melaka,46867.46,p0,abs
+2023-01-01,Melaka,4707.996,p1,abs
+2023-01-01,Melaka,65.287,p2,abs
+2023-01-01,Melaka,16951.271,p3,abs
+2023-01-01,Melaka,1035.003,p4,abs
+2023-01-01,Melaka,24042.932,p5,abs
+2023-01-01,Melaka,64.971,p6,abs
+2023-01-01,Negeri Sembilan,51927.126,p0,abs
+2023-01-01,Negeri Sembilan,3131.734,p1,abs
+2023-01-01,Negeri Sembilan,226.273,p2,abs
+2023-01-01,Negeri Sembilan,19627.523,p3,abs
+2023-01-01,Negeri Sembilan,1367.175,p4,abs
+2023-01-01,Negeri Sembilan,27476.939,p5,abs
+2023-01-01,Negeri Sembilan,97.482,p6,abs
+2023-01-01,Pahang,64995.276,p0,abs
+2023-01-01,Pahang,14138.775,p1,abs
+2023-01-01,Pahang,628.752,p2,abs
+2023-01-01,Pahang,14038.951,p3,abs
+2023-01-01,Pahang,2270.957,p4,abs
+2023-01-01,Pahang,33880.169,p5,abs
+2023-01-01,Pahang,37.671,p6,abs
+2023-01-01,Perak,82689.048,p0,abs
+2023-01-01,Perak,11706.022,p1,abs
+2023-01-01,Perak,494.416,p2,abs
+2023-01-01,Perak,15951.746,p3,abs
+2023-01-01,Perak,2015.742,p4,abs
+2023-01-01,Perak,52461.332,p5,abs
+2023-01-01,Perak,59.791,p6,abs
+2023-01-01,Perlis,6344.468,p0,abs
+2023-01-01,Perlis,1089.838,p1,abs
+2023-01-01,Perlis,33.162,p2,abs
+2023-01-01,Perlis,484.303,p3,abs
+2023-01-01,Perlis,154.567,p4,abs
+2023-01-01,Perlis,4468.26,p5,abs
+2023-01-01,Perlis,114.338,p6,abs
+2023-01-01,Pulau Pinang,115983.459,p0,abs
+2023-01-01,Pulau Pinang,2212.746,p1,abs
+2023-01-01,Pulau Pinang,153.821,p2,abs
+2023-01-01,Pulau Pinang,53893.41,p3,abs
+2023-01-01,Pulau Pinang,3376.828,p4,abs
+2023-01-01,Pulau Pinang,55688.533,p5,abs
+2023-01-01,Pulau Pinang,658.123,p6,abs
+2023-01-01,Sabah,83470.946,p0,abs
+2023-01-01,Sabah,12653.109,p1,abs
+2023-01-01,Sabah,19535.216,p2,abs
+2023-01-01,Sabah,6056.663,p3,abs
+2023-01-01,Sabah,2494.337,p4,abs
+2023-01-01,Sabah,42468.832,p5,abs
+2023-01-01,Sabah,262.788,p6,abs
+2023-01-01,Sarawak,142760.202,p0,abs
+2023-01-01,Sarawak,14982.272,p1,abs
+2023-01-01,Sarawak,29867.685,p2,abs
+2023-01-01,Sarawak,37695.875,p3,abs
+2023-01-01,Sarawak,5120.846,p4,abs
+2023-01-01,Sarawak,54674.103,p5,abs
+2023-01-01,Sarawak,419.421,p6,abs
+2023-01-01,Selangor,406785.848,p0,abs
+2023-01-01,Selangor,4581.149,p1,abs
+2023-01-01,Selangor,832.691,p2,abs
+2023-01-01,Selangor,119671.227,p3,abs
+2023-01-01,Selangor,19967.739,p4,abs
+2023-01-01,Selangor,248370.902,p5,abs
+2023-01-01,Selangor,13362.139,p6,abs
+2023-01-01,Terengganu,38235.038,p0,abs
+2023-01-01,Terengganu,2829.877,p1,abs
+2023-01-01,Terengganu,208.173,p2,abs
+2023-01-01,Terengganu,14083.591,p3,abs
+2023-01-01,Terengganu,1165.791,p4,abs
+2023-01-01,Terengganu,19932.884,p5,abs
+2023-01-01,Terengganu,14.723,p6,abs
+2023-01-01,W.P. Kuala Lumpur,237185.211,p0,abs
+2023-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2023-01-01,W.P. Kuala Lumpur,153.999,p2,abs
+2023-01-01,W.P. Kuala Lumpur,6409.018,p3,abs
+2023-01-01,W.P. Kuala Lumpur,10511.334,p4,abs
+2023-01-01,W.P. Kuala Lumpur,218900.741,p5,abs
+2023-01-01,W.P. Kuala Lumpur,1209.03,p6,abs
+2023-01-01,W.P. Labuan,8124.923,p0,abs
+2023-01-01,W.P. Labuan,125.683,p1,abs
+2023-01-01,W.P. Labuan,0.0,p2,abs
+2023-01-01,W.P. Labuan,1382.377,p3,abs
+2023-01-01,W.P. Labuan,147.236,p4,abs
+2023-01-01,W.P. Labuan,6430.376,p5,abs
+2023-01-01,W.P. Labuan,39.252,p6,abs
+2023-01-01,W.P. Putrajaya,13028.169,p0,abs
+2023-01-01,W.P. Putrajaya,0.0,p1,abs
+2023-01-01,W.P. Putrajaya,0.0,p2,abs
+2023-01-01,W.P. Putrajaya,,p3,abs
+2023-01-01,W.P. Putrajaya,449.479,p4,abs
+2023-01-01,W.P. Putrajaya,12562.488,p5,abs
+2023-01-01,W.P. Putrajaya,12.857,p6,abs
+2024-01-01,Johor,158348.264,p0,abs
+2024-01-01,Johor,18201.25,p1,abs
+2024-01-01,Johor,776.656,p2,abs
+2024-01-01,Johor,45999.89,p3,abs
+2024-01-01,Johor,6371.025,p4,abs
+2024-01-01,Johor,85199.156,p5,abs
+2024-01-01,Johor,1800.287,p6,abs
+2024-01-01,Kedah,54101.506,p0,abs
+2024-01-01,Kedah,5785.338,p1,abs
+2024-01-01,Kedah,119.588,p2,abs
+2024-01-01,Kedah,16134.586,p3,abs
+2024-01-01,Kedah,1413.127,p4,abs
+2024-01-01,Kedah,30323.06,p5,abs
+2024-01-01,Kedah,325.807,p6,abs
+2024-01-01,Kelantan,28599.018,p0,abs
+2024-01-01,Kelantan,5695.467,p1,abs
+2024-01-01,Kelantan,468.006,p2,abs
+2024-01-01,Kelantan,1292.543,p3,abs
+2024-01-01,Kelantan,551.634,p4,abs
+2024-01-01,Kelantan,20556.027,p5,abs
+2024-01-01,Kelantan,35.341,p6,abs
+2024-01-01,Melaka,48844.201,p0,abs
+2024-01-01,Melaka,4601.379,p1,abs
+2024-01-01,Melaka,70.305,p2,abs
+2024-01-01,Melaka,17588.369,p3,abs
+2024-01-01,Melaka,1323.752,p4,abs
+2024-01-01,Melaka,25167.447,p5,abs
+2024-01-01,Melaka,92.95,p6,abs
+2024-01-01,Negeri Sembilan,54335.264,p0,abs
+2024-01-01,Negeri Sembilan,3397.142,p1,abs
+2024-01-01,Negeri Sembilan,216.698,p2,abs
+2024-01-01,Negeri Sembilan,20399.016,p3,abs
+2024-01-01,Negeri Sembilan,1470.145,p4,abs
+2024-01-01,Negeri Sembilan,28728.706,p5,abs
+2024-01-01,Negeri Sembilan,123.557,p6,abs
+2024-01-01,Pahang,68754.028,p0,abs
+2024-01-01,Pahang,15455.559,p1,abs
+2024-01-01,Pahang,611.729,p2,abs
+2024-01-01,Pahang,14530.891,p3,abs
+2024-01-01,Pahang,2465.595,p4,abs
+2024-01-01,Pahang,35566.798,p5,abs
+2024-01-01,Pahang,123.457,p6,abs
+2024-01-01,Perak,86619.938,p0,abs
+2024-01-01,Perak,12303.26,p1,abs
+2024-01-01,Perak,485.251,p2,abs
+2024-01-01,Perak,16768.684,p3,abs
+2024-01-01,Perak,2247.957,p4,abs
+2024-01-01,Perak,54745.018,p5,abs
+2024-01-01,Perak,69.768,p6,abs
+2024-01-01,Perlis,6544.734,p0,abs
+2024-01-01,Perlis,1119.931,p1,abs
+2024-01-01,Perlis,34.344,p2,abs
+2024-01-01,Perlis,490.998,p3,abs
+2024-01-01,Perlis,173.136,p4,abs
+2024-01-01,Perlis,4610.469,p5,abs
+2024-01-01,Perlis,115.856,p6,abs
+2024-01-01,Pulau Pinang,121437.238,p0,abs
+2024-01-01,Pulau Pinang,2201.653,p1,abs
+2024-01-01,Pulau Pinang,163.988,p2,abs
+2024-01-01,Pulau Pinang,56062.844,p3,abs
+2024-01-01,Pulau Pinang,3799.2,p4,abs
+2024-01-01,Pulau Pinang,58423.412,p5,abs
+2024-01-01,Pulau Pinang,786.141,p6,abs
+2024-01-01,Sabah,84506.014,p0,abs
+2024-01-01,Sabah,12254.173,p1,abs
+2024-01-01,Sabah,18583.957,p2,abs
+2024-01-01,Sabah,6127.957,p3,abs
+2024-01-01,Sabah,3029.546,p4,abs
+2024-01-01,Sabah,44232.155,p5,abs
+2024-01-01,Sabah,278.226,p6,abs
+2024-01-01,Sarawak,148189.153,p0,abs
+2024-01-01,Sarawak,15003.628,p1,abs
+2024-01-01,Sarawak,31306.751,p2,abs
+2024-01-01,Sarawak,38189.748,p3,abs
+2024-01-01,Sarawak,5871.244,p4,abs
+2024-01-01,Sarawak,57308.557,p5,abs
+2024-01-01,Sarawak,509.226,p6,abs
+2024-01-01,Selangor,432929.901,p0,abs
+2024-01-01,Selangor,4951.535,p1,abs
+2024-01-01,Selangor,939.588,p2,abs
+2024-01-01,Selangor,125784.831,p3,abs
+2024-01-01,Selangor,23132.623,p4,abs
+2024-01-01,Selangor,263974.002,p5,abs
+2024-01-01,Selangor,14147.321,p6,abs
+2024-01-01,Terengganu,39951.104,p0,abs
+2024-01-01,Terengganu,2931.227,p1,abs
+2024-01-01,Terengganu,238.516,p2,abs
+2024-01-01,Terengganu,14627.694,p3,abs
+2024-01-01,Terengganu,1369.808,p4,abs
+2024-01-01,Terengganu,20745.621,p5,abs
+2024-01-01,Terengganu,38.239,p6,abs
+2024-01-01,W.P. Kuala Lumpur,251946.876,p0,abs
+2024-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2024-01-01,W.P. Kuala Lumpur,159.417,p2,abs
+2024-01-01,W.P. Kuala Lumpur,6684.863,p3,abs
+2024-01-01,W.P. Kuala Lumpur,12731.58,p4,abs
+2024-01-01,W.P. Kuala Lumpur,231079.502,p5,abs
+2024-01-01,W.P. Kuala Lumpur,1290.427,p6,abs
+2024-01-01,W.P. Labuan,8553.218,p0,abs
+2024-01-01,W.P. Labuan,128.61,p1,abs
+2024-01-01,W.P. Labuan,0.0,p2,abs
+2024-01-01,W.P. Labuan,1373.03,p3,abs
+2024-01-01,W.P. Labuan,151.872,p4,abs
+2024-01-01,W.P. Labuan,6837.779,p5,abs
+2024-01-01,W.P. Labuan,61.928,p6,abs
+2024-01-01,W.P. Putrajaya,13702.485,p0,abs
+2024-01-01,W.P. Putrajaya,0.0,p1,abs
+2024-01-01,W.P. Putrajaya,0.0,p2,abs
+2024-01-01,W.P. Putrajaya,0.0,p3,abs
+2024-01-01,W.P. Putrajaya,491.467,p4,abs
+2024-01-01,W.P. Putrajaya,13193.504,p5,abs
+2024-01-01,W.P. Putrajaya,13.777,p6,abs
+2025-01-01,Johor,170947.488,p0,abs
+2025-01-01,Johor,18394.504,p1,abs
+2025-01-01,Johor,756.157,p2,abs
+2025-01-01,Johor,47859.332,p3,abs
+2025-01-01,Johor,8072.155,p4,abs
+2025-01-01,Johor,93607.732,p5,abs
+2025-01-01,Johor,2257.609,p6,abs
+2025-01-01,Kedah,56303.087,p0,abs
+2025-01-01,Kedah,5909.083,p1,abs
+2025-01-01,Kedah,117.277,p2,abs
+2025-01-01,Kedah,16945.395,p3,abs
+2025-01-01,Kedah,1404.786,p4,abs
+2025-01-01,Kedah,31508.788,p5,abs
+2025-01-01,Kedah,417.757,p6,abs
+2025-01-01,Kelantan,29775.762,p0,abs
+2025-01-01,Kelantan,5902.16,p1,abs
+2025-01-01,Kelantan,459.514,p2,abs
+2025-01-01,Kelantan,1412.545,p3,abs
+2025-01-01,Kelantan,597.379,p4,abs
+2025-01-01,Kelantan,21373.362,p5,abs
+2025-01-01,Kelantan,30.802,p6,abs
+2025-01-01,Melaka,50286.011,p0,abs
+2025-01-01,Melaka,4686.198,p1,abs
+2025-01-01,Melaka,72.075,p2,abs
+2025-01-01,Melaka,17777.383,p3,abs
+2025-01-01,Melaka,1258.79,p4,abs
+2025-01-01,Melaka,26369.945,p5,abs
+2025-01-01,Melaka,121.62,p6,abs
+2025-01-01,Negeri Sembilan,55767.291,p0,abs
+2025-01-01,Negeri Sembilan,3437.192,p1,abs
+2025-01-01,Negeri Sembilan,231.584,p2,abs
+2025-01-01,Negeri Sembilan,20779.517,p3,abs
+2025-01-01,Negeri Sembilan,1487.993,p4,abs
+2025-01-01,Negeri Sembilan,29586.936,p5,abs
+2025-01-01,Negeri Sembilan,244.069,p6,abs
+2025-01-01,Pahang,70962.277,p0,abs
+2025-01-01,Pahang,15878.151,p1,abs
+2025-01-01,Pahang,581.934,p2,abs
+2025-01-01,Pahang,14727.174,p3,abs
+2025-01-01,Pahang,2335.082,p4,abs
+2025-01-01,Pahang,37340.421,p5,abs
+2025-01-01,Pahang,99.515,p6,abs
+2025-01-01,Perak,91529.379,p0,abs
+2025-01-01,Perak,12451.216,p1,abs
+2025-01-01,Perak,523.528,p2,abs
+2025-01-01,Perak,19317.55,p3,abs
+2025-01-01,Perak,2430.433,p4,abs
+2025-01-01,Perak,56599.933,p5,abs
+2025-01-01,Perak,206.72,p6,abs
+2025-01-01,Perlis,6675.575,p0,abs
+2025-01-01,Perlis,1098.698,p1,abs
+2025-01-01,Perlis,35.266,p2,abs
+2025-01-01,Perlis,511.746,p3,abs
+2025-01-01,Perlis,159.005,p4,abs
+2025-01-01,Perlis,4755.231,p5,abs
+2025-01-01,Perlis,115.628,p6,abs
+2025-01-01,Pulau Pinang,130283.385,p0,abs
+2025-01-01,Pulau Pinang,2240.856,p1,abs
+2025-01-01,Pulau Pinang,165.769,p2,abs
+2025-01-01,Pulau Pinang,61658.978,p3,abs
+2025-01-01,Pulau Pinang,4308.556,p4,abs
+2025-01-01,Pulau Pinang,60840.275,p5,abs
+2025-01-01,Pulau Pinang,1068.951,p6,abs
+2025-01-01,Sabah,88773.954,p0,abs
+2025-01-01,Sabah,12369.285,p1,abs
+2025-01-01,Sabah,19500.671,p2,abs
+2025-01-01,Sabah,6434.19,p3,abs
+2025-01-01,Sabah,3886.388,p4,abs
+2025-01-01,Sabah,46207.255,p5,abs
+2025-01-01,Sabah,376.165,p6,abs
+2025-01-01,Sarawak,153511.242,p0,abs
+2025-01-01,Sarawak,15655.745,p1,abs
+2025-01-01,Sarawak,32157.247,p2,abs
+2025-01-01,Sarawak,38213.684,p3,abs
+2025-01-01,Sarawak,6510.013,p4,abs
+2025-01-01,Sarawak,60390.677,p5,abs
+2025-01-01,Sarawak,583.876,p6,abs
+2025-01-01,Selangor,460113.648,p0,abs
+2025-01-01,Selangor,5148.001,p1,abs
+2025-01-01,Selangor,1003.378,p2,abs
+2025-01-01,Selangor,131001.502,p3,abs
+2025-01-01,Selangor,26822.947,p4,abs
+2025-01-01,Selangor,279882.946,p5,abs
+2025-01-01,Selangor,16254.875,p6,abs
+2025-01-01,Terengganu,40596.613,p0,abs
+2025-01-01,Terengganu,3053.244,p1,abs
+2025-01-01,Terengganu,233.275,p2,abs
+2025-01-01,Terengganu,14456.821,p3,abs
+2025-01-01,Terengganu,1290.491,p4,abs
+2025-01-01,Terengganu,21499.089,p5,abs
+2025-01-01,Terengganu,63.694,p6,abs
+2025-01-01,W.P. Kuala Lumpur,265103.982,p0,abs
+2025-01-01,W.P. Kuala Lumpur,0.0,p1,abs
+2025-01-01,W.P. Kuala Lumpur,163.349,p2,abs
+2025-01-01,W.P. Kuala Lumpur,6888.711,p3,abs
+2025-01-01,W.P. Kuala Lumpur,13493.697,p4,abs
+2025-01-01,W.P. Kuala Lumpur,243185.203,p5,abs
+2025-01-01,W.P. Kuala Lumpur,1371.954,p6,abs
+2025-01-01,W.P. Labuan,8700.231,p0,abs
+2025-01-01,W.P. Labuan,128.132,p1,abs
+2025-01-01,W.P. Labuan,0.0,p2,abs
+2025-01-01,W.P. Labuan,1374.157,p3,abs
+2025-01-01,W.P. Labuan,155.213,p4,abs
+2025-01-01,W.P. Labuan,6980.851,p5,abs
+2025-01-01,W.P. Labuan,61.878,p6,abs
+2025-01-01,W.P. Putrajaya,14365.914,p0,abs
+2025-01-01,W.P. Putrajaya,0.0,p1,abs
+2025-01-01,W.P. Putrajaya,0.0,p2,abs
+2025-01-01,W.P. Putrajaya,0.0,p3,abs
+2025-01-01,W.P. Putrajaya,496.121,p4,abs
+2025-01-01,W.P. Putrajaya,13851.147,p5,abs
+2025-01-01,W.P. Putrajaya,14.661,p6,abs
+2016-01-01,Johor,6.1,p0,growth_yoy
+2016-01-01,Johor,-3.7,p1,growth_yoy
+2016-01-01,Johor,19.7,p2,growth_yoy
+2016-01-01,Johor,5.4,p3,growth_yoy
+2016-01-01,Johor,23.5,p4,growth_yoy
+2016-01-01,Johor,6.0,p5,growth_yoy
+2016-01-01,Johor,39.6,p6,growth_yoy
+2016-01-01,Kedah,4.1,p0,growth_yoy
+2016-01-01,Kedah,-4.1,p1,growth_yoy
+2016-01-01,Kedah,15.2,p2,growth_yoy
+2016-01-01,Kedah,4.4,p3,growth_yoy
+2016-01-01,Kedah,15.7,p4,growth_yoy
+2016-01-01,Kedah,5.3,p5,growth_yoy
+2016-01-01,Kedah,11.6,p6,growth_yoy
+2016-01-01,Kelantan,5.0,p0,growth_yoy
+2016-01-01,Kelantan,3.6,p1,growth_yoy
+2016-01-01,Kelantan,12.3,p2,growth_yoy
+2016-01-01,Kelantan,2.1,p3,growth_yoy
+2016-01-01,Kelantan,29.4,p4,growth_yoy
+2016-01-01,Kelantan,4.9,p5,growth_yoy
+2016-01-01,Kelantan,-17.5,p6,growth_yoy
+2016-01-01,Melaka,4.5,p0,growth_yoy
+2016-01-01,Melaka,4.1,p1,growth_yoy
+2016-01-01,Melaka,19.6,p2,growth_yoy
+2016-01-01,Melaka,4.0,p3,growth_yoy
+2016-01-01,Melaka,5.4,p4,growth_yoy
+2016-01-01,Melaka,5.0,p5,growth_yoy
+2016-01-01,Melaka,4.4,p6,growth_yoy
+2016-01-01,Negeri Sembilan,3.9,p0,growth_yoy
+2016-01-01,Negeri Sembilan,-5.5,p1,growth_yoy
+2016-01-01,Negeri Sembilan,19.5,p2,growth_yoy
+2016-01-01,Negeri Sembilan,2.9,p3,growth_yoy
+2016-01-01,Negeri Sembilan,9.5,p4,growth_yoy
+2016-01-01,Negeri Sembilan,5.4,p5,growth_yoy
+2016-01-01,Negeri Sembilan,15.3,p6,growth_yoy
+2016-01-01,Pahang,2.9,p0,growth_yoy
+2016-01-01,Pahang,-4.0,p1,growth_yoy
+2016-01-01,Pahang,-33.0,p2,growth_yoy
+2016-01-01,Pahang,3.9,p3,growth_yoy
+2016-01-01,Pahang,29.5,p4,growth_yoy
+2016-01-01,Pahang,5.4,p5,growth_yoy
+2016-01-01,Pahang,25.7,p6,growth_yoy
+2016-01-01,Perak,4.4,p0,growth_yoy
+2016-01-01,Perak,-1.9,p1,growth_yoy
+2016-01-01,Perak,16.8,p2,growth_yoy
+2016-01-01,Perak,5.0,p3,growth_yoy
+2016-01-01,Perak,8.0,p4,growth_yoy
+2016-01-01,Perak,5.5,p5,growth_yoy
+2016-01-01,Perak,27.2,p6,growth_yoy
+2016-01-01,Perlis,4.0,p0,growth_yoy
+2016-01-01,Perlis,3.4,p1,growth_yoy
+2016-01-01,Perlis,-10.5,p2,growth_yoy
+2016-01-01,Perlis,-2.1,p3,growth_yoy
+2016-01-01,Perlis,9.7,p4,growth_yoy
+2016-01-01,Perlis,4.8,p5,growth_yoy
+2016-01-01,Perlis,7.7,p6,growth_yoy
+2016-01-01,Pulau Pinang,5.6,p0,growth_yoy
+2016-01-01,Pulau Pinang,-4.6,p1,growth_yoy
+2016-01-01,Pulau Pinang,9.0,p2,growth_yoy
+2016-01-01,Pulau Pinang,5.4,p3,growth_yoy
+2016-01-01,Pulau Pinang,10.0,p4,growth_yoy
+2016-01-01,Pulau Pinang,5.8,p5,growth_yoy
+2016-01-01,Pulau Pinang,13.5,p6,growth_yoy
+2016-01-01,Sabah,5.1,p0,growth_yoy
+2016-01-01,Sabah,-10.5,p1,growth_yoy
+2016-01-01,Sabah,20.8,p2,growth_yoy
+2016-01-01,Sabah,-3.7,p3,growth_yoy
+2016-01-01,Sabah,-3.6,p4,growth_yoy
+2016-01-01,Sabah,5.7,p5,growth_yoy
+2016-01-01,Sabah,5.7,p6,growth_yoy
+2016-01-01,Sarawak,2.4,p0,growth_yoy
+2016-01-01,Sarawak,-2.1,p1,growth_yoy
+2016-01-01,Sarawak,-2.0,p2,growth_yoy
+2016-01-01,Sarawak,4.5,p3,growth_yoy
+2016-01-01,Sarawak,-5.4,p4,growth_yoy
+2016-01-01,Sarawak,6.8,p5,growth_yoy
+2016-01-01,Sarawak,10.4,p6,growth_yoy
+2016-01-01,Selangor,4.8,p0,growth_yoy
+2016-01-01,Selangor,-5.0,p1,growth_yoy
+2016-01-01,Selangor,29.0,p2,growth_yoy
+2016-01-01,Selangor,4.2,p3,growth_yoy
+2016-01-01,Selangor,-2.6,p4,growth_yoy
+2016-01-01,Selangor,6.0,p5,growth_yoy
+2016-01-01,Selangor,5.3,p6,growth_yoy
+2016-01-01,Terengganu,3.2,p0,growth_yoy
+2016-01-01,Terengganu,-3.0,p1,growth_yoy
+2016-01-01,Terengganu,9.4,p2,growth_yoy
+2016-01-01,Terengganu,7.3,p3,growth_yoy
+2016-01-01,Terengganu,1.8,p4,growth_yoy
+2016-01-01,Terengganu,1.5,p5,growth_yoy
+2016-01-01,Terengganu,2.0,p6,growth_yoy
+2017-01-01,Johor,5.9,p0,growth_yoy
+2017-01-01,Johor,7.6,p1,growth_yoy
+2017-01-01,Johor,15.1,p2,growth_yoy
+2017-01-01,Johor,6.9,p3,growth_yoy
+2017-01-01,Johor,-6.4,p4,growth_yoy
+2017-01-01,Johor,6.6,p5,growth_yoy
+2017-01-01,Johor,8.6,p6,growth_yoy
+2017-01-01,Kedah,4.6,p0,growth_yoy
+2017-01-01,Kedah,5.0,p1,growth_yoy
+2017-01-01,Kedah,14.5,p2,growth_yoy
+2017-01-01,Kedah,4.3,p3,growth_yoy
+2017-01-01,Kedah,-7.0,p4,growth_yoy
+2017-01-01,Kedah,5.3,p5,growth_yoy
+2017-01-01,Kedah,-4.8,p6,growth_yoy
+2017-01-01,Kelantan,4.6,p0,growth_yoy
+2017-01-01,Kelantan,3.6,p1,growth_yoy
+2017-01-01,Kelantan,16.7,p2,growth_yoy
+2017-01-01,Kelantan,9.0,p3,growth_yoy
+2017-01-01,Kelantan,-9.5,p4,growth_yoy
+2017-01-01,Kelantan,4.9,p5,growth_yoy
+2017-01-01,Kelantan,6.2,p6,growth_yoy
+2017-01-01,Melaka,8.3,p0,growth_yoy
+2017-01-01,Melaka,7.3,p1,growth_yoy
+2017-01-01,Melaka,7.6,p2,growth_yoy
+2017-01-01,Melaka,6.8,p3,growth_yoy
+2017-01-01,Melaka,72.4,p4,growth_yoy
+2017-01-01,Melaka,5.4,p5,growth_yoy
+2017-01-01,Melaka,183.6,p6,growth_yoy
+2017-01-01,Negeri Sembilan,4.9,p0,growth_yoy
+2017-01-01,Negeri Sembilan,8.7,p1,growth_yoy
+2017-01-01,Negeri Sembilan,9.8,p2,growth_yoy
+2017-01-01,Negeri Sembilan,3.2,p3,growth_yoy
+2017-01-01,Negeri Sembilan,17.0,p4,growth_yoy
+2017-01-01,Negeri Sembilan,4.7,p5,growth_yoy
+2017-01-01,Negeri Sembilan,5.3,p6,growth_yoy
+2017-01-01,Pahang,7.3,p0,growth_yoy
+2017-01-01,Pahang,9.5,p1,growth_yoy
+2017-01-01,Pahang,-19.3,p2,growth_yoy
+2017-01-01,Pahang,6.6,p3,growth_yoy
+2017-01-01,Pahang,18.5,p4,growth_yoy
+2017-01-01,Pahang,6.1,p5,growth_yoy
+2017-01-01,Pahang,76.0,p6,growth_yoy
+2017-01-01,Perak,5.1,p0,growth_yoy
+2017-01-01,Perak,7.8,p1,growth_yoy
+2017-01-01,Perak,5.9,p2,growth_yoy
+2017-01-01,Perak,8.0,p3,growth_yoy
+2017-01-01,Perak,-24.2,p4,growth_yoy
+2017-01-01,Perak,5.6,p5,growth_yoy
+2017-01-01,Perak,33.7,p6,growth_yoy
+2017-01-01,Perlis,2.2,p0,growth_yoy
+2017-01-01,Perlis,4.1,p1,growth_yoy
+2017-01-01,Perlis,8.3,p2,growth_yoy
+2017-01-01,Perlis,2.3,p3,growth_yoy
+2017-01-01,Perlis,-42.8,p4,growth_yoy
+2017-01-01,Perlis,4.0,p5,growth_yoy
+2017-01-01,Perlis,10.4,p6,growth_yoy
+2017-01-01,Pulau Pinang,5.2,p0,growth_yoy
+2017-01-01,Pulau Pinang,2.3,p1,growth_yoy
+2017-01-01,Pulau Pinang,6.2,p2,growth_yoy
+2017-01-01,Pulau Pinang,5.7,p3,growth_yoy
+2017-01-01,Pulau Pinang,-9.9,p4,growth_yoy
+2017-01-01,Pulau Pinang,5.6,p5,growth_yoy
+2017-01-01,Pulau Pinang,25.9,p6,growth_yoy
+2017-01-01,Sabah,8.1,p0,growth_yoy
+2017-01-01,Sabah,4.7,p1,growth_yoy
+2017-01-01,Sabah,15.7,p2,growth_yoy
+2017-01-01,Sabah,5.4,p3,growth_yoy
+2017-01-01,Sabah,-1.5,p4,growth_yoy
+2017-01-01,Sabah,5.5,p5,growth_yoy
+2017-01-01,Sabah,16.6,p6,growth_yoy
+2017-01-01,Sarawak,4.5,p0,growth_yoy
+2017-01-01,Sarawak,0.6,p1,growth_yoy
+2017-01-01,Sarawak,3.3,p2,growth_yoy
+2017-01-01,Sarawak,3.7,p3,growth_yoy
+2017-01-01,Sarawak,19.8,p4,growth_yoy
+2017-01-01,Sarawak,6.2,p5,growth_yoy
+2017-01-01,Sarawak,16.6,p6,growth_yoy
+2017-01-01,Selangor,7.2,p0,growth_yoy
+2017-01-01,Selangor,11.5,p1,growth_yoy
+2017-01-01,Selangor,7.6,p2,growth_yoy
+2017-01-01,Selangor,7.9,p3,growth_yoy
+2017-01-01,Selangor,8.2,p4,growth_yoy
+2017-01-01,Selangor,7.0,p5,growth_yoy
+2017-01-01,Selangor,1.3,p6,growth_yoy
+2017-01-01,Terengganu,5.7,p0,growth_yoy
+2017-01-01,Terengganu,9.0,p1,growth_yoy
+2017-01-01,Terengganu,9.1,p2,growth_yoy
+2017-01-01,Terengganu,3.9,p3,growth_yoy
+2017-01-01,Terengganu,38.7,p4,growth_yoy
+2017-01-01,Terengganu,4.4,p5,growth_yoy
+2017-01-01,Terengganu,110.7,p6,growth_yoy
+2018-01-01,Johor,5.7,p0,growth_yoy
+2018-01-01,Johor,0.5,p1,growth_yoy
+2018-01-01,Johor,8.5,p2,growth_yoy
+2018-01-01,Johor,5.1,p3,growth_yoy
+2018-01-01,Johor,9.6,p4,growth_yoy
+2018-01-01,Johor,7.3,p5,growth_yoy
+2018-01-01,Johor,-10.3,p6,growth_yoy
+2018-01-01,Kedah,4.0,p0,growth_yoy
+2018-01-01,Kedah,0.1,p1,growth_yoy
+2018-01-01,Kedah,4.9,p2,growth_yoy
+2018-01-01,Kedah,3.0,p3,growth_yoy
+2018-01-01,Kedah,8.7,p4,growth_yoy
+2018-01-01,Kedah,5.4,p5,growth_yoy
+2018-01-01,Kedah,-8.4,p6,growth_yoy
+2018-01-01,Kelantan,2.7,p0,growth_yoy
+2018-01-01,Kelantan,-0.8,p1,growth_yoy
+2018-01-01,Kelantan,19.7,p2,growth_yoy
+2018-01-01,Kelantan,0.3,p3,growth_yoy
+2018-01-01,Kelantan,-37.7,p4,growth_yoy
+2018-01-01,Kelantan,5.2,p5,growth_yoy
+2018-01-01,Kelantan,-1.6,p6,growth_yoy
+2018-01-01,Melaka,3.8,p0,growth_yoy
+2018-01-01,Melaka,-1.2,p1,growth_yoy
+2018-01-01,Melaka,9.5,p2,growth_yoy
+2018-01-01,Melaka,4.6,p3,growth_yoy
+2018-01-01,Melaka,-13.1,p4,growth_yoy
+2018-01-01,Melaka,6.0,p5,growth_yoy
+2018-01-01,Melaka,-4.6,p6,growth_yoy
+2018-01-01,Negeri Sembilan,4.3,p0,growth_yoy
+2018-01-01,Negeri Sembilan,0.1,p1,growth_yoy
+2018-01-01,Negeri Sembilan,3.0,p2,growth_yoy
+2018-01-01,Negeri Sembilan,3.3,p3,growth_yoy
+2018-01-01,Negeri Sembilan,11.6,p4,growth_yoy
+2018-01-01,Negeri Sembilan,5.8,p5,growth_yoy
+2018-01-01,Negeri Sembilan,-9.5,p6,growth_yoy
+2018-01-01,Pahang,3.1,p0,growth_yoy
+2018-01-01,Pahang,1.3,p1,growth_yoy
+2018-01-01,Pahang,-0.6,p2,growth_yoy
+2018-01-01,Pahang,5.8,p3,growth_yoy
+2018-01-01,Pahang,-25.7,p4,growth_yoy
+2018-01-01,Pahang,6.5,p5,growth_yoy
+2018-01-01,Pahang,-19.2,p6,growth_yoy
+2018-01-01,Perak,5.3,p0,growth_yoy
+2018-01-01,Perak,0.5,p1,growth_yoy
+2018-01-01,Perak,5.1,p2,growth_yoy
+2018-01-01,Perak,4.2,p3,growth_yoy
+2018-01-01,Perak,10.6,p4,growth_yoy
+2018-01-01,Perak,6.7,p5,growth_yoy
+2018-01-01,Perak,-13.8,p6,growth_yoy
+2018-01-01,Perlis,3.3,p0,growth_yoy
+2018-01-01,Perlis,0.9,p1,growth_yoy
+2018-01-01,Perlis,6.1,p2,growth_yoy
+2018-01-01,Perlis,1.5,p3,growth_yoy
+2018-01-01,Perlis,21.5,p4,growth_yoy
+2018-01-01,Perlis,4.3,p5,growth_yoy
+2018-01-01,Perlis,-12.3,p6,growth_yoy
+2018-01-01,Pulau Pinang,5.1,p0,growth_yoy
+2018-01-01,Pulau Pinang,-3.2,p1,growth_yoy
+2018-01-01,Pulau Pinang,8.7,p2,growth_yoy
+2018-01-01,Pulau Pinang,5.4,p3,growth_yoy
+2018-01-01,Pulau Pinang,-2.6,p4,growth_yoy
+2018-01-01,Pulau Pinang,6.1,p5,growth_yoy
+2018-01-01,Pulau Pinang,-10.5,p6,growth_yoy
+2018-01-01,Sabah,1.5,p0,growth_yoy
+2018-01-01,Sabah,-0.3,p1,growth_yoy
+2018-01-01,Sabah,-5.7,p2,growth_yoy
+2018-01-01,Sabah,2.4,p3,growth_yoy
+2018-01-01,Sabah,25.7,p4,growth_yoy
+2018-01-01,Sabah,5.6,p5,growth_yoy
+2018-01-01,Sabah,-7.1,p6,growth_yoy
+2018-01-01,Sarawak,2.2,p0,growth_yoy
+2018-01-01,Sarawak,-0.7,p1,growth_yoy
+2018-01-01,Sarawak,-1.9,p2,growth_yoy
+2018-01-01,Sarawak,2.2,p3,growth_yoy
+2018-01-01,Sarawak,1.1,p4,growth_yoy
+2018-01-01,Sarawak,6.4,p5,growth_yoy
+2018-01-01,Sarawak,-8.7,p6,growth_yoy
+2018-01-01,Selangor,7.0,p0,growth_yoy
+2018-01-01,Selangor,5.0,p1,growth_yoy
+2018-01-01,Selangor,6.6,p2,growth_yoy
+2018-01-01,Selangor,7.3,p3,growth_yoy
+2018-01-01,Selangor,6.1,p4,growth_yoy
+2018-01-01,Selangor,7.7,p5,growth_yoy
+2018-01-01,Selangor,-9.0,p6,growth_yoy
+2018-01-01,Terengganu,2.5,p0,growth_yoy
+2018-01-01,Terengganu,-2.5,p1,growth_yoy
+2018-01-01,Terengganu,5.4,p2,growth_yoy
+2018-01-01,Terengganu,3.7,p3,growth_yoy
+2018-01-01,Terengganu,-9.0,p4,growth_yoy
+2018-01-01,Terengganu,3.6,p5,growth_yoy
+2018-01-01,Terengganu,-38.9,p6,growth_yoy
+2019-01-01,Johor,2.8,p0,growth_yoy
+2019-01-01,Johor,1.0,p1,growth_yoy
+2019-01-01,Johor,14.3,p2,growth_yoy
+2019-01-01,Johor,4.7,p3,growth_yoy
+2019-01-01,Johor,-27.3,p4,growth_yoy
+2019-01-01,Johor,6.5,p5,growth_yoy
+2019-01-01,Johor,-3.8,p6,growth_yoy
+2019-01-01,Kedah,4.5,p0,growth_yoy
+2019-01-01,Kedah,3.3,p1,growth_yoy
+2019-01-01,Kedah,9.1,p2,growth_yoy
+2019-01-01,Kedah,4.7,p3,growth_yoy
+2019-01-01,Kedah,8.1,p4,growth_yoy
+2019-01-01,Kedah,4.9,p5,growth_yoy
+2019-01-01,Kedah,-20.3,p6,growth_yoy
+2019-01-01,Kelantan,5.5,p0,growth_yoy
+2019-01-01,Kelantan,7.1,p1,growth_yoy
+2019-01-01,Kelantan,15.9,p2,growth_yoy
+2019-01-01,Kelantan,1.5,p3,growth_yoy
+2019-01-01,Kelantan,18.1,p4,growth_yoy
+2019-01-01,Kelantan,4.9,p5,growth_yoy
+2019-01-01,Kelantan,15.0,p6,growth_yoy
+2019-01-01,Melaka,2.9,p0,growth_yoy
+2019-01-01,Melaka,-2.9,p1,growth_yoy
+2019-01-01,Melaka,9.6,p2,growth_yoy
+2019-01-01,Melaka,2.5,p3,growth_yoy
+2019-01-01,Melaka,-9.2,p4,growth_yoy
+2019-01-01,Melaka,6.0,p5,growth_yoy
+2019-01-01,Melaka,-66.5,p6,growth_yoy
+2019-01-01,Negeri Sembilan,5.1,p0,growth_yoy
+2019-01-01,Negeri Sembilan,7.0,p1,growth_yoy
+2019-01-01,Negeri Sembilan,5.4,p2,growth_yoy
+2019-01-01,Negeri Sembilan,2.5,p3,growth_yoy
+2019-01-01,Negeri Sembilan,-3.8,p4,growth_yoy
+2019-01-01,Negeri Sembilan,8.6,p5,growth_yoy
+2019-01-01,Negeri Sembilan,-18.6,p6,growth_yoy
+2019-01-01,Pahang,3.8,p0,growth_yoy
+2019-01-01,Pahang,3.5,p1,growth_yoy
+2019-01-01,Pahang,16.2,p2,growth_yoy
+2019-01-01,Pahang,4.7,p3,growth_yoy
+2019-01-01,Pahang,-28.0,p4,growth_yoy
+2019-01-01,Pahang,6.2,p5,growth_yoy
+2019-01-01,Pahang,-53.7,p6,growth_yoy
+2019-01-01,Perak,4.1,p0,growth_yoy
+2019-01-01,Perak,2.9,p1,growth_yoy
+2019-01-01,Perak,9.5,p2,growth_yoy
+2019-01-01,Perak,3.5,p3,growth_yoy
+2019-01-01,Perak,6.6,p4,growth_yoy
+2019-01-01,Perak,4.5,p5,growth_yoy
+2019-01-01,Perak,-70.4,p6,growth_yoy
+2019-01-01,Perlis,4.5,p0,growth_yoy
+2019-01-01,Perlis,5.8,p1,growth_yoy
+2019-01-01,Perlis,2.3,p2,growth_yoy
+2019-01-01,Perlis,1.0,p3,growth_yoy
+2019-01-01,Perlis,13.2,p4,growth_yoy
+2019-01-01,Perlis,5.0,p5,growth_yoy
+2019-01-01,Perlis,-26.7,p6,growth_yoy
+2019-01-01,Pulau Pinang,3.7,p0,growth_yoy
+2019-01-01,Pulau Pinang,5.0,p1,growth_yoy
+2019-01-01,Pulau Pinang,9.6,p2,growth_yoy
+2019-01-01,Pulau Pinang,2.7,p3,growth_yoy
+2019-01-01,Pulau Pinang,0.9,p4,growth_yoy
+2019-01-01,Pulau Pinang,5.5,p5,growth_yoy
+2019-01-01,Pulau Pinang,-33.4,p6,growth_yoy
+2019-01-01,Sabah,0.7,p0,growth_yoy
+2019-01-01,Sabah,-0.8,p1,growth_yoy
+2019-01-01,Sabah,-5.2,p2,growth_yoy
+2019-01-01,Sabah,-0.6,p3,growth_yoy
+2019-01-01,Sabah,6.2,p4,growth_yoy
+2019-01-01,Sabah,5.4,p5,growth_yoy
+2019-01-01,Sabah,-42.7,p6,growth_yoy
+2019-01-01,Sarawak,2.8,p0,growth_yoy
+2019-01-01,Sarawak,-0.2,p1,growth_yoy
+2019-01-01,Sarawak,1.3,p2,growth_yoy
+2019-01-01,Sarawak,2.9,p3,growth_yoy
+2019-01-01,Sarawak,1.7,p4,growth_yoy
+2019-01-01,Sarawak,5.3,p5,growth_yoy
+2019-01-01,Sarawak,-33.0,p6,growth_yoy
+2019-01-01,Selangor,6.7,p0,growth_yoy
+2019-01-01,Selangor,3.8,p1,growth_yoy
+2019-01-01,Selangor,16.5,p2,growth_yoy
+2019-01-01,Selangor,5.3,p3,growth_yoy
+2019-01-01,Selangor,10.8,p4,growth_yoy
+2019-01-01,Selangor,7.0,p5,growth_yoy
+2019-01-01,Selangor,8.2,p6,growth_yoy
+2019-01-01,Terengganu,3.3,p0,growth_yoy
+2019-01-01,Terengganu,5.9,p1,growth_yoy
+2019-01-01,Terengganu,9.7,p2,growth_yoy
+2019-01-01,Terengganu,0.3,p3,growth_yoy
+2019-01-01,Terengganu,0.4,p4,growth_yoy
+2019-01-01,Terengganu,5.6,p5,growth_yoy
+2019-01-01,Terengganu,-75.1,p6,growth_yoy
+2020-01-01,Johor,-4.6,p0,growth_yoy
+2020-01-01,Johor,2.8,p1,growth_yoy
+2020-01-01,Johor,-19.1,p2,growth_yoy
+2020-01-01,Johor,-3.7,p3,growth_yoy
+2020-01-01,Johor,-37.7,p4,growth_yoy
+2020-01-01,Johor,-3.2,p5,growth_yoy
+2020-01-01,Johor,-17.5,p6,growth_yoy
+2020-01-01,Kedah,-1.7,p0,growth_yoy
+2020-01-01,Kedah,-2.3,p1,growth_yoy
+2020-01-01,Kedah,-10.7,p2,growth_yoy
+2020-01-01,Kedah,1.4,p3,growth_yoy
+2020-01-01,Kedah,2.0,p4,growth_yoy
+2020-01-01,Kedah,-3.4,p5,growth_yoy
+2020-01-01,Kedah,10.7,p6,growth_yoy
+2020-01-01,Kelantan,-1.1,p0,growth_yoy
+2020-01-01,Kelantan,0.1,p1,growth_yoy
+2020-01-01,Kelantan,-18.0,p2,growth_yoy
+2020-01-01,Kelantan,-5.1,p3,growth_yoy
+2020-01-01,Kelantan,3.5,p4,growth_yoy
+2020-01-01,Kelantan,-0.9,p5,growth_yoy
+2020-01-01,Kelantan,-20.4,p6,growth_yoy
+2020-01-01,Melaka,-5.9,p0,growth_yoy
+2020-01-01,Melaka,3.4,p1,growth_yoy
+2020-01-01,Melaka,-12.7,p2,growth_yoy
+2020-01-01,Melaka,-8.5,p3,growth_yoy
+2020-01-01,Melaka,-26.9,p4,growth_yoy
+2020-01-01,Melaka,-4.5,p5,growth_yoy
+2020-01-01,Melaka,67.1,p6,growth_yoy
+2020-01-01,Negeri Sembilan,-3.5,p0,growth_yoy
+2020-01-01,Negeri Sembilan,-6.7,p1,growth_yoy
+2020-01-01,Negeri Sembilan,-15.3,p2,growth_yoy
+2020-01-01,Negeri Sembilan,-4.9,p3,growth_yoy
+2020-01-01,Negeri Sembilan,-25.6,p4,growth_yoy
+2020-01-01,Negeri Sembilan,-0.9,p5,growth_yoy
+2020-01-01,Negeri Sembilan,18.3,p6,growth_yoy
+2020-01-01,Pahang,-6.1,p0,growth_yoy
+2020-01-01,Pahang,1.2,p1,growth_yoy
+2020-01-01,Pahang,-25.1,p2,growth_yoy
+2020-01-01,Pahang,-4.1,p3,growth_yoy
+2020-01-01,Pahang,-21.7,p4,growth_yoy
+2020-01-01,Pahang,-8.7,p5,growth_yoy
+2020-01-01,Pahang,36.9,p6,growth_yoy
+2020-01-01,Perak,-2.3,p0,growth_yoy
+2020-01-01,Perak,1.0,p1,growth_yoy
+2020-01-01,Perak,-14.4,p2,growth_yoy
+2020-01-01,Perak,3.5,p3,growth_yoy
+2020-01-01,Perak,-17.4,p4,growth_yoy
+2020-01-01,Perak,-3.8,p5,growth_yoy
+2020-01-01,Perak,62.1,p6,growth_yoy
+2020-01-01,Perlis,-6.0,p0,growth_yoy
+2020-01-01,Perlis,-18.5,p1,growth_yoy
+2020-01-01,Perlis,-9.8,p2,growth_yoy
+2020-01-01,Perlis,-5.6,p3,growth_yoy
+2020-01-01,Perlis,-9.6,p4,growth_yoy
+2020-01-01,Perlis,-1.0,p5,growth_yoy
+2020-01-01,Perlis,-44.0,p6,growth_yoy
+2020-01-01,Pulau Pinang,-2.1,p0,growth_yoy
+2020-01-01,Pulau Pinang,-0.9,p1,growth_yoy
+2020-01-01,Pulau Pinang,-18.8,p2,growth_yoy
+2020-01-01,Pulau Pinang,2.8,p3,growth_yoy
+2020-01-01,Pulau Pinang,-15.5,p4,growth_yoy
+2020-01-01,Pulau Pinang,-5.5,p5,growth_yoy
+2020-01-01,Pulau Pinang,9.4,p6,growth_yoy
+2020-01-01,Sabah,-9.1,p0,growth_yoy
+2020-01-01,Sabah,-6.7,p1,growth_yoy
+2020-01-01,Sabah,-12.3,p2,growth_yoy
+2020-01-01,Sabah,-6.6,p3,growth_yoy
+2020-01-01,Sabah,-29.1,p4,growth_yoy
+2020-01-01,Sabah,-7.2,p5,growth_yoy
+2020-01-01,Sabah,43.9,p6,growth_yoy
+2020-01-01,Sarawak,-6.7,p0,growth_yoy
+2020-01-01,Sarawak,-10.1,p1,growth_yoy
+2020-01-01,Sarawak,-4.7,p2,growth_yoy
+2020-01-01,Sarawak,-8.7,p3,growth_yoy
+2020-01-01,Sarawak,-8.8,p4,growth_yoy
+2020-01-01,Sarawak,-5.3,p5,growth_yoy
+2020-01-01,Sarawak,21.8,p6,growth_yoy
+2020-01-01,Selangor,-5.3,p0,growth_yoy
+2020-01-01,Selangor,0.3,p1,growth_yoy
+2020-01-01,Selangor,-12.1,p2,growth_yoy
+2020-01-01,Selangor,-0.9,p3,growth_yoy
+2020-01-01,Selangor,-9.7,p4,growth_yoy
+2020-01-01,Selangor,-6.6,p5,growth_yoy
+2020-01-01,Selangor,-12.5,p6,growth_yoy
+2020-01-01,Terengganu,-5.6,p0,growth_yoy
+2020-01-01,Terengganu,-3.8,p1,growth_yoy
+2020-01-01,Terengganu,-12.5,p2,growth_yoy
+2020-01-01,Terengganu,-9.4,p3,growth_yoy
+2020-01-01,Terengganu,-7.3,p4,growth_yoy
+2020-01-01,Terengganu,-3.1,p5,growth_yoy
+2020-01-01,Terengganu,92.5,p6,growth_yoy
+2021-01-01,Johor,2.5,p0,growth_yoy
+2021-01-01,Johor,0.2,p1,growth_yoy
+2021-01-01,Johor,-10.7,p2,growth_yoy
+2021-01-01,Johor,5.4,p3,growth_yoy
+2021-01-01,Johor,-18.1,p4,growth_yoy
+2021-01-01,Johor,2.9,p5,growth_yoy
+2021-01-01,Johor,-4.4,p6,growth_yoy
+2021-01-01,Kedah,3.2,p0,growth_yoy
+2021-01-01,Kedah,2.7,p1,growth_yoy
+2021-01-01,Kedah,-7.8,p2,growth_yoy
+2021-01-01,Kedah,6.2,p3,growth_yoy
+2021-01-01,Kedah,-8.4,p4,growth_yoy
+2021-01-01,Kedah,1.9,p5,growth_yoy
+2021-01-01,Kedah,30.8,p6,growth_yoy
+2021-01-01,Kelantan,2.4,p0,growth_yoy
+2021-01-01,Kelantan,0.9,p1,growth_yoy
+2021-01-01,Kelantan,3.1,p2,growth_yoy
+2021-01-01,Kelantan,2.1,p3,growth_yoy
+2021-01-01,Kelantan,1.1,p4,growth_yoy
+2021-01-01,Kelantan,2.8,p5,growth_yoy
+2021-01-01,Kelantan,39.8,p6,growth_yoy
+2021-01-01,Melaka,2.1,p0,growth_yoy
+2021-01-01,Melaka,-1.4,p1,growth_yoy
+2021-01-01,Melaka,-6.6,p2,growth_yoy
+2021-01-01,Melaka,3.3,p3,growth_yoy
+2021-01-01,Melaka,-9.6,p4,growth_yoy
+2021-01-01,Melaka,2.7,p5,growth_yoy
+2021-01-01,Melaka,-43.1,p6,growth_yoy
+2021-01-01,Negeri Sembilan,3.1,p0,growth_yoy
+2021-01-01,Negeri Sembilan,-0.5,p1,growth_yoy
+2021-01-01,Negeri Sembilan,-6.7,p2,growth_yoy
+2021-01-01,Negeri Sembilan,7.2,p3,growth_yoy
+2021-01-01,Negeri Sembilan,-0.4,p4,growth_yoy
+2021-01-01,Negeri Sembilan,2.3,p5,growth_yoy
+2021-01-01,Negeri Sembilan,-29.5,p6,growth_yoy
+2021-01-01,Pahang,1.0,p0,growth_yoy
+2021-01-01,Pahang,0.0,p1,growth_yoy
+2021-01-01,Pahang,-17.3,p2,growth_yoy
+2021-01-01,Pahang,6.1,p3,growth_yoy
+2021-01-01,Pahang,18.4,p4,growth_yoy
+2021-01-01,Pahang,-1.1,p5,growth_yoy
+2021-01-01,Pahang,-32.5,p6,growth_yoy
+2021-01-01,Perak,3.6,p0,growth_yoy
+2021-01-01,Perak,3.0,p1,growth_yoy
+2021-01-01,Perak,-7.0,p2,growth_yoy
+2021-01-01,Perak,9.2,p3,growth_yoy
+2021-01-01,Perak,-6.7,p4,growth_yoy
+2021-01-01,Perak,2.6,p5,growth_yoy
+2021-01-01,Perak,-32.0,p6,growth_yoy
+2021-01-01,Perlis,1.4,p0,growth_yoy
+2021-01-01,Perlis,-5.9,p1,growth_yoy
+2021-01-01,Perlis,-5.0,p2,growth_yoy
+2021-01-01,Perlis,5.4,p3,growth_yoy
+2021-01-01,Perlis,0.1,p4,growth_yoy
+2021-01-01,Perlis,2.2,p5,growth_yoy
+2021-01-01,Perlis,89.0,p6,growth_yoy
+2021-01-01,Pulau Pinang,6.9,p0,growth_yoy
+2021-01-01,Pulau Pinang,-2.4,p1,growth_yoy
+2021-01-01,Pulau Pinang,-6.6,p2,growth_yoy
+2021-01-01,Pulau Pinang,12.4,p3,growth_yoy
+2021-01-01,Pulau Pinang,12.9,p4,growth_yoy
+2021-01-01,Pulau Pinang,2.4,p5,growth_yoy
+2021-01-01,Pulau Pinang,-5.8,p6,growth_yoy
+2021-01-01,Sabah,1.5,p0,growth_yoy
+2021-01-01,Sabah,-2.2,p1,growth_yoy
+2021-01-01,Sabah,3.2,p2,growth_yoy
+2021-01-01,Sabah,-1.8,p3,growth_yoy
+2021-01-01,Sabah,7.8,p4,growth_yoy
+2021-01-01,Sabah,2.1,p5,growth_yoy
+2021-01-01,Sabah,-11.1,p6,growth_yoy
+2021-01-01,Sarawak,3.2,p0,growth_yoy
+2021-01-01,Sarawak,-3.0,p1,growth_yoy
+2021-01-01,Sarawak,-2.5,p2,growth_yoy
+2021-01-01,Sarawak,11.0,p3,growth_yoy
+2021-01-01,Sarawak,10.0,p4,growth_yoy
+2021-01-01,Sarawak,2.5,p5,growth_yoy
+2021-01-01,Sarawak,-8.4,p6,growth_yoy
+2021-01-01,Selangor,5.3,p0,growth_yoy
+2021-01-01,Selangor,4.9,p1,growth_yoy
+2021-01-01,Selangor,-6.3,p2,growth_yoy
+2021-01-01,Selangor,13.0,p3,growth_yoy
+2021-01-01,Selangor,-6.4,p4,growth_yoy
+2021-01-01,Selangor,2.6,p5,growth_yoy
+2021-01-01,Selangor,8.9,p6,growth_yoy
+2021-01-01,Terengganu,3.7,p0,growth_yoy
+2021-01-01,Terengganu,-5.2,p1,growth_yoy
+2021-01-01,Terengganu,1.0,p2,growth_yoy
+2021-01-01,Terengganu,9.5,p3,growth_yoy
+2021-01-01,Terengganu,2.3,p4,growth_yoy
+2021-01-01,Terengganu,1.4,p5,growth_yoy
+2021-01-01,Terengganu,-47.9,p6,growth_yoy
+2022-01-01,Johor,8.5,p0,growth_yoy
+2022-01-01,Johor,3.1,p1,growth_yoy
+2022-01-01,Johor,10.5,p2,growth_yoy
+2022-01-01,Johor,5.5,p3,growth_yoy
+2022-01-01,Johor,15.9,p4,growth_yoy
+2022-01-01,Johor,11.0,p5,growth_yoy
+2022-01-01,Johor,20.8,p6,growth_yoy
+2022-01-01,Kedah,7.3,p0,growth_yoy
+2022-01-01,Kedah,0.3,p1,growth_yoy
+2022-01-01,Kedah,10.8,p2,growth_yoy
+2022-01-01,Kedah,8.1,p3,growth_yoy
+2022-01-01,Kedah,18.3,p4,growth_yoy
+2022-01-01,Kedah,8.0,p5,growth_yoy
+2022-01-01,Kedah,7.7,p6,growth_yoy
+2022-01-01,Kelantan,4.5,p0,growth_yoy
+2022-01-01,Kelantan,-3.9,p1,growth_yoy
+2022-01-01,Kelantan,11.4,p2,growth_yoy
+2022-01-01,Kelantan,3.1,p3,growth_yoy
+2022-01-01,Kelantan,19.7,p4,growth_yoy
+2022-01-01,Kelantan,6.8,p5,growth_yoy
+2022-01-01,Kelantan,36.7,p6,growth_yoy
+2022-01-01,Melaka,8.9,p0,growth_yoy
+2022-01-01,Melaka,0.6,p1,growth_yoy
+2022-01-01,Melaka,10.5,p2,growth_yoy
+2022-01-01,Melaka,6.8,p3,growth_yoy
+2022-01-01,Melaka,5.1,p4,growth_yoy
+2022-01-01,Melaka,12.4,p5,growth_yoy
+2022-01-01,Melaka,13.2,p6,growth_yoy
+2022-01-01,Negeri Sembilan,6.6,p0,growth_yoy
+2022-01-01,Negeri Sembilan,0.5,p1,growth_yoy
+2022-01-01,Negeri Sembilan,10.9,p2,growth_yoy
+2022-01-01,Negeri Sembilan,8.0,p3,growth_yoy
+2022-01-01,Negeri Sembilan,5.8,p4,growth_yoy
+2022-01-01,Negeri Sembilan,7.8,p5,growth_yoy
+2022-01-01,Negeri Sembilan,-47.8,p6,growth_yoy
+2022-01-01,Pahang,11.4,p0,growth_yoy
+2022-01-01,Pahang,6.8,p1,growth_yoy
+2022-01-01,Pahang,12.8,p2,growth_yoy
+2022-01-01,Pahang,5.8,p3,growth_yoy
+2022-01-01,Pahang,-1.0,p4,growth_yoy
+2022-01-01,Pahang,16.9,p5,growth_yoy
+2022-01-01,Pahang,0.8,p6,growth_yoy
+2022-01-01,Perak,4.6,p0,growth_yoy
+2022-01-01,Perak,-2.6,p1,growth_yoy
+2022-01-01,Perak,11.8,p2,growth_yoy
+2022-01-01,Perak,1.0,p3,growth_yoy
+2022-01-01,Perak,6.1,p4,growth_yoy
+2022-01-01,Perak,7.4,p5,growth_yoy
+2022-01-01,Perak,48.0,p6,growth_yoy
+2022-01-01,Perlis,5.9,p0,growth_yoy
+2022-01-01,Perlis,3.4,p1,growth_yoy
+2022-01-01,Perlis,9.9,p2,growth_yoy
+2022-01-01,Perlis,4.5,p3,growth_yoy
+2022-01-01,Perlis,1.1,p4,growth_yoy
+2022-01-01,Perlis,5.6,p5,growth_yoy
+2022-01-01,Perlis,68.4,p6,growth_yoy
+2022-01-01,Pulau Pinang,13.3,p0,growth_yoy
+2022-01-01,Pulau Pinang,4.7,p1,growth_yoy
+2022-01-01,Pulau Pinang,10.7,p2,growth_yoy
+2022-01-01,Pulau Pinang,15.9,p3,growth_yoy
+2022-01-01,Pulau Pinang,7.9,p4,growth_yoy
+2022-01-01,Pulau Pinang,11.5,p5,growth_yoy
+2022-01-01,Pulau Pinang,3.0,p6,growth_yoy
+2022-01-01,Sabah,3.9,p0,growth_yoy
+2022-01-01,Sabah,0.2,p1,growth_yoy
+2022-01-01,Sabah,-0.6,p2,growth_yoy
+2022-01-01,Sabah,-2.5,p3,growth_yoy
+2022-01-01,Sabah,6.2,p4,growth_yoy
+2022-01-01,Sabah,8.5,p5,growth_yoy
+2022-01-01,Sabah,12.6,p6,growth_yoy
+2022-01-01,Sarawak,6.9,p0,growth_yoy
+2022-01-01,Sarawak,1.8,p1,growth_yoy
+2022-01-01,Sarawak,7.3,p2,growth_yoy
+2022-01-01,Sarawak,5.8,p3,growth_yoy
+2022-01-01,Sarawak,4.0,p4,growth_yoy
+2022-01-01,Sarawak,9.3,p5,growth_yoy
+2022-01-01,Sarawak,20.4,p6,growth_yoy
+2022-01-01,Selangor,11.9,p0,growth_yoy
+2022-01-01,Selangor,-0.5,p1,growth_yoy
+2022-01-01,Selangor,12.6,p2,growth_yoy
+2022-01-01,Selangor,9.0,p3,growth_yoy
+2022-01-01,Selangor,4.2,p4,growth_yoy
+2022-01-01,Selangor,13.6,p5,growth_yoy
+2022-01-01,Selangor,32.1,p6,growth_yoy
+2022-01-01,Terengganu,6.0,p0,growth_yoy
+2022-01-01,Terengganu,-3.3,p1,growth_yoy
+2022-01-01,Terengganu,11.0,p2,growth_yoy
+2022-01-01,Terengganu,8.3,p3,growth_yoy
+2022-01-01,Terengganu,3.4,p4,growth_yoy
+2022-01-01,Terengganu,6.0,p5,growth_yoy
+2022-01-01,Terengganu,-48.1,p6,growth_yoy
+2023-01-01,Johor,4.5,p0,growth_yoy
+2023-01-01,Johor,-0.6,p1,growth_yoy
+2023-01-01,Johor,6.7,p2,growth_yoy
+2023-01-01,Johor,2.8,p3,growth_yoy
+2023-01-01,Johor,12.9,p4,growth_yoy
+2023-01-01,Johor,5.9,p5,growth_yoy
+2023-01-01,Johor,10.8,p6,growth_yoy
+2023-01-01,Kedah,1.8,p0,growth_yoy
+2023-01-01,Kedah,-3.2,p1,growth_yoy
+2023-01-01,Kedah,6.8,p2,growth_yoy
+2023-01-01,Kedah,-3.2,p3,growth_yoy
+2023-01-01,Kedah,32.7,p4,growth_yoy
+2023-01-01,Kedah,4.4,p5,growth_yoy
+2023-01-01,Kedah,-13.2,p6,growth_yoy
+2023-01-01,Kelantan,2.7,p0,growth_yoy
+2023-01-01,Kelantan,-0.5,p1,growth_yoy
+2023-01-01,Kelantan,8.9,p2,growth_yoy
+2023-01-01,Kelantan,-2.6,p3,growth_yoy
+2023-01-01,Kelantan,-3.0,p4,growth_yoy
+2023-01-01,Kelantan,4.1,p5,growth_yoy
+2023-01-01,Kelantan,-18.3,p6,growth_yoy
+2023-01-01,Melaka,2.8,p0,growth_yoy
+2023-01-01,Melaka,3.6,p1,growth_yoy
+2023-01-01,Melaka,6.8,p2,growth_yoy
+2023-01-01,Melaka,0.3,p3,growth_yoy
+2023-01-01,Melaka,9.8,p4,growth_yoy
+2023-01-01,Melaka,4.3,p5,growth_yoy
+2023-01-01,Melaka,-2.7,p6,growth_yoy
+2023-01-01,Negeri Sembilan,1.9,p0,growth_yoy
+2023-01-01,Negeri Sembilan,-5.7,p1,growth_yoy
+2023-01-01,Negeri Sembilan,9.5,p2,growth_yoy
+2023-01-01,Negeri Sembilan,1.2,p3,growth_yoy
+2023-01-01,Negeri Sembilan,-5.3,p4,growth_yoy
+2023-01-01,Negeri Sembilan,4.7,p5,growth_yoy
+2023-01-01,Negeri Sembilan,-69.4,p6,growth_yoy
+2023-01-01,Pahang,5.3,p0,growth_yoy
+2023-01-01,Pahang,1.8,p1,growth_yoy
+2023-01-01,Pahang,9.9,p2,growth_yoy
+2023-01-01,Pahang,2.1,p3,growth_yoy
+2023-01-01,Pahang,43.4,p4,growth_yoy
+2023-01-01,Pahang,6.2,p5,growth_yoy
+2023-01-01,Pahang,-26.3,p6,growth_yoy
+2023-01-01,Perak,2.8,p0,growth_yoy
+2023-01-01,Perak,2.1,p1,growth_yoy
+2023-01-01,Perak,10.0,p2,growth_yoy
+2023-01-01,Perak,2.2,p3,growth_yoy
+2023-01-01,Perak,-1.0,p4,growth_yoy
+2023-01-01,Perak,3.2,p5,growth_yoy
+2023-01-01,Perak,15.6,p6,growth_yoy
+2023-01-01,Perlis,2.2,p0,growth_yoy
+2023-01-01,Perlis,3.0,p1,growth_yoy
+2023-01-01,Perlis,5.6,p2,growth_yoy
+2023-01-01,Perlis,-1.0,p3,growth_yoy
+2023-01-01,Perlis,1.4,p4,growth_yoy
+2023-01-01,Perlis,2.7,p5,growth_yoy
+2023-01-01,Perlis,-11.1,p6,growth_yoy
+2023-01-01,Pulau Pinang,3.3,p0,growth_yoy
+2023-01-01,Pulau Pinang,5.6,p1,growth_yoy
+2023-01-01,Pulau Pinang,6.9,p2,growth_yoy
+2023-01-01,Pulau Pinang,-0.5,p3,growth_yoy
+2023-01-01,Pulau Pinang,24.1,p4,growth_yoy
+2023-01-01,Pulau Pinang,6.1,p5,growth_yoy
+2023-01-01,Pulau Pinang,2.3,p6,growth_yoy
+2023-01-01,Sabah,1.7,p0,growth_yoy
+2023-01-01,Sabah,0.9,p1,growth_yoy
+2023-01-01,Sabah,-4.5,p2,growth_yoy
+2023-01-01,Sabah,4.8,p3,growth_yoy
+2023-01-01,Sabah,-0.8,p4,growth_yoy
+2023-01-01,Sabah,4.7,p5,growth_yoy
+2023-01-01,Sabah,-2.6,p6,growth_yoy
+2023-01-01,Sarawak,1.5,p0,growth_yoy
+2023-01-01,Sarawak,1.7,p1,growth_yoy
+2023-01-01,Sarawak,-0.1,p2,growth_yoy
+2023-01-01,Sarawak,-3.9,p3,growth_yoy
+2023-01-01,Sarawak,9.6,p4,growth_yoy
+2023-01-01,Sarawak,5.7,p5,growth_yoy
+2023-01-01,Sarawak,-1.9,p6,growth_yoy
+2023-01-01,Selangor,5.6,p0,growth_yoy
+2023-01-01,Selangor,-7.0,p1,growth_yoy
+2023-01-01,Selangor,4.5,p2,growth_yoy
+2023-01-01,Selangor,2.1,p3,growth_yoy
+2023-01-01,Selangor,9.7,p4,growth_yoy
+2023-01-01,Selangor,6.4,p5,growth_yoy
+2023-01-01,Selangor,25.1,p6,growth_yoy
+2023-01-01,Terengganu,2.4,p0,growth_yoy
+2023-01-01,Terengganu,6.4,p1,growth_yoy
+2023-01-01,Terengganu,5.6,p2,growth_yoy
+2023-01-01,Terengganu,0.2,p3,growth_yoy
+2023-01-01,Terengganu,1.9,p4,growth_yoy
+2023-01-01,Terengganu,3.4,p5,growth_yoy
+2023-01-01,Terengganu,77.2,p6,growth_yoy
+2024-01-01,Johor,6.5,p0,growth_yoy
+2024-01-01,Johor,5.2,p1,growth_yoy
+2024-01-01,Johor,12.2,p2,growth_yoy
+2024-01-01,Johor,4.2,p3,growth_yoy
+2024-01-01,Johor,42.4,p4,growth_yoy
+2024-01-01,Johor,6.0,p5,growth_yoy
+2024-01-01,Johor,6.0,p6,growth_yoy
+2024-01-01,Kedah,4.2,p0,growth_yoy
+2024-01-01,Kedah,5.1,p1,growth_yoy
+2024-01-01,Kedah,-2.0,p2,growth_yoy
+2024-01-01,Kedah,6.6,p3,growth_yoy
+2024-01-01,Kedah,-11.7,p4,growth_yoy
+2024-01-01,Kedah,3.7,p5,growth_yoy
+2024-01-01,Kedah,7.7,p6,growth_yoy
+2024-01-01,Kelantan,3.3,p0,growth_yoy
+2024-01-01,Kelantan,1.5,p1,growth_yoy
+2024-01-01,Kelantan,9.4,p2,growth_yoy
+2024-01-01,Kelantan,2.2,p3,growth_yoy
+2024-01-01,Kelantan,18.5,p4,growth_yoy
+2024-01-01,Kelantan,3.5,p5,growth_yoy
+2024-01-01,Kelantan,-4.4,p6,growth_yoy
+2024-01-01,Melaka,4.2,p0,growth_yoy
+2024-01-01,Melaka,-2.3,p1,growth_yoy
+2024-01-01,Melaka,7.7,p2,growth_yoy
+2024-01-01,Melaka,3.8,p3,growth_yoy
+2024-01-01,Melaka,27.9,p4,growth_yoy
+2024-01-01,Melaka,4.7,p5,growth_yoy
+2024-01-01,Melaka,43.1,p6,growth_yoy
+2024-01-01,Negeri Sembilan,4.6,p0,growth_yoy
+2024-01-01,Negeri Sembilan,8.5,p1,growth_yoy
+2024-01-01,Negeri Sembilan,-4.2,p2,growth_yoy
+2024-01-01,Negeri Sembilan,3.9,p3,growth_yoy
+2024-01-01,Negeri Sembilan,7.5,p4,growth_yoy
+2024-01-01,Negeri Sembilan,4.6,p5,growth_yoy
+2024-01-01,Negeri Sembilan,26.7,p6,growth_yoy
+2024-01-01,Pahang,5.8,p0,growth_yoy
+2024-01-01,Pahang,9.3,p1,growth_yoy
+2024-01-01,Pahang,-2.7,p2,growth_yoy
+2024-01-01,Pahang,3.5,p3,growth_yoy
+2024-01-01,Pahang,8.6,p4,growth_yoy
+2024-01-01,Pahang,5.0,p5,growth_yoy
+2024-01-01,Pahang,227.7,p6,growth_yoy
+2024-01-01,Perak,4.8,p0,growth_yoy
+2024-01-01,Perak,5.1,p1,growth_yoy
+2024-01-01,Perak,-1.9,p2,growth_yoy
+2024-01-01,Perak,5.1,p3,growth_yoy
+2024-01-01,Perak,11.5,p4,growth_yoy
+2024-01-01,Perak,4.4,p5,growth_yoy
+2024-01-01,Perak,16.7,p6,growth_yoy
+2024-01-01,Perlis,3.2,p0,growth_yoy
+2024-01-01,Perlis,2.8,p1,growth_yoy
+2024-01-01,Perlis,3.6,p2,growth_yoy
+2024-01-01,Perlis,1.4,p3,growth_yoy
+2024-01-01,Perlis,12.0,p4,growth_yoy
+2024-01-01,Perlis,3.2,p5,growth_yoy
+2024-01-01,Perlis,1.3,p6,growth_yoy
+2024-01-01,Pulau Pinang,4.7,p0,growth_yoy
+2024-01-01,Pulau Pinang,-0.5,p1,growth_yoy
+2024-01-01,Pulau Pinang,6.6,p2,growth_yoy
+2024-01-01,Pulau Pinang,4.0,p3,growth_yoy
+2024-01-01,Pulau Pinang,12.5,p4,growth_yoy
+2024-01-01,Pulau Pinang,4.9,p5,growth_yoy
+2024-01-01,Pulau Pinang,19.5,p6,growth_yoy
+2024-01-01,Sabah,1.2,p0,growth_yoy
+2024-01-01,Sabah,-3.2,p1,growth_yoy
+2024-01-01,Sabah,-4.9,p2,growth_yoy
+2024-01-01,Sabah,1.2,p3,growth_yoy
+2024-01-01,Sabah,21.5,p4,growth_yoy
+2024-01-01,Sabah,4.2,p5,growth_yoy
+2024-01-01,Sabah,5.9,p6,growth_yoy
+2024-01-01,Sarawak,3.8,p0,growth_yoy
+2024-01-01,Sarawak,0.1,p1,growth_yoy
+2024-01-01,Sarawak,4.8,p2,growth_yoy
+2024-01-01,Sarawak,1.3,p3,growth_yoy
+2024-01-01,Sarawak,14.7,p4,growth_yoy
+2024-01-01,Sarawak,4.8,p5,growth_yoy
+2024-01-01,Sarawak,21.4,p6,growth_yoy
+2024-01-01,Selangor,6.4,p0,growth_yoy
+2024-01-01,Selangor,8.1,p1,growth_yoy
+2024-01-01,Selangor,12.8,p2,growth_yoy
+2024-01-01,Selangor,5.1,p3,growth_yoy
+2024-01-01,Selangor,15.8,p4,growth_yoy
+2024-01-01,Selangor,6.3,p5,growth_yoy
+2024-01-01,Selangor,5.9,p6,growth_yoy
+2024-01-01,Terengganu,4.5,p0,growth_yoy
+2024-01-01,Terengganu,3.6,p1,growth_yoy
+2024-01-01,Terengganu,14.6,p2,growth_yoy
+2024-01-01,Terengganu,3.9,p3,growth_yoy
+2024-01-01,Terengganu,17.5,p4,growth_yoy
+2024-01-01,Terengganu,4.1,p5,growth_yoy
+2024-01-01,Terengganu,159.7,p6,growth_yoy
+2025-01-01,Johor,8.0,p0,growth_yoy
+2025-01-01,Johor,1.1,p1,growth_yoy
+2025-01-01,Johor,-2.6,p2,growth_yoy
+2025-01-01,Johor,4.0,p3,growth_yoy
+2025-01-01,Johor,26.7,p4,growth_yoy
+2025-01-01,Johor,9.9,p5,growth_yoy
+2025-01-01,Johor,25.4,p6,growth_yoy
+2025-01-01,Kedah,4.1,p0,growth_yoy
+2025-01-01,Kedah,2.1,p1,growth_yoy
+2025-01-01,Kedah,-1.9,p2,growth_yoy
+2025-01-01,Kedah,5.0,p3,growth_yoy
+2025-01-01,Kedah,-0.6,p4,growth_yoy
+2025-01-01,Kedah,3.9,p5,growth_yoy
+2025-01-01,Kedah,28.2,p6,growth_yoy
+2025-01-01,Kelantan,4.1,p0,growth_yoy
+2025-01-01,Kelantan,3.6,p1,growth_yoy
+2025-01-01,Kelantan,-1.8,p2,growth_yoy
+2025-01-01,Kelantan,9.3,p3,growth_yoy
+2025-01-01,Kelantan,8.3,p4,growth_yoy
+2025-01-01,Kelantan,4.0,p5,growth_yoy
+2025-01-01,Kelantan,-12.8,p6,growth_yoy
+2025-01-01,Melaka,3.0,p0,growth_yoy
+2025-01-01,Melaka,1.8,p1,growth_yoy
+2025-01-01,Melaka,2.5,p2,growth_yoy
+2025-01-01,Melaka,1.1,p3,growth_yoy
+2025-01-01,Melaka,-4.9,p4,growth_yoy
+2025-01-01,Melaka,4.8,p5,growth_yoy
+2025-01-01,Melaka,30.8,p6,growth_yoy
+2025-01-01,Negeri Sembilan,2.6,p0,growth_yoy
+2025-01-01,Negeri Sembilan,1.2,p1,growth_yoy
+2025-01-01,Negeri Sembilan,6.9,p2,growth_yoy
+2025-01-01,Negeri Sembilan,1.9,p3,growth_yoy
+2025-01-01,Negeri Sembilan,1.2,p4,growth_yoy
+2025-01-01,Negeri Sembilan,3.0,p5,growth_yoy
+2025-01-01,Negeri Sembilan,97.5,p6,growth_yoy
+2025-01-01,Pahang,3.2,p0,growth_yoy
+2025-01-01,Pahang,2.7,p1,growth_yoy
+2025-01-01,Pahang,-4.9,p2,growth_yoy
+2025-01-01,Pahang,1.4,p3,growth_yoy
+2025-01-01,Pahang,-5.3,p4,growth_yoy
+2025-01-01,Pahang,5.0,p5,growth_yoy
+2025-01-01,Pahang,-19.4,p6,growth_yoy
+2025-01-01,Perak,5.7,p0,growth_yoy
+2025-01-01,Perak,1.2,p1,growth_yoy
+2025-01-01,Perak,7.9,p2,growth_yoy
+2025-01-01,Perak,15.2,p3,growth_yoy
+2025-01-01,Perak,8.1,p4,growth_yoy
+2025-01-01,Perak,3.4,p5,growth_yoy
+2025-01-01,Perak,196.3,p6,growth_yoy
+2025-01-01,Perlis,2.0,p0,growth_yoy
+2025-01-01,Perlis,-1.9,p1,growth_yoy
+2025-01-01,Perlis,2.7,p2,growth_yoy
+2025-01-01,Perlis,4.2,p3,growth_yoy
+2025-01-01,Perlis,-8.2,p4,growth_yoy
+2025-01-01,Perlis,3.1,p5,growth_yoy
+2025-01-01,Perlis,-0.2,p6,growth_yoy
+2025-01-01,Pulau Pinang,7.3,p0,growth_yoy
+2025-01-01,Pulau Pinang,1.8,p1,growth_yoy
+2025-01-01,Pulau Pinang,1.1,p2,growth_yoy
+2025-01-01,Pulau Pinang,10.0,p3,growth_yoy
+2025-01-01,Pulau Pinang,13.4,p4,growth_yoy
+2025-01-01,Pulau Pinang,4.1,p5,growth_yoy
+2025-01-01,Pulau Pinang,36.0,p6,growth_yoy
+2025-01-01,Sabah,5.1,p0,growth_yoy
+2025-01-01,Sabah,0.9,p1,growth_yoy
+2025-01-01,Sabah,4.9,p2,growth_yoy
+2025-01-01,Sabah,5.0,p3,growth_yoy
+2025-01-01,Sabah,28.3,p4,growth_yoy
+2025-01-01,Sabah,4.5,p5,growth_yoy
+2025-01-01,Sabah,35.2,p6,growth_yoy
+2025-01-01,Sarawak,3.6,p0,growth_yoy
+2025-01-01,Sarawak,4.3,p1,growth_yoy
+2025-01-01,Sarawak,2.7,p2,growth_yoy
+2025-01-01,Sarawak,0.1,p3,growth_yoy
+2025-01-01,Sarawak,10.9,p4,growth_yoy
+2025-01-01,Sarawak,5.4,p5,growth_yoy
+2025-01-01,Sarawak,14.7,p6,growth_yoy
+2025-01-01,Selangor,6.3,p0,growth_yoy
+2025-01-01,Selangor,4.0,p1,growth_yoy
+2025-01-01,Selangor,6.8,p2,growth_yoy
+2025-01-01,Selangor,4.1,p3,growth_yoy
+2025-01-01,Selangor,16.0,p4,growth_yoy
+2025-01-01,Selangor,6.0,p5,growth_yoy
+2025-01-01,Selangor,14.9,p6,growth_yoy
+2025-01-01,Terengganu,1.6,p0,growth_yoy
+2025-01-01,Terengganu,4.2,p1,growth_yoy
+2025-01-01,Terengganu,-2.2,p2,growth_yoy
+2025-01-01,Terengganu,-1.2,p3,growth_yoy
+2025-01-01,Terengganu,-5.8,p4,growth_yoy
+2025-01-01,Terengganu,3.6,p5,growth_yoy
+2025-01-01,Terengganu,66.6,p6,growth_yoy
+2015-01-01,Supra,51419.75,p0,abs
+2015-01-01,Supra,0.0,p1,abs
+2015-01-01,Supra,51419.75,p2,abs
+2015-01-01,Supra,0.0,p3,abs
+2015-01-01,Supra,0.0,p4,abs
+2015-01-01,Supra,0.0,p5,abs
+2015-01-01,Supra,0.0,p6,abs
+2016-01-01,Supra,50562.395,p0,abs
+2016-01-01,Supra,0.0,p1,abs
+2016-01-01,Supra,50562.395,p2,abs
+2016-01-01,Supra,0.0,p3,abs
+2016-01-01,Supra,0.0,p4,abs
+2016-01-01,Supra,0.0,p5,abs
+2016-01-01,Supra,0.0,p6,abs
+2017-01-01,Supra,46512.054,p0,abs
+2017-01-01,Supra,0.0,p1,abs
+2017-01-01,Supra,46512.054,p2,abs
+2017-01-01,Supra,0.0,p3,abs
+2017-01-01,Supra,0.0,p4,abs
+2017-01-01,Supra,0.0,p5,abs
+2017-01-01,Supra,0.0,p6,abs
+2018-01-01,Supra,46044.467,p0,abs
+2018-01-01,Supra,0.0,p1,abs
+2018-01-01,Supra,46044.467,p2,abs
+2018-01-01,Supra,0.0,p3,abs
+2018-01-01,Supra,0.0,p4,abs
+2018-01-01,Supra,0.0,p5,abs
+2018-01-01,Supra,0.0,p6,abs
+2019-01-01,Supra,45738.116,p0,abs
+2019-01-01,Supra,0.0,p1,abs
+2019-01-01,Supra,45738.116,p2,abs
+2019-01-01,Supra,0.0,p3,abs
+2019-01-01,Supra,0.0,p4,abs
+2019-01-01,Supra,0.0,p5,abs
+2019-01-01,Supra,0.0,p6,abs
+2020-01-01,Supra,40697.536,p0,abs
+2020-01-01,Supra,0.0,p1,abs
+2020-01-01,Supra,40697.536,p2,abs
+2020-01-01,Supra,0.0,p3,abs
+2020-01-01,Supra,0.0,p4,abs
+2020-01-01,Supra,0.0,p5,abs
+2020-01-01,Supra,0.0,p6,abs
+2021-01-01,Supra,41895.612,p0,abs
+2021-01-01,Supra,0.0,p1,abs
+2021-01-01,Supra,41895.612,p2,abs
+2021-01-01,Supra,0.0,p3,abs
+2021-01-01,Supra,0.0,p4,abs
+2021-01-01,Supra,0.0,p5,abs
+2021-01-01,Supra,0.0,p6,abs
+2022-01-01,Supra,42872.705,p0,abs
+2022-01-01,Supra,0.0,p1,abs
+2022-01-01,Supra,42872.705,p2,abs
+2022-01-01,Supra,0.0,p3,abs
+2022-01-01,Supra,0.0,p4,abs
+2022-01-01,Supra,0.0,p5,abs
+2022-01-01,Supra,0.0,p6,abs
+2023-01-01,Supra,44095.463,p0,abs
+2023-01-01,Supra,0.0,p1,abs
+2023-01-01,Supra,44095.463,p2,abs
+2023-01-01,Supra,0.0,p3,abs
+2023-01-01,Supra,0.0,p4,abs
+2023-01-01,Supra,0.0,p5,abs
+2023-01-01,Supra,0.0,p6,abs
+2024-01-01,Supra,44509.846,p0,abs
+2024-01-01,Supra,0.0,p1,abs
+2024-01-01,Supra,44509.846,p2,abs
+2024-01-01,Supra,0.0,p3,abs
+2024-01-01,Supra,0.0,p4,abs
+2024-01-01,Supra,0.0,p5,abs
+2024-01-01,Supra,0.0,p6,abs
+2025-01-01,Supra,43257.43,p0,abs
+2025-01-01,Supra,0.0,p1,abs
+2025-01-01,Supra,43257.43,p2,abs
+2025-01-01,Supra,0.0,p3,abs
+2025-01-01,Supra,0.0,p4,abs
+2025-01-01,Supra,0.0,p5,abs
+2025-01-01,Supra,0.0,p6,abs
