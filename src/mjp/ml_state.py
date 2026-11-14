@@ -129,7 +129,7 @@ def reconcile(state_fc: pd.DataFrame, national_fc: pd.DataFrame, weights: pd.Ser
     wm = (r["mean"] * w).groupby(r["date"]).sum() / w.groupby(r["date"]).sum()
     ratio = national_fc.set_index("date")["mean"] / wm
     f = r["date"].map(ratio)
-    for c in ["mean", "lo80", "hi80"]:
+    for c in [c for c in ["mean", "lo80", "hi80", "lo95", "hi95"] if c in r]:
         r[c] = r[c] * f
     return r
 
