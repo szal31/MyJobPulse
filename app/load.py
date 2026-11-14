@@ -32,6 +32,9 @@ def scenario_labels() -> dict[str, str]:
             "downturn": "Downturn (IPI −5% in 2027, no catch-up)", "tvet_push": "TVET push (illustrative)"}
 
 
+SHORT = {"baseline": "Current pace", "nimp": "NIMP pace", "downturn": "Downturn", "tvet_push": "TVET push*"}
+
+
 def style(fig: go.Figure, height: int = 380, y_title: str = "") -> go.Figure:
     fig.update_layout(height=height, margin=dict(l=10, r=10, t=30, b=10), plot_bgcolor="white",
                       paper_bgcolor="rgba(0,0,0,0)", font=dict(color=INK), legend=dict(orientation="h", y=-0.15),

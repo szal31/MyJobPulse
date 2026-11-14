@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from load import SCEN_COLOR, footer, read_json, read_parquet, scenario_labels, style
+from load import SHORT, SCEN_COLOR, footer, read_json, read_parquet, scenario_labels, style
 
 st.set_page_config(page_title="Scenario lab · MyJobPulse", layout="wide")
 st.title("Scenario lab")
@@ -20,9 +20,10 @@ def yr(series):
 c1, c2 = st.columns(2)
 for col, series, title in [(c1, "youth", "Youth unemployment in 2030"), (c2, "sru", "Skill-related underemployment in 2030")]:
     d = yr(series)
-    fig = go.Figure(go.Bar(x=[labels[i] for i in d.index], y=d["mean"], marker_color=[SCEN_COLOR[i] for i in d.index],
+    fig = go.Figure(go.Bar(x=[SHORT[i] for i in d.index], y=d["mean"], marker_color=[SCEN_COLOR[i] for i in d.index],
                            error_y=dict(type="data", symmetric=False, array=d.hi80 - d["mean"], arrayminus=d["mean"] - d.lo80),
-                           text=[f"{v:.1f}%" for v in d["mean"]], textposition="outside"))
+                           text=[f"{v:.1f}%" for v in d["mean"]], textposition="inside", insidetextanchor="start",
+                           textfont=dict(color="white")))
     with col:
         st.markdown(f"**{title}**")
         st.plotly_chart(style(fig, 360, "%"), use_container_width=True)
@@ -30,10 +31,11 @@ for col, series, title in [(c1, "youth", "Youth unemployment in 2030"), (c2, "sr
 st.markdown("**Wages lost to underemployment, RM bn per year (central estimate)**")
 fig = go.Figure()
 for n in chosen:
-    c = pd.DataFrame(cost["by_scenario"][n])
+    c = pd.DataFrame(cost["by_scenario"][n]).query("quarters == 4")  # full years only
     fig.add_trace(go.Scatter(x=c.year, y=c.rm_mid_bn, name=labels[n], line=dict(color=SCEN_COLOR[n], width=2.5)))
 st.plotly_chart(style(fig, 320, "RM bn / yr"), use_container_width=True)
 
+st.caption("* TVET push is illustrative. Error bars: 80% ranges.")
 st.markdown("**Reading the result**")
 st.markdown(
     "- Faster industrial growth is associated with lower **youth unemployment**, but barely moves **underemployment**: "
