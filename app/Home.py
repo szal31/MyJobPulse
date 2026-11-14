@@ -7,7 +7,7 @@ st.set_page_config(page_title="MyJobPulse", page_icon="📈", layout="wide")
 
 h = read_parquet("history").set_index("date")
 cost = read_json("cost")
-now = [r for r in cost["by_scenario"]["baseline"] if r["year"] == 2026][0]
+now = [r for r in cost["by_scenario"]["baseline"] if r["quarters"] == 4][0]  # first full forecast year
 youth = h["youth_u_rate"].dropna()
 head = h["headline_u_rate"].dropna()
 sru = h["sru_rate"].dropna()
@@ -26,7 +26,7 @@ c2.metric("Youth unemployment (15–24)", f"{youth.iloc[-1]:.1f}%",
           f"{youth.iloc[-1] - head.iloc[-1]:+.1f} pp vs headline", delta_color="off",
           help=f"{youth.index[-1]:%b %Y}")
 c3.metric("Skill-related underemployment", f"{sru.iloc[-1]:.1f}%", help="Share of tertiary-educated workers in semi/low-skilled jobs")
-c4.metric("Wages lost to underemployment", f"RM{now['rm_mid_bn']:.0f}bn / yr",
+c4.metric(f"Wages lost to underemployment ({now['year']})", f"RM{now['rm_mid_bn']:.0f}bn / yr",
           f"range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn", delta_color="off",
           help="Central estimate assumes underemployed workers forgo half of the skilled vs semi-skilled median wage gap (DOSM 2025).")
 

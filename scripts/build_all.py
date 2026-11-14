@@ -22,14 +22,14 @@ from mjp.explain import cluster_states, latest_state_features, shap_by_state  # 
 from mjp.forecast_stats import fit_forecast, scoreboard  # noqa: E402
 from mjp.ml_state import build_features, reconcile, state_scoreboard, train  # noqa: E402
 from mjp.prep import _raw, load_drivers, load_sru_quarterly, load_state_panel, load_youth_monthly  # noqa: E402
-from mjp.scenarios import SCENARIOS, run_scenario  # noqa: E402
+from mjp.scenarios import SCENARIOS, driver_coefficients, run_scenario  # noqa: E402
 
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 REQUIRED_OUTPUTS = [
     PROC / "history.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
     OUT / "scoreboard_national.json", OUT / "scoreboard_state.json", OUT / "cost.json",
-    OUT / "playbook.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
+    OUT / "playbook.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
 ]
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
 
@@ -78,6 +78,7 @@ def states(res):
 
 
 def cost_outputs(res):
+    _dump(driver_coefficients(), "drivers.json")
     _dump({"wage_gap": cost.wage_gap(), "gap_shares": cost.GAP_SHARES,
            "by_scenario": {n: cost.cost_path(r["sru"]).to_dict("records") for n, r in res.items()}},
           "cost.json")
@@ -100,7 +101,7 @@ def hansard(res):
            "lead_lag": lead_lag(att, youth).to_dict("records"),
            "granger": granger(att, youth)}, "attention.json")
     recent = s[s.date >= "2023-01-01"]  # 15th Parliament; seat names match lfs_parlimen delineation
-    representation_table(recent).to_parquet(PROC / "representation.parquet")
+    representation_table(recent, min_words=2000).to_parquet(PROC / "representation.parquet")
     extract_candidates(recent).to_csv(PROC / "promise_candidates.csv", index=False)
     vf = ROOT / "data" / "manual" / "promises_verified.csv"
     if vf.exists():

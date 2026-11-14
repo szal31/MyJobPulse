@@ -27,3 +27,18 @@ def test_assess_statuses():
                       "target": [9.0, 11.0, 5.0, 30000], "target_year": [2028] * 4})
     out = assess(v, {"youth_u_rate": _fc(10.1, 8.8)})
     assert out.status.tolist() == ["At risk", "On track", "Off track", "Not testable"]
+
+
+def test_strips_speaker_names():
+    s = pd.DataFrame({"date": pd.to_datetime(["2025-10-10"]), "url": ["u"],
+                      "text": ["Tuan Ali bin Abu [Sibu]: Kerajaan sasar 30,000 peluang pekerjaan menjelang 2027."]})
+    c = extract_candidates(s)
+    assert not c.sentence.str.contains("Ali bin Abu").any()
+
+
+def test_malay_number_formats_do_not_crash():
+    from mjp.hansard.promises import _numbers
+    assert (1_500_000.0, "count") in _numbers("1.500.000 pekerjaan menjelang 2028")
+    assert (30_000.0, "count") in _numbers("30.000 peluang menjelang 2027")
+    assert (1_500_000.0, "count") in _numbers("1,5 juta graduan menjelang 2030")
+    assert (2_000_000_000.0, "count") in _numbers("RM2 bilion untuk belia 2026")

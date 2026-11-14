@@ -23,6 +23,13 @@ def test_cost_path_ordered_and_annual():
     sru = pd.DataFrame({"date": pd.date_range("2026-10-01", periods=17, freq="QS"),
                         "mean": 35.0, "lo80": 34.0, "hi80": 36.0})
     c = cost_path(sru)
-    assert list(c.columns) == ["year", "persons_mn", "rm_low_bn", "rm_mid_bn", "rm_high_bn"]
+    assert list(c.columns) == ["year", "quarters", "persons_mn", "rm_low_bn", "rm_mid_bn", "rm_high_bn"]
     assert (c.rm_low_bn <= c.rm_mid_bn).all() and (c.rm_mid_bn <= c.rm_high_bn).all()
     assert c.year.max() == 2030 and GAP_SHARES == (0.25, 0.5, 1.0)
+
+
+def test_cost_path_reports_quarters():
+    sru = pd.DataFrame({"date": pd.date_range("2026-10-01", periods=17, freq="QS"),
+                        "mean": 35.0, "lo80": 34.0, "hi80": 36.0})
+    c = cost_path(sru).set_index("year")
+    assert c.loc[2026, "quarters"] == 1 and c.loc[2027, "quarters"] == 4

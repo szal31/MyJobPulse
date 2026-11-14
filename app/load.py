@@ -29,7 +29,7 @@ def read_json(name: str):
 
 def scenario_labels() -> dict[str, str]:
     return {"baseline": "Current pace (3.1%/yr manufacturing)", "nimp": "NIMP 2030 pace (8%/yr)",
-            "downturn": "Downturn (IPI −5% through 2027)", "tvet_push": "TVET push (illustrative)"}
+            "downturn": "Downturn (IPI −5% in 2027, no catch-up)", "tvet_push": "TVET push (illustrative)"}
 
 
 def style(fig: go.Figure, height: int = 380, y_title: str = "") -> go.Figure:

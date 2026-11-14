@@ -45,3 +45,10 @@ def test_tvet_push_lowers_sru():
     b = run_scenario("baseline")["sru"]
     t = run_scenario("tvet_push")["sru"]
     assert t[t.date.dt.year == 2030]["mean"].mean() < b[b.date.dt.year == 2030]["mean"].mean()
+
+
+def test_driver_coefficients_reported():
+    from mjp.scenarios import driver_coefficients
+    d = driver_coefficients()
+    assert {"youth", "sru"} <= set(d)
+    assert {"coef", "lo95", "hi95", "p"} <= set(d["youth"]["ipi"])

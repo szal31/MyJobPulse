@@ -8,10 +8,12 @@ st.title("Decision playbook")
 st.markdown("Each state gets a traffic light from its forecast, and each light maps to a programme that **already exists** "
             "in Budget 2026, so the dashboard ends in an action, not a chart.")
 
+st.caption("Lights are computed on **all-ages** state unemployment (no official quarterly youth series by state); "
+           "programmes listed are youth-targeted responses for states flagged at risk.")
 with st.expander("Decision rules", expanded=True):
     st.markdown(
-        "- 🔴 **Red**: next-4-quarter forecast above the state's 2016–2025 90th percentile, **or** rising 3+ quarters in a row\n"
-        "- 🟡 **Amber**: above the 75th percentile, **or** rising 2 quarters in a row\n"
+        "- 🔴 **Red**: next-4-quarter forecast above the state's 2016–2025 90th percentile, **or** rising 3+ quarters in a row (≥0.1 pp each)\n"
+        "- 🟡 **Amber**: above the 75th percentile, **or** rising 2 quarters in a row (≥0.1 pp each)\n"
         "- 🟢 **Green**: otherwise, monitor quarterly")
 
 pb = pd.DataFrame(read_json("playbook"))

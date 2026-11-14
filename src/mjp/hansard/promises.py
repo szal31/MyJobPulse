@@ -11,16 +11,33 @@ import pandas as pd
 JOB_TERMS = ["peluang pekerjaan", "pekerjaan", "graduan", "siswazah", "belia", "tvet",
              "kebolehpasaran", "pengangguran", "guna tenaga", "job", "graduate", "youth", "unemployment"]
 _TERMS = re.compile("|".join(map(re.escape, JOB_TERMS)))
-_NUM = re.compile(r"(\d{1,3}(?:[.,]\d{3})+|\d+(?:\.\d+)?)\s*(%|peratus|percent|ribu|juta|thousand|million)?")
+_NUM = re.compile(r"(\d+(?:[.,]\d+)*)\s*(%|peratus|percent|ribu|juta|bilion|thousand|million|billion)?", re.I)
+_SPEAKER_TAG = re.compile(r"^[^\n\[\]]{3,120}\[[^\]\n]{2,60}\]\s*:", re.M)  # 'Name [Seat]:' -> removed (no MP names)
 _SENT = re.compile(r"(?<=[.!?])\s+")
-_SCALE = {"ribu": 1e3, "thousand": 1e3, "juta": 1e6, "million": 1e6}
+_SCALE = {"ribu": 1e3, "thousand": 1e3, "juta": 1e6, "million": 1e6, "bilion": 1e9, "billion": 1e9}
+
+
+def _parse(raw: str) -> float | None:
+    """Malay/English numerals: '30,000' / '30.000' / '1.500.000' thousands; '1,5' / '1.5' decimals."""
+    try:
+        if re.fullmatch(r"\d{1,3}([.,]\d{3})+", raw):
+            return float(re.sub(r"[.,]", "", raw))
+        if re.fullmatch(r"\d+([.,]\d+)?", raw):
+            return float(raw.replace(",", "."))
+    except ValueError:
+        pass
+    return None
 
 
 def _numbers(sentence: str) -> list[tuple[float, str]]:
     out = []
     for raw, unit in _NUM.findall(sentence):
-        v = float(raw.replace(",", "")) if re.fullmatch(r"\d{1,3}(,\d{3})+", raw) else float(raw.replace(",", "."))
+        v = _parse(raw)
+        if v is None:
+            continue
         unit = (unit or "").lower()
+        if not unit and re.fullmatch(r"(19|20)\d\d", raw) and not 2026 <= v <= 2030:
+            continue  # a past/other year, not a quantity
         is_year = 2026 <= v <= 2030 and not unit
         if unit in ("%", "peratus", "percent"):
             out.append((v, "%"))
@@ -36,7 +53,7 @@ def _numbers(sentence: str) -> list[tuple[float, str]]:
 def extract_candidates(sittings: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for d, url, text in sittings[["date", "url", "text"]].itertuples(index=False):
-        flat = re.sub(r"\s+", " ", text)
+        flat = re.sub(r"\s+", " ", _SPEAKER_TAG.sub(" ", text))
         for sent in _SENT.split(flat):
             low = sent.lower()
             if len(sent) > 400 or not _TERMS.search(low):

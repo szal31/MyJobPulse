@@ -35,3 +35,10 @@ def test_zero_mention_seat_is_low_voice():
     t = representation_table(s).set_index("parlimen")
     assert "low voice" in t.loc["Pengkalan Chepa", "quadrant"]
     assert "high voice" in t.loc["Kota Bharu", "quadrant"]
+
+
+def test_seats_without_speech_are_no_data():
+    s = pd.DataFrame({"date": pd.to_datetime(["2023-03-01"]), "url": ["u"],
+                      "text": ["Tuan A [Kota Bharu]: pengangguran belia"]})
+    t = representation_table(s).set_index("parlimen")
+    assert t.loc["Padang Besar", "quadrant"] == "no data"

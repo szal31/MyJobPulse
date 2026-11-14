@@ -14,7 +14,7 @@ END = "2030-12-01"
 SCENARIOS: dict[str, dict] = {
     "baseline": {"label": "Current pace", "mfg_growth": 0.031, "illustrative": False},
     "nimp": {"label": "NIMP 2030 pace", "mfg_growth": 0.08, "illustrative": False},
-    "downturn": {"label": "Downturn (IPI −5% y/y through 2027)", "mfg_growth": 0.031,
+    "downturn": {"label": "Downturn (IPI −5% y/y through 2027, no catch-up)", "mfg_growth": 0.031,
                  "shock": (-0.05, "2027-01-01", "2027-12-01"), "illustrative": False},
     "tvet_push": {"label": "TVET push (illustrative)", "mfg_growth": 0.031,
                   "sru_pp_per_year": -0.5, "sru_from": 2027, "illustrative": True},
@@ -76,3 +76,23 @@ def run_scenario(name: str) -> dict[str, pd.DataFrame]:
 @lru_cache(maxsize=1)
 def _state_widths() -> pd.DataFrame:
     return state_widths(load_state_panel())
+
+
+def driver_coefficients() -> dict:
+    """SARIMAX driver coefficients with 95% CI and p-values for the series the scenarios use.
+    These are short-run co-movements, so scenario effects are sensitivities, not causal estimates."""
+    import warnings
+    from statsmodels.tsa.statespace.sarimax import SARIMAX
+    from .forecast_stats import DRIVERS, _driver_exog, _select_order
+    out = {}
+    for name, y in {"youth": load_youth_monthly(), "sru": load_sru_quarterly("overall")}.items():
+        xh, _ = _driver_exog(y, 1)
+        o, s = _select_order(y, xh)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            res = SARIMAX(y, exog=xh, order=o, seasonal_order=s).fit(disp=False)
+        ci = res.conf_int()
+        out[name] = {d: {"coef": float(res.params[d]), "lo95": float(ci.loc[d, 0]), "hi95": float(ci.loc[d, 1]),
+                         "p": float(res.pvalues[d])} for d in DRIVERS if d in res.params}
+        out[name]["order"] = f"{o}x{s}"
+    return out

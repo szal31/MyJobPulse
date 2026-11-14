@@ -45,18 +45,19 @@ def mentions_by_constituency(sittings: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame([(k, v[0], v[1]) for k, v in agg.items()], columns=["parlimen", "mentions", "words"])
 
 
-def representation_table(sittings: pd.DataFrame) -> pd.DataFrame:
+def representation_table(sittings: pd.DataFrame, min_words: int = 1) -> pd.DataFrame:
     lp = _raw("lfs_parlimen")
     lp = lp[lp.date == lp.date.max()].copy()
     lp["parlimen"] = lp["parlimen"].str.replace(r"^P\.\d+\s+", "", regex=True)
     m = mentions_by_constituency(sittings)
     t = lp[["parlimen", "state", "u_rate"]].merge(m, on="parlimen", how="left").fillna({"mentions": 0, "words": 0})
     t["mentions_per_100k"] = np.where(t.words > 0, t.mentions / t.words.clip(lower=1) * 1e5, 0.0)
+    has = t.words >= max(min_words, 1)  # ministers speak under ministry titles; too little parsed speech = no data
     hi_need = t.u_rate >= t.u_rate.median()
-    nz = t.mentions_per_100k[t.mentions_per_100k > 0]
+    nz = t.mentions_per_100k[has & (t.mentions_per_100k > 0)]
     hi_voice = t.mentions_per_100k >= (nz.median() if len(nz) else np.inf)  # most seats have 0 mentions
     t["quadrant"] = np.select(
-        [hi_need & ~hi_voice, hi_need & hi_voice, ~hi_need & hi_voice],
-        ["high need · low voice", "high need · high voice", "low need · high voice"],
+        [~has, hi_need & ~hi_voice, hi_need & hi_voice, ~hi_need & hi_voice],
+        ["no data", "high need · low voice", "high need · high voice", "low need · high voice"],
         "low need · low voice")
     return t[["parlimen", "state", "u_rate", "mentions", "words", "mentions_per_100k", "quadrant"]]

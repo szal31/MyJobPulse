@@ -48,7 +48,7 @@ def export(out_dir: Path) -> Path:
     parts = []
 
     # 1 Hidden gap
-    now = [r for r in cost["by_scenario"]["baseline"] if r["year"] == 2026][0]
+    now = [r for r in cost["by_scenario"]["baseline"] if r["quarters"] == 4][0]  # first full forecast year
     y, hd, sr = h.youth_u_rate.dropna(), h.headline_u_rate.dropna(), h.sru_rate.dropna()
     kpi = (f"<div class='kpis'><div><b>{hd.iloc[-1]:.1f}%</b>headline unemployment</div>"
            f"<div><b>{y.iloc[-1]:.1f}%</b>youth (15–24) unemployment</div>"

@@ -36,10 +36,15 @@ st.plotly_chart(style(fig, 320, "RM bn / yr"), use_container_width=True)
 
 st.markdown("**Reading the result**")
 st.markdown(
-    "- Faster manufacturing growth lowers **youth unemployment** markedly, but barely moves **underemployment**: "
+    "- Faster industrial growth is associated with lower **youth unemployment**, but barely moves **underemployment**: "
     "growth alone creates jobs, not better-matched jobs.\n"
     "- Only a skills-side policy (illustrated by the TVET scenario) bends the underemployment curve and its RM cost.\n"
     "- Bars show 80% ranges calibrated from backtest errors.")
+drv = read_json("drivers")["youth"]["ipi"]
+st.warning(f"How to read NIMP vs current pace: the model links youth unemployment to the industrial production index "
+           f"(coefficient {drv['coef']:.3f}, 95% CI {drv['lo95']:.3f} to {drv['hi95']:.3f}, p = {drv['p']:.3f}). "
+           "This is a short-run co-movement extrapolated to a much higher 2030 output level, so treat the gap as a "
+           "sensitivity, not a causal promise. IPI also covers mining and electricity, not only manufacturing.")
 st.caption("Scenario mechanics: industrial production index follows each path; other drivers continue their 2-year trend. "
            "TVET push is illustrative (assumed −0.5 pp/yr from 2027).")
 footer()

@@ -36,3 +36,19 @@ def test_playbook_every_state_has_action():
     assert len(pb) == 16 and list(pb.columns) == ["state", "light", "reason", "actions"]
     assert pb.actions.map(len).min() >= 1
     assert set(PROGRAMMES) == {"red", "amber", "green"}
+
+
+def test_tiny_rises_do_not_count():
+    hist = _h(np.linspace(2, 6, 40))
+    fc = pd.Series([2.135, 2.108, 2.145, 2.147, 2.182])
+    assert traffic_light(hist, fc) == "green"
+
+
+def test_reason_names_rule():
+    from mjp.prep import load_state_panel
+    p = load_state_panel()
+    st = sorted(p.state.unique())
+    fc = pd.DataFrame({"date": np.repeat(pd.date_range("2026-10-01", periods=4, freq="QS"), 16),
+                       "state": st * 4, "mean": np.repeat([1.0, 2.0, 3.0, 4.0], 16)})
+    pb = build_playbook(fc, p)
+    assert pb.reason.str.contains("rising").any()

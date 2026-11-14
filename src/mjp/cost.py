@@ -42,8 +42,9 @@ def cost_path(sru_fc: pd.DataFrame) -> pd.DataFrame:
     g = wage_gap()
     te = _tertiary_employed_path(sru_fc["date"])
     persons = sru_fc.set_index("date")["mean"] / 100 * te * 1000
-    yearly = persons.groupby(persons.index.year).mean()
-    out = pd.DataFrame({"year": yearly.index, "persons_mn": yearly.values / 1e6})
+    grp = persons.groupby(persons.index.year)
+    yearly = grp.mean()
+    out = pd.DataFrame({"year": yearly.index, "quarters": grp.size().values, "persons_mn": yearly.values / 1e6})
     for name, share in zip(["rm_low_bn", "rm_mid_bn", "rm_high_bn"], GAP_SHARES):
         out[name] = [annual_cost(p, g["semi_skilled"] + share * (g["skilled"] - g["semi_skilled"]),
                                  g["semi_skilled"]) / 1e9 for p in yearly.values]
