@@ -10,7 +10,9 @@ from scipy.stats import norm
 from statsmodels.tsa.exponential_smoothing.ets import ETSModel
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 
-from .backtest import MONTHLY, QUARTERLY, rolling_backtest
+from functools import lru_cache
+
+from .backtest import MONTHLY, QUARTERLY, conformal_widths, rolling_backtest, rolling_errors, widths_for
 from .prep import load_drivers
 
 DRIVERS = ["ipi", "leading_index"]
@@ -83,7 +85,8 @@ def _ets(y, h, **_):
     return _frame(_future_index(y, h), mean, f80["pi_upper"].values - mean, f95["pi_upper"].values - mean)
 
 
-_ORDERS = [(0, 1, 1), (1, 1, 0), (1, 1, 1), (2, 1, 1), (1, 0, 0), (2, 0, 0)]
+# d fixed at 1: AIC is not comparable across differencing orders, and the series behave like random walks
+_ORDERS = [(0, 1, 1), (1, 1, 0), (1, 1, 1), (2, 1, 1), (0, 1, 2)]
 
 
 def _select_order(y, exog=None):
@@ -174,3 +177,30 @@ def scoreboard(y: pd.Series, models: list[str], settings: str) -> pd.DataFrame:
         bt = rolling_backtest(y, lambda tr, h, n=name: fit_forecast(tr, n, h)["mean"].values, **cfg)
         rows.append({"model": name, "mase": bt.mase.mean(), "mape": bt.mape.mean()})
     return pd.DataFrame(rows).sort_values("mase").reset_index(drop=True)
+
+
+_WIDTH_CACHE: dict = {}
+
+
+def backtest_widths(y: pd.Series, model: str, settings: str) -> pd.DataFrame:
+    key = (y.name, len(y), model, settings)
+    if key not in _WIDTH_CACHE:
+        cfg = MONTHLY if settings == "monthly" else QUARTERLY
+        err = rolling_errors(y, lambda tr, h: fit_forecast(tr, model, h)["mean"].values, **cfg)
+        _WIDTH_CACHE[key] = conformal_widths(err)
+    return _WIDTH_CACHE[key]
+
+
+def apply_widths(fc: pd.DataFrame, widths: pd.DataFrame) -> pd.DataFrame:
+    w = widths_for(widths, len(fc))
+    out = fc.copy()
+    m = out["mean"].values
+    out["lo80"], out["hi80"] = m - w.w80.values, m + w.w80.values
+    out["lo95"], out["hi95"] = m - w.w95.values, m + w.w95.values
+    out[COLS[1:]] = out[COLS[1:]].clip(0, 100)
+    return out[COLS]
+
+
+def calibrated_forecast(y: pd.Series, model: str, h: int, settings: str, **kw) -> pd.DataFrame:
+    """Point forecast from the model; 80/95% bands from its own backtest errors (honest widths)."""
+    return apply_widths(fit_forecast(y, model, h, **kw), backtest_widths(y, model, settings))

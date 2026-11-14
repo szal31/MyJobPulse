@@ -28,13 +28,13 @@ def _mfg_share() -> pd.DataFrame:
     return w[["year", "state", "mfg_share"]]
 
 
-def _add_static(df: pd.DataFrame) -> pd.DataFrame:
-    """Annual manufacturing share by state; years after the last GDP release carry the last value."""
+def _add_static(df: pd.DataFrame, cap_year: int) -> pd.DataFrame:
+    """Annual manufacturing share by state, lagged one year (DOSM publishes annual state GDP the
+    following year) and never later than cap_year (the last year published at the forecast origin)."""
     ms = _mfg_share()
     df = df.copy()
     df["year"] = df["date"].dt.year
-    last_year = ms.year.max()
-    df["_y"] = df["year"].clip(upper=last_year)
+    df["_y"] = (df["year"] - 1).clip(upper=min(cap_year, ms.year.max()))
     df = df.merge(ms.rename(columns={"year": "_y"}), on=["_y", "state"], how="left")
     df["quarter"] = df["date"].dt.quarter
     return df.drop(columns=["year", "_y"])
@@ -45,7 +45,7 @@ def build_features(panel: pd.DataFrame, drivers: pd.DataFrame) -> pd.DataFrame:
     for k in range(1, 5):
         df[f"u_rate_lag{k}"] = df.groupby("state")["u_rate"].shift(k)
     df = df.merge(drivers[DRV], left_on="date", right_index=True, how="left")
-    df = _add_static(df)
+    df = _add_static(df, panel["date"].max().year - 1)
     df["state"] = df["state"].astype("category")
     return df.reset_index(drop=True)
 
@@ -77,11 +77,17 @@ def _drift_drivers(drivers: pd.DataFrame, after: pd.Timestamp, h: int) -> pd.Dat
 
 
 def forecast_states(panel: pd.DataFrame, drivers_future: pd.DataFrame | None, h: int,
-                    drivers_hist: pd.DataFrame | None = None) -> pd.DataFrame:
+                    drivers_hist: pd.DataFrame | None = None,
+                    widths: pd.DataFrame | None = None) -> pd.DataFrame:
+    """Recursive LightGBM forecasts. With `widths` (from state_widths) the 80/95% bands come from
+    backtest errors; otherwise lo80/hi80 are one-step quantile models (too narrow at long horizons)."""
     drivers_hist = load_drivers("Q") if drivers_hist is None else drivers_hist
     last = panel["date"].max()
     if drivers_future is None:
         drivers_future = _drift_drivers(drivers_hist, last, h)
+    missing = set(DRV) - set(drivers_future.columns)
+    if missing:
+        raise ValueError(f"drivers_future missing columns: {missing}")
     X = build_features(panel, drivers_hist).dropna(subset=["u_rate_lag4"])
     models = {"mean": train(X), "lo80": train(X, 0.1), "hi80": train(X, 0.9)}
     hist = panel[["date", "state", "u_rate"]].copy()
@@ -94,7 +100,7 @@ def forecast_states(panel: pd.DataFrame, drivers_future: pd.DataFrame | None, h:
             step.append({"date": d, "state": st, **{f"u_rate_lag{k + 1}": lags[k] for k in range(4)}})
         f = pd.DataFrame(step)
         f = f.merge(drivers_future[DRV], left_on="date", right_index=True, how="left")
-        f = _add_static(f)
+        f = _add_static(f, last.year - 1)
         f["state"] = pd.Categorical(f["state"], categories=cats)
         preds = {k: m.predict(f[FEATURES]) for k, m in models.items()}
         f["mean"] = preds["mean"]
@@ -104,7 +110,15 @@ def forecast_states(panel: pd.DataFrame, drivers_future: pd.DataFrame | None, h:
         hist = pd.concat([hist, f[["date", "state"]].assign(state=f["state"].astype(str), u_rate=f["mean"])])
     out = pd.concat(rows, ignore_index=True)
     out["state"] = out["state"].astype(str)
-    out[["mean", "lo80", "hi80"]] = out[["mean", "lo80", "hi80"]].clip(0, 100)
+    if widths is not None:
+        from .backtest import widths_for
+        k = out.groupby("state").cumcount() + 1
+        w = widths_for(widths, h)
+        for lvl in ("80", "95"):
+            out[f"lo{lvl}"] = out["mean"] - k.map(w[f"w{lvl}"]).values
+            out[f"hi{lvl}"] = out["mean"] + k.map(w[f"w{lvl}"]).values
+    bands = [c for c in ["mean", "lo80", "hi80", "lo95", "hi95"] if c in out]
+    out[bands] = out[bands].clip(0, 100)
     return out
 
 
@@ -126,6 +140,7 @@ def state_scoreboard(panel: pd.DataFrame) -> pd.DataFrame:
     dates = sorted(panel["date"].unique())
     drivers = load_drivers("Q")
     errs = {"lightgbm": [], "ets": [], "naive": []}
+    signed = []
     for end in range(cfg["initial"], len(dates) - cfg["h"] + 1, cfg["step"]):
         cut, test_d = dates[end - 1], dates[end:end + cfg["h"]]
         tr = panel[panel.date <= cut]
@@ -139,5 +154,14 @@ def state_scoreboard(panel: pd.DataFrame) -> pd.DataFrame:
                      "naive": np.repeat(y_tr.iloc[-1], cfg["h"])}
             for k, p in preds.items():
                 errs[k].append(mase(y_te, p, y_tr.values, cfg["m"]))
+            signed += [{"k": j + 1, "err": y_te[j] - preds["lightgbm"][j]} for j in range(len(y_te))]
+    state_scoreboard.errors = pd.DataFrame(signed)
     return (pd.DataFrame([{"model": k, "mase": float(np.nanmean(np.where(np.isfinite(v), v, np.nan)))}
                           for k, v in errs.items()]).sort_values("mase").reset_index(drop=True))
+
+
+def state_widths(panel: pd.DataFrame) -> pd.DataFrame:
+    """Empirical 80/95% half-widths per horizon from pooled LightGBM backtest errors."""
+    from .backtest import conformal_widths
+    state_scoreboard(panel)
+    return conformal_widths(state_scoreboard.errors)

@@ -47,3 +47,26 @@ def test_state_scoreboard_has_three_models():
 def test_train_quantile_runs():
     X = _X().dropna(subset=["u_rate_lag4"])
     assert train(X, quantile=0.9).num_trees() > 0
+
+
+def test_mfg_share_uses_only_published_years():
+    from mjp.ml_state import _mfg_share
+    p = load_state_panel()
+    cut = p[p.date <= "2021-10-01"]
+    X = build_features(cut, load_drivers("Q"))
+    ms = _mfg_share().set_index(["year", "state"])["mfg_share"]
+    r = X[(X.state == "Johor") & (X.date == "2021-10-01")].iloc[0]
+    assert r.mfg_share == ms[(2020, "Johor")]  # 2021 annual GDP not published by end-2021
+    r19 = X[(X.state == "Johor") & (X.date == "2019-04-01")].iloc[0]
+    assert r19.mfg_share == ms[(2018, "Johor")]
+
+
+def test_state_bands_from_widths():
+    from mjp.ml_state import state_widths
+    import pandas as pd
+    w = pd.DataFrame({"w80": [0.3, 0.5], "w95": [0.6, 0.9]}, index=[1, 2])
+    f = forecast_states(load_state_panel(), None, h=4, widths=w)
+    assert {"lo95", "hi95"} <= set(f.columns)
+    k1 = f[f.date == f.date.min()]
+    assert np.allclose((k1.hi95 - k1["mean"]).clip(lower=0), 0.6, atol=1e-9) or (k1.hi95 == 100).any()
+    assert callable(state_widths)

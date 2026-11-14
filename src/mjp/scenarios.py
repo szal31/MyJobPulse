@@ -4,8 +4,10 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from .forecast_stats import fit_forecast
-from .ml_state import forecast_states
+from functools import lru_cache
+
+from .forecast_stats import apply_widths, backtest_widths, fit_forecast
+from .ml_state import forecast_states, state_widths
 from .prep import load_drivers, load_sru_quarterly, load_state_panel, load_youth_monthly, to_quarterly
 
 END = "2030-12-01"
@@ -54,9 +56,11 @@ def run_scenario(name: str) -> dict[str, pd.DataFrame]:
 
     youth = load_youth_monthly()
     fy = fit_forecast(youth, "sarimax", len(_future(youth, pm)), exog_future=_future(youth, pm))
+    fy = apply_widths(fy, backtest_widths(youth, "sarimax", "monthly"))
 
     sru = load_sru_quarterly("overall")
     fs = fit_forecast(sru, "sarimax", len(_future(sru, pq)), exog_future=_future(sru, pq))
+    fs = apply_widths(fs, backtest_widths(sru, "sarimax", "quarterly"))
     if "sru_pp_per_year" in sc:
         yrs = (fs["date"].dt.year - sc["sru_from"] + 1).clip(lower=0)
         adj = sc["sru_pp_per_year"] * yrs  # illustrative: assumed policy effect, not estimated from data
@@ -64,6 +68,11 @@ def run_scenario(name: str) -> dict[str, pd.DataFrame]:
             fs[c] = (fs[c] + adj).clip(0, 100)
 
     panel = load_state_panel()
-    fst = forecast_states(panel, _future(panel.set_index("date")["u_rate"].groupby(level=0).first(), pq),
-                          len(_future(panel.set_index("date")["u_rate"].groupby(level=0).first(), pq)))
+    fut_q = pq[pq.index > panel["date"].max()]
+    fst = forecast_states(panel, fut_q, len(fut_q), widths=_state_widths())
     return {"youth": fy, "sru": fs, "states": fst}
+
+
+@lru_cache(maxsize=1)
+def _state_widths() -> pd.DataFrame:
+    return state_widths(load_state_panel())
