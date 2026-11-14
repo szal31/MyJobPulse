@@ -37,14 +37,13 @@ def latest_state_features() -> pd.DataFrame:
     f = pd.DataFrame({
         "u_rate_lag1": g["u_rate"].last(),
         "u_rate_trend": g["u_rate"].apply(lambda s: s.iloc[-4:].mean() - s.iloc[-8:-4].mean()),
-        "u_rate_vol": g["u_rate"].apply(lambda s: s.iloc[-12:].std()),
         "p_rate": g["p_rate"].last(),
     })
     f["mfg_share"] = X[X.date == last].assign(state=lambda d: d.state.astype(str)).set_index("state")["mfg_share"]
     return f.reset_index().rename(columns={"index": "state"})
 
 
-def cluster_states(X_latest: pd.DataFrame, k_range=range(2, 6)) -> pd.DataFrame:
+def cluster_states(X_latest: pd.DataFrame, k_range=range(3, 6)) -> pd.DataFrame:
     cols = [c for c in X_latest.columns if c != "state"]
     Z = StandardScaler().fit_transform(X_latest[cols].fillna(X_latest[cols].median()))
     best = max(k_range, key=lambda k: silhouette_score(
