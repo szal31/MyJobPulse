@@ -34,6 +34,14 @@ REQUIRED_OUTPUTS = [
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
 
 
+def git_hash() -> str:
+    try:
+        r = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True)
+        return r.stdout.strip() or "n/a"
+    except (FileNotFoundError, OSError):  # judges' machines may not have git
+        return "n/a"
+
+
 def _dump(obj, name):
     (OUT / name).write_text(json.dumps(obj, indent=1, default=str), encoding="utf-8")
 
@@ -130,8 +138,7 @@ def main(download: bool = False, skip_hansard: bool = False) -> None:
         _dump({"monthly": [], "note": "hansard skipped"}, "attention.json")
         _dump({"status": "pending verification", "items": []}, "promises.json")
     man = pd.read_csv(ROOT / "data" / "raw" / "MANIFEST.csv")
-    git = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
-    _dump({"git": git, "built_at": pd.Timestamp.now().isoformat(timespec="seconds"),
+    _dump({"git": git_hash(), "built_at": pd.Timestamp.now().isoformat(timespec="seconds"),
            "seconds": round(time.time() - t0), "data_max_dates": dict(zip(man.id, man.max_date))}, "build_meta.json")
 
 

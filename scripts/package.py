@@ -12,7 +12,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE_DIRS = ["app", "src", "scripts", "tests", "data/raw", "data/processed", "data/manual", "outputs", ".streamlit"]
 INCLUDE_FILES = ["README.txt", "requirements.txt", "pytest.ini", "Dashboard.pdf"]
-EXCLUDE_PARTS = {"__pycache__", ".pytest_cache", "hansard", "hansard_pdf"}  # raw Hansard (1.2 GB) excluded
+EXCLUDE_PARTS = {"__pycache__", ".pytest_cache"}
+EXCLUDE_PREFIXES = ("data/raw/hansard/", "data/raw/hansard_pdf/")  # raw Hansard (1.2 GB); src/mjp/hansard stays
 MAX_MB = 500
 
 
@@ -22,7 +23,8 @@ def package(team: str, out_dir: Path) -> Path:
         for d in INCLUDE_DIRS:
             for p in (ROOT / d).rglob("*"):
                 rel = p.relative_to(ROOT)
-                if p.is_file() and not (EXCLUDE_PARTS & set(rel.parts[:-1])) and p.suffix != ".log":
+                if (p.is_file() and not (EXCLUDE_PARTS & set(rel.parts[:-1])) and p.suffix != ".log"
+                        and not rel.as_posix().startswith(EXCLUDE_PREFIXES)):
                     z.write(p, rel.as_posix())
         for f in INCLUDE_FILES:
             if (ROOT / f).exists():

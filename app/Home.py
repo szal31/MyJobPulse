@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import streamlit as st
 
+from gap import youth_gap_pp
 from load import ACCENT, INK, MUTED, footer, read_json, read_parquet, style
 
 st.set_page_config(page_title="MyJobPulse", page_icon="📈", layout="wide")
@@ -23,7 +24,7 @@ st.markdown(
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("Headline unemployment", f"{head.iloc[-1]:.1f}%", help=f"All ages, {head.index[-1]:%b %Y}")
 c2.metric("Youth unemployment (15–24)", f"{youth.iloc[-1]:.1f}%",
-          f"{youth.iloc[-1] - head.iloc[-1]:+.1f} pp vs headline", delta_color="off",
+          f"{youth_gap_pp(youth, head):+.1f} pp vs headline (same month)", delta_color="off",
           help=f"{youth.index[-1]:%b %Y}")
 c3.metric("Skill-related underemployment", f"{sru.iloc[-1]:.1f}%", help="Share of tertiary-educated workers in semi/low-skilled jobs")
 c4.metric(f"Wages lost to underemployment ({now['year']})", f"RM{now['rm_mid_bn']:.0f}bn / yr",

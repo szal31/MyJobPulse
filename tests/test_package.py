@@ -15,4 +15,5 @@ def test_zip_contents(tmp_path):
                  "data/raw/MANIFEST.csv", "outputs/playbook.json"]:
         assert must in names
     assert not any("hansard.jsonl" in n or "__pycache__" in n for n in names)
+    assert "src/mjp/hansard/attention.py" in names and "src/mjp/hansard/corpus.py" in names
     assert z.stat().st_size < 500e6
