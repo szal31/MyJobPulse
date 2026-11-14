@@ -1,0 +1,18 @@
+import sys
+import zipfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "scripts"))
+
+
+def test_zip_contents(tmp_path):
+    import package
+    z = package.package("TestTeam", tmp_path)
+    assert z.name == "TestTeam_Datathon2026_dashboard.zip"
+    names = set(zipfile.ZipFile(z).namelist())
+    for must in ["README.txt", "requirements.txt", "MyJobPulse_offline.html", "app/Home.py",
+                 "data/raw/MANIFEST.csv", "outputs/playbook.json"]:
+        assert must in names
+    assert not any("hansard.jsonl" in n or "__pycache__" in n for n in names)
+    assert z.stat().st_size < 500e6
