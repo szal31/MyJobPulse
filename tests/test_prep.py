@@ -44,3 +44,19 @@ def test_drivers_monthly_and_quarterly():
     for col in ["ipi", "leading_index", "cpi", "real_wage"]:
         assert col in m.columns and col in q.columns
     assert q.index.freqstr.startswith("QS")
+
+
+def test_partial_quarter_is_nan():
+    from mjp.prep import to_quarterly
+    m = pd.DataFrame({"x": [1.0, 2.0, 3.0, 4.0, 5.0]},
+                     index=pd.date_range("2020-01-01", periods=5, freq="MS"))
+    q = to_quarterly(m)
+    assert q.loc["2020-01-01", "x"] == 2.0
+    assert pd.isna(q.loc["2020-04-01", "x"])
+
+
+def test_drivers_start_2015_and_sru_youth_value():
+    m = load_drivers("M")
+    assert m.index.min() == pd.Timestamp("2015-01-01")
+    assert m["ipi"].iloc[0] == pytest.approx(101.011)
+    assert load_sru_quarterly("age_15_24").iloc[0] == pytest.approx(63.3, abs=1.0)

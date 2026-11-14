@@ -65,11 +65,15 @@ def load_drivers(freq: Literal["M", "Q"] = "M") -> pd.DataFrame:
     w = _raw("formal_wages").query("age == 'overall' and sex == 'both' and ethnicity == 'overall'")
     wage = w.set_index("date")["wages_median"].rename("wage")
     m = pd.concat([ipi, lead, cpi, wage], axis=1, sort=True)
-    m = m[m.index >= "2010-01-01"]
-    m["real_wage"] = m["wage"] / m["cpi"] * 100  # NaN before 2022: formal_wages starts Jan 2022
+    m = m[m.index >= "2015-01-01"]  # IPI starts Jan 2015; targets start 2016/2017
+    # NaN allowed: real_wage before 2022 (formal_wages starts Jan 2022) and ragged last months per driver
+    m["real_wage"] = m["wage"] / m["cpi"] * 100
     m = m.drop(columns="wage")
     m = m.reindex(pd.date_range(m.index.min(), m.index.max(), freq="MS"))
-    if freq == "M":
-        return m
-    q = m.resample("QS").mean()
-    return q
+    return m if freq == "M" else to_quarterly(m)
+
+
+def to_quarterly(m: pd.DataFrame) -> pd.DataFrame:
+    """Quarter mean only where all 3 months exist; partial quarters stay NaN."""
+    r = m.resample("QS")
+    return r.mean().where(r.count() == 3)
