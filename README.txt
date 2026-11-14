@@ -9,7 +9,7 @@ WHAT IT IS
   attention (Hansard) with the data.
 
 THREE WAYS TO OPEN IT
-  1. Live link (no install):  <STREAMLIT_URL - fill in after deployment>
+  1. Live link (no install):  https://myjobpulse.streamlit.app/
   2. Offline file (no install): open MyJobPulse_offline.html in any modern browser.
   3. Run locally (full interactive app):
        - Install Python 3.13 or 3.14 (tested on 3.14.8, Windows 11)
