@@ -29,14 +29,16 @@ r = read_parquet("representation")
 fig = go.Figure()
 colors = {"high need · low voice": "#C8374A", "high need · high voice": ACCENT,
           "low need · high voice": "#B9A7DA", "low need · low voice": "#D9D4E4"}
-for q, d in r.groupby("quadrant"):
+nodata = int((r.quadrant == "no data").sum())
+for q, d in r[r.quadrant != "no data"].groupby("quadrant"):
     fig.add_trace(go.Scatter(x=d.u_rate, y=d.mentions_per_100k, mode="markers", name=q,
                              marker=dict(color=colors[q], size=9, line=dict(color="white", width=1)),
                              text=d.parlimen + " (" + d.state + ")", hovertemplate="%{text}<br>%{x:.1f}% unemployed<br>%{y:.1f} per 100k<extra></extra>"))
 fig.update_layout(hovermode="closest")
 st.plotly_chart(style(fig, 420, "Youth-job mentions per 100k words spoken"), use_container_width=True)
 st.caption("x-axis: constituency unemployment rate (DOSM, 2023). Seats only, party-neutral: no MP is named or ranked. "
-           "Since 2023 (15th Parliament).")
+           f"Since 2023 (15th Parliament). {nodata} seats have too little parsed speech (<2,000 words, mostly ministers "
+           "who speak under ministry titles) and are shown as no data.")
 hn = r[r.quadrant == "high need · low voice"].sort_values("u_rate", ascending=False)
 st.markdown(f"**{len(hn)} constituencies** have above-median unemployment but rarely raise youth job issues in the chamber.")
 st.dataframe(hn[["parlimen", "state", "u_rate"]].head(15).rename(columns={"parlimen": "Constituency", "state": "State", "u_rate": "Unemployment %"}),
