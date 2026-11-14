@@ -36,7 +36,7 @@ def _light(history: pd.Series, forecast: pd.Series) -> tuple[str, str]:
     nxt = float(np.mean(forecast.values[:4]))
     # rising run counted within the forecast itself (a jump from the last actual is caught by the level test)
     run = _rising_run(forecast.values[0], forecast.iloc[1:])
-    lvl = f"next-4-quarter forecast {nxt:.1f}% (2016-25 p75 {p75:.1f}%, p90 {p90:.1f}%)"
+    lvl = f"next-4-quarter forecast {nxt:.1f}% (2017-25 p75 {p75:.1f}%, p90 {p90:.1f}%)"
     if nxt > p90:
         return "red", f"{lvl}: above the 90th percentile"
     if run >= 3:
