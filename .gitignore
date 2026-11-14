@@ -3,3 +3,5 @@ __pycache__/
 .superpowers/
 .pytest_cache/
 *.pyc
+data/raw/hansard/
+data/raw/hansard_pdf/
