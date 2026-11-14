@@ -1,0 +1,134 @@
+[
+ {
+  "state": "Johor",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.3% vs 2016-25 90th percentile 3.9%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Kedah",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.6% vs 2016-25 90th percentile 3.8%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Kelantan",
+  "light": "green",
+  "reason": "next-4-quarter forecast 3.7% vs 2016-25 90th percentile 4.8%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Kuala Lumpur",
+  "light": "green",
+  "reason": "next-4-quarter forecast 3.1% vs 2016-25 90th percentile 4.8%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Labuan",
+  "light": "green",
+  "reason": "next-4-quarter forecast 4.0% vs 2016-25 90th percentile 8.4%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Melaka",
+  "light": "red",
+  "reason": "next-4-quarter forecast 2.1% vs 2016-25 90th percentile 3.2%",
+  "actions": [
+   "Khazanah K-Youth placements (RM200m, Budget 2026)",
+   "PERKESO mobility incentive (up to RM1,000 per jobseeker)",
+   "MARA Industrial Boot Camp (RM30m)"
+  ]
+ },
+ {
+  "state": "Negeri Sembilan",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.4% vs 2016-25 90th percentile 3.7%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Pahang",
+  "light": "amber",
+  "reason": "next-4-quarter forecast 2.2% vs 2016-25 90th percentile 3.5%",
+  "actions": [
+   "Rakan Muda upskilling (RM40m)",
+   "TVET seat expansion in the state"
+  ]
+ },
+ {
+  "state": "Perak",
+  "light": "green",
+  "reason": "next-4-quarter forecast 3.1% vs 2016-25 90th percentile 4.8%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Perlis",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.9% vs 2016-25 90th percentile 5.0%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Pulau Pinang",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.5% vs 2016-25 90th percentile 3.7%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Putrajaya",
+  "light": "green",
+  "reason": "next-4-quarter forecast 1.3% vs 2016-25 90th percentile 1.9%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Sabah",
+  "light": "green",
+  "reason": "next-4-quarter forecast 5.4% vs 2016-25 90th percentile 8.9%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Sarawak",
+  "light": "green",
+  "reason": "next-4-quarter forecast 3.0% vs 2016-25 90th percentile 4.5%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ },
+ {
+  "state": "Selangor",
+  "light": "amber",
+  "reason": "next-4-quarter forecast 2.1% vs 2016-25 90th percentile 4.5%",
+  "actions": [
+   "Rakan Muda upskilling (RM40m)",
+   "TVET seat expansion in the state"
+  ]
+ },
+ {
+  "state": "Terengganu",
+  "light": "green",
+  "reason": "next-4-quarter forecast 2.8% vs 2016-25 90th percentile 5.1%",
+  "actions": [
+   "Monitor quarterly"
+  ]
+ }
+]

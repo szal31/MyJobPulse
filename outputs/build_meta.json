@@ -1,0 +1,27 @@
+{
+ "git": "7bedd1e",
+ "built_at": "2026-11-14T12:59:53",
+ "seconds": 296,
+ "data_max_dates": {
+  "completion_school_state": "2025-01-01",
+  "cpi_headline": "2026-09-01",
+  "cpi_state": "2026-09-01",
+  "economic_indicators": "2026-08-01",
+  "enrolment_school_district": "2025-06-30",
+  "formal_wages": "2026-06-01",
+  "gdp_annual_real_supply": "2025-01-01",
+  "gdp_state_real_supply": "2025-01-01",
+  "ipi": "2026-09-01",
+  "lfs_month": "2026-09-01",
+  "lfs_month_sa": "2026-09-01",
+  "lfs_month_youth": "2026-06-01",
+  "lfs_parlimen": "2023-01-01",
+  "lfs_qtr": "2026-07-01",
+  "lfs_qtr_sru_age": "2026-07-01",
+  "lfs_qtr_sru_sex": "2026-07-01",
+  "lfs_qtr_state": "2026-07-01",
+  "lfs_year": "2025-01-01",
+  "wages_education": "2025-01-01",
+  "wages_skill": "2025-01-01"
+ }
+}
