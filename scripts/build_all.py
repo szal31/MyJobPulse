@@ -30,7 +30,7 @@ REQUIRED_OUTPUTS = [
     PROC / "history.parquet", PROC / "sru_groups.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
     OUT / "scoreboard_national.json", OUT / "coverage.json", OUT / "scoreboard_state.json", OUT / "cost.json",
-    OUT / "playbook.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
+    OUT / "playbook.json", OUT / "warning_replay.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
 ]
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
 
@@ -93,6 +93,7 @@ def states(res):
     cluster_states(latest_state_features()).to_parquet(PROC / "clusters.parquet")
     pb = playbook.build_playbook(sf, p, nat)
     _dump(pb.to_dict("records"), "playbook.json")
+    _dump(playbook.replay(p).to_dict("records"), "warning_replay.json")
 
 
 def cost_outputs(res):

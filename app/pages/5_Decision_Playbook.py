@@ -1,9 +1,10 @@
 import html
 
 import pandas as pd
+import plotly.graph_objects as go
 import streamlit as st
 
-from load import LIGHT, MUTED, badge, footer, kpis, page, read_json
+from load import ACCENT, LIGHT, MUTED, PRIMARY, badge, callout, footer, kpis, page, read_json, style
 
 page("Decision playbook", "Action",
      "Each state is scored on two separate questions: is unemployment about to rise against its own past "
@@ -20,7 +21,7 @@ kpis([{"label": "Cyclical: high risk", "value": str(counts.get("red", 0)), "note
 
 with st.expander("Decision rules", expanded=False):
     st.markdown(
-        "**Cyclical (vs the state's own 2016–2025 history)**\n"
+        "**Cyclical (vs the state's own 2017–2025 history, leaving out the 2020–21 lockdown spike)**\n"
         "- **High risk**: next-4-quarter forecast above the state's 90th percentile, **or** rising 3+ quarters in a "
         "row (≥0.1 pp each)\n"
         "- **Watch**: above the 75th percentile, **or** rising 2 quarters in a row\n"
@@ -32,6 +33,29 @@ with st.expander("Decision rules", expanded=False):
         "skills development centres.")
 st.caption("Both axes use all-ages state unemployment: DOSM publishes no quarterly youth or graduate "
            "underemployment series by state.")
+
+with st.expander("Would the warning have worked? Replay 2019–2026", expanded=False):
+    rp = pd.DataFrame(read_json("warning_replay")).assign(date=lambda d: pd.to_datetime(d.date))
+    rp["flagged"] = rp.red + rp.amber
+    fig = go.Figure()
+    for kind, col, dash, name in [("perfect", ACCENT, "solid", "With a perfect forecast (best case)"),
+                                  ("naive", PRIMARY, "dash", "With a naive forecast (latest value)")]:
+        d = rp[rp.forecast == kind]
+        fig.add_trace(go.Scatter(x=d.date, y=d.flagged, name=name, mode="lines+markers",
+                                 line=dict(color=col, width=2.4, dash=dash)))
+    fig.add_vline(x="2020-04-01", line=dict(color=MUTED, width=1, dash="dot"))
+    fig.add_annotation(x="2020-04-01", y=1, yref="paper", text="lockdown quarter", showarrow=False,
+                       xanchor="left", font=dict(color=MUTED, size=11))
+    st.plotly_chart(style(fig, 300, "States flagged (high risk or watch)"), use_container_width=True)
+    pq = rp[rp.forecast == "perfect"].set_index("date")["flagged"]
+    nv = rp[rp.forecast == "naive"].set_index("date")["flagged"]
+    calm = nv[nv.index >= "2023-01-01"]
+    callout(f"The rule is re-run at each past quarter using only data known then. With a good forecast it would "
+            f"have flagged <b>{int(pq.get(pd.Timestamp('2020-01-01'), 0))} of 16 states</b> in Q1 2020, a quarter "
+            f"before the lockdown spike; with a naive forecast it fires in the spike quarter itself "
+            f"({int(nv.get(pd.Timestamp('2020-04-01'), 0))} states). In the calm years since 2023 it flags "
+            f"{int(calm.min())}–{int(calm.max())} states, so false alarms are rare. The warning is only as early as "
+            "the forecast feeding it, and no model here forecast COVID.")
 
 S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
 S_COLOR = {"high": LIGHT["red"], "above": LIGHT["amber"], "below": MUTED}

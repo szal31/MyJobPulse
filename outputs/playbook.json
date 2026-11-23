@@ -2,7 +2,7 @@
  {
   "state": "Johor",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.3% (2017-25 p75 3.3%, p90 3.9%): within normal range",
+  "reason": "next-4-quarter forecast 2.3% (2017-25 excl. 2020-21: p75 2.9%, p90 3.2%): within normal range",
   "structural": "below",
   "level_ratio": 0.79,
   "federal": [
@@ -13,7 +13,7 @@
  {
   "state": "Kedah",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.6% (2017-25 p75 3.3%, p90 3.8%): within normal range",
+  "reason": "next-4-quarter forecast 2.6% (2017-25 excl. 2020-21: p75 3.0%, p90 3.2%): within normal range",
   "structural": "below",
   "level_ratio": 0.85,
   "federal": [
@@ -24,7 +24,7 @@
  {
   "state": "Kelantan",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.7% (2017-25 p75 4.5%, p90 4.8%): within normal range",
+  "reason": "next-4-quarter forecast 3.7% (2017-25 excl. 2020-21: p75 4.2%, p90 4.8%): within normal range",
   "structural": "high",
   "level_ratio": 1.37,
   "federal": [
@@ -39,7 +39,7 @@
  {
   "state": "Kuala Lumpur",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.1% (2017-25 p75 3.6%, p90 4.8%): within normal range",
+  "reason": "next-4-quarter forecast 3.1% (2017-25 excl. 2020-21: p75 3.3%, p90 3.5%): within normal range",
   "structural": "above",
   "level_ratio": 1.13,
   "federal": [
@@ -50,7 +50,7 @@
  {
   "state": "Labuan",
   "light": "green",
-  "reason": "next-4-quarter forecast 4.0% (2017-25 p75 7.3%, p90 8.4%): within normal range",
+  "reason": "next-4-quarter forecast 4.0% (2017-25 excl. 2020-21: p75 7.0%, p90 7.5%): within normal range",
   "structural": "high",
   "level_ratio": 1.63,
   "federal": [
@@ -65,7 +65,7 @@
  {
   "state": "Melaka",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.1% (2017-25 p75 2.7%, p90 3.2%): within normal range",
+  "reason": "next-4-quarter forecast 2.1% (2017-25 excl. 2020-21: p75 2.6%, p90 2.8%): within normal range",
   "structural": "below",
   "level_ratio": 0.68,
   "federal": [
@@ -76,7 +76,7 @@
  {
   "state": "Negeri Sembilan",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.4% (2017-25 p75 3.3%, p90 3.7%): within normal range",
+  "reason": "next-4-quarter forecast 2.4% (2017-25 excl. 2020-21: p75 3.0%, p90 3.3%): within normal range",
   "structural": "below",
   "level_ratio": 0.82,
   "federal": [
@@ -87,7 +87,7 @@
  {
   "state": "Pahang",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.2% (2017-25 p75 3.0%, p90 3.5%): within normal range",
+  "reason": "next-4-quarter forecast 2.2% (2017-25 excl. 2020-21: p75 2.7%, p90 3.0%): within normal range",
   "structural": "below",
   "level_ratio": 0.66,
   "federal": [
@@ -98,7 +98,7 @@
  {
   "state": "Perak",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.1% (2017-25 p75 4.3%, p90 4.8%): within normal range",
+  "reason": "next-4-quarter forecast 3.1% (2017-25 excl. 2020-21: p75 4.0%, p90 4.3%): within normal range",
   "structural": "above",
   "level_ratio": 1.15,
   "federal": [
@@ -109,7 +109,7 @@
  {
   "state": "Perlis",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.9% (2017-25 p75 4.2%, p90 5.0%): within normal range",
+  "reason": "next-4-quarter forecast 2.9% (2017-25 excl. 2020-21: p75 3.8%, p90 4.2%): within normal range",
   "structural": "above",
   "level_ratio": 1.03,
   "federal": [
@@ -119,19 +119,21 @@
  },
  {
   "state": "Pulau Pinang",
-  "light": "green",
-  "reason": "next-4-quarter forecast 2.5% (2017-25 p75 2.7%, p90 3.7%): within normal range",
+  "light": "amber",
+  "reason": "next-4-quarter forecast 2.5% (2017-25 excl. 2020-21: p75 2.3%, p90 2.6%): above the 75th percentile",
   "structural": "below",
   "level_ratio": 0.87,
   "federal": [
-   "Monitor quarterly"
+   "MYFutureJobs outreach and job fairs in the state"
   ],
-  "state_levers": []
+  "state_levers": [
+   "State skills development centre: course intake aligned to current vacancies"
+  ]
  },
  {
   "state": "Putrajaya",
   "light": "green",
-  "reason": "next-4-quarter forecast 1.3% (2017-25 p75 1.7%, p90 1.9%): within normal range",
+  "reason": "next-4-quarter forecast 1.3% (2017-25 excl. 2020-21: p75 1.6%, p90 1.9%): within normal range",
   "structural": "below",
   "level_ratio": 0.47,
   "federal": [
@@ -142,7 +144,7 @@
  {
   "state": "Sabah",
   "light": "green",
-  "reason": "next-4-quarter forecast 5.4% (2017-25 p75 8.2%, p90 8.9%): within normal range",
+  "reason": "next-4-quarter forecast 5.4% (2017-25 excl. 2020-21: p75 7.5%, p90 8.1%): within normal range",
   "structural": "high",
   "level_ratio": 1.92,
   "federal": [
@@ -157,7 +159,7 @@
  {
   "state": "Sarawak",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.0% (2017-25 p75 3.5%, p90 4.5%): within normal range",
+  "reason": "next-4-quarter forecast 3.0% (2017-25 excl. 2020-21: p75 3.4%, p90 3.4%): within normal range",
   "structural": "above",
   "level_ratio": 1.08,
   "federal": [
@@ -168,7 +170,7 @@
  {
   "state": "Selangor",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.1% (2017-25 p75 3.2%, p90 4.5%): within normal range",
+  "reason": "next-4-quarter forecast 2.1% (2017-25 excl. 2020-21: p75 2.9%, p90 3.2%): within normal range",
   "structural": "below",
   "level_ratio": 0.69,
   "federal": [
@@ -179,7 +181,7 @@
  {
   "state": "Terengganu",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.8% (2017-25 p75 4.4%, p90 5.1%): within normal range",
+  "reason": "next-4-quarter forecast 2.8% (2017-25 excl. 2020-21: p75 4.5%, p90 5.2%): within normal range",
   "structural": "below",
   "level_ratio": 1.0,
   "federal": [

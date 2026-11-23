@@ -68,3 +68,20 @@ def test_structural_axis_flags_chronically_high_state():
     lv = structural_level(panel, pd.Series(3.0, index=d))
     assert lv.loc["A", "structural"] == "high" and lv.loc["B", "structural"] == "above"
     assert lv.loc["C", "structural"] == "below"
+
+
+def test_covid_years_do_not_raise_thresholds():
+    vals = [3.0] * 16 + [9.0] * 8 + [3.0] * 16  # 2016-19 calm, 2020-21 spike, 2022-25 calm
+    assert traffic_light(_h(vals), pd.Series([3.6] * 4)) == "red"  # 3.6 is high against calm years
+
+
+def test_replay_counts_states_without_future_data():
+    from mjp.playbook import replay
+    d = pd.date_range("2017-01-01", periods=16, freq="QS")
+    u = [3.0 + 0.2 * (i % 2) for i in range(12)] + [6.0, 6.0, 6.0, 6.0]  # calm noise, then a jump
+    panel = pd.DataFrame({"date": list(d) * 2, "state": ["A"] * 16 + ["B"] * 16, "u_rate": u * 2})
+    r = replay(panel, start="2019-01-01").set_index(["date", "forecast"])
+    # perfect foresight sees the 2020 jump one quarter ahead; naive only once it has happened
+    assert r.loc[(pd.Timestamp("2019-10-01"), "perfect"), "red"] == 2
+    assert r.loc[(pd.Timestamp("2019-10-01"), "naive"), "green"] == 2
+    assert r.loc[(pd.Timestamp("2020-01-01"), "naive"), "red"] == 2

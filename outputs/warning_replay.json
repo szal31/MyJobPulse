@@ -1,0 +1,408 @@
+[
+ {
+  "date": "2019-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2019-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 3,
+  "amber": 2,
+  "green": 11
+ },
+ {
+  "date": "2019-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 3,
+  "amber": 1,
+  "green": 12
+ },
+ {
+  "date": "2019-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 6,
+  "amber": 6,
+  "green": 4
+ },
+ {
+  "date": "2019-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 3,
+  "amber": 2,
+  "green": 11
+ },
+ {
+  "date": "2019-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 10,
+  "amber": 3,
+  "green": 3
+ },
+ {
+  "date": "2019-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 3,
+  "amber": 0,
+  "green": 13
+ },
+ {
+  "date": "2019-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 12,
+  "amber": 1,
+  "green": 3
+ },
+ {
+  "date": "2020-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 2,
+  "amber": 2,
+  "green": 12
+ },
+ {
+  "date": "2020-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 12,
+  "amber": 3,
+  "green": 1
+ },
+ {
+  "date": "2020-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 11,
+  "amber": 2,
+  "green": 3
+ },
+ {
+  "date": "2020-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 11,
+  "amber": 4,
+  "green": 1
+ },
+ {
+  "date": "2020-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 11,
+  "amber": 0,
+  "green": 5
+ },
+ {
+  "date": "2020-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 13,
+  "amber": 3,
+  "green": 0
+ },
+ {
+  "date": "2020-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 12,
+  "amber": 2,
+  "green": 2
+ },
+ {
+  "date": "2020-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 11,
+  "amber": 5,
+  "green": 0
+ },
+ {
+  "date": "2021-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 14,
+  "amber": 0,
+  "green": 2
+ },
+ {
+  "date": "2021-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 9,
+  "amber": 3,
+  "green": 4
+ },
+ {
+  "date": "2021-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 12,
+  "amber": 2,
+  "green": 2
+ },
+ {
+  "date": "2021-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 6,
+  "amber": 4,
+  "green": 6
+ },
+ {
+  "date": "2021-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 13,
+  "amber": 1,
+  "green": 2
+ },
+ {
+  "date": "2021-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 5,
+  "amber": 2,
+  "green": 9
+ },
+ {
+  "date": "2021-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 7,
+  "amber": 4,
+  "green": 5
+ },
+ {
+  "date": "2021-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 5,
+  "amber": 3,
+  "green": 8
+ },
+ {
+  "date": "2022-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 5,
+  "amber": 1,
+  "green": 10
+ },
+ {
+  "date": "2022-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 3,
+  "amber": 3,
+  "green": 10
+ },
+ {
+  "date": "2022-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 5,
+  "amber": 0,
+  "green": 11
+ },
+ {
+  "date": "2022-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 2,
+  "amber": 3,
+  "green": 11
+ },
+ {
+  "date": "2022-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 5,
+  "green": 11
+ },
+ {
+  "date": "2022-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 0,
+  "amber": 5,
+  "green": 11
+ },
+ {
+  "date": "2022-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 4,
+  "green": 12
+ },
+ {
+  "date": "2022-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 3,
+  "green": 12
+ },
+ {
+  "date": "2023-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 1,
+  "green": 15
+ },
+ {
+  "date": "2023-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2023-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 2,
+  "green": 13
+ },
+ {
+  "date": "2023-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2023-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 1,
+  "green": 15
+ },
+ {
+  "date": "2023-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2023-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 0,
+  "green": 16
+ },
+ {
+  "date": "2023-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 3,
+  "green": 12
+ },
+ {
+  "date": "2024-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 3,
+  "green": 13
+ },
+ {
+  "date": "2024-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 4,
+  "green": 11
+ },
+ {
+  "date": "2024-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2024-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 0,
+  "amber": 2,
+  "green": 14
+ },
+ {
+  "date": "2024-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 0,
+  "green": 16
+ },
+ {
+  "date": "2024-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 0,
+  "amber": 2,
+  "green": 14
+ },
+ {
+  "date": "2024-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 0,
+  "green": 15
+ },
+ {
+  "date": "2024-10-01 00:00:00",
+  "forecast": "perfect",
+  "red": 0,
+  "amber": 6,
+  "green": 10
+ },
+ {
+  "date": "2025-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 1,
+  "green": 15
+ },
+ {
+  "date": "2025-01-01 00:00:00",
+  "forecast": "perfect",
+  "red": 2,
+  "amber": 5,
+  "green": 9
+ },
+ {
+  "date": "2025-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 0,
+  "green": 16
+ },
+ {
+  "date": "2025-04-01 00:00:00",
+  "forecast": "perfect",
+  "red": 1,
+  "amber": 4,
+  "green": 11
+ },
+ {
+  "date": "2025-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 2,
+  "green": 14
+ },
+ {
+  "date": "2025-07-01 00:00:00",
+  "forecast": "perfect",
+  "red": 0,
+  "amber": 5,
+  "green": 11
+ },
+ {
+  "date": "2025-10-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 1,
+  "green": 15
+ },
+ {
+  "date": "2026-01-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ },
+ {
+  "date": "2026-04-01 00:00:00",
+  "forecast": "naive",
+  "red": 0,
+  "amber": 2,
+  "green": 14
+ },
+ {
+  "date": "2026-07-01 00:00:00",
+  "forecast": "naive",
+  "red": 1,
+  "amber": 1,
+  "green": 14
+ }
+]

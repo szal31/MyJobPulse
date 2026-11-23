@@ -56,14 +56,23 @@ def traffic_light(history: pd.Series, forecast: pd.Series) -> str:
     return _light(history, forecast)[0]
 
 
+COVID_YEARS = (2020, 2021)  # lockdown spikes would push the thresholds so high that nothing ever flags
+
+
+def _baseline(history: pd.Series) -> pd.Series:
+    if not isinstance(history.index, pd.DatetimeIndex):
+        return history
+    y = history.index.year
+    return history[(y <= 2025) & ~np.isin(y, COVID_YEARS)]
+
+
 def _light(history: pd.Series, forecast: pd.Series) -> tuple[str, str]:
-    h = history[(history.index.year >= 2016) & (history.index.year <= 2025)] \
-        if isinstance(history.index, pd.DatetimeIndex) else history
+    h = _baseline(history)
     p75, p90 = np.nanpercentile(h, 75), np.nanpercentile(h, 90)
     nxt = float(np.mean(forecast.values[:4]))
     # rising run counted within the forecast itself (a jump from the last actual is caught by the level test)
     run = _rising_run(forecast.values[0], forecast.iloc[1:])
-    lvl = f"next-4-quarter forecast {nxt:.1f}% (2017-25 p75 {p75:.1f}%, p90 {p90:.1f}%)"
+    lvl = f"next-4-quarter forecast {nxt:.1f}% (2017-25 excl. 2020-21: p75 {p75:.1f}%, p90 {p90:.1f}%)"
     if nxt > p90:
         return "red", f"{lvl}: above the 90th percentile"
     if run >= 3:
@@ -88,3 +97,23 @@ def build_playbook(state_fc: pd.DataFrame, panel: pd.DataFrame, national: pd.Ser
         rows.append({"state": st, "light": light, "reason": reason, "structural": s_tier,
                      "level_ratio": float(lv.loc[st, "level_ratio"]), "federal": fed, "state_levers": sta})
     return pd.DataFrame(rows, columns=["state", "light", "reason", "structural", "level_ratio", "federal", "state_levers"])
+
+
+def replay(panel: pd.DataFrame, start: str = "2019-01-01", min_quarters: int = 8) -> pd.DataFrame:
+    """Re-run the cyclical rule at every past quarter using only data up to that quarter, with two stand-in
+    forecasts: naive (next 4 quarters = latest value, what a real-time user could do) and perfect (the actual
+    next 4 quarters: the best any model could do). Shows whether the thresholds would have fired, and false alarms."""
+    rows = []
+    for t in sorted(panel.loc[panel.date >= start, "date"].unique()):
+        for kind in ("naive", "perfect"):
+            n = {"red": 0, "amber": 0, "green": 0}
+            for st, g in panel.sort_values("date").groupby("state"):
+                s = g.set_index("date")["u_rate"]
+                hist, fut = s[s.index <= t], s[s.index > t].iloc[:4]
+                if len(_baseline(hist)) < min_quarters or (kind == "perfect" and len(fut) < 4):
+                    continue
+                fc = pd.Series(np.repeat(hist.iloc[-1], 4)) if kind == "naive" else fut
+                n[_light(hist, fc)[0]] += 1
+            if sum(n.values()):
+                rows.append({"date": pd.Timestamp(t), "forecast": kind, **n})
+    return pd.DataFrame(rows, columns=["date", "forecast", "red", "amber", "green"])
