@@ -1,0 +1,118 @@
+{
+ "attention": [
+  {
+   "lag_months": 5,
+   "n_sitting_months": 70,
+   "youth_irr": 0.8936053638423515,
+   "youth_irr_lo95": 0.7427528505394468,
+   "youth_irr_hi95": 1.075095902638225,
+   "youth_p": 0.23309906919747614,
+   "budget_irr": 1.4682468664674013,
+   "budget_p": 0.08918015186918192
+  },
+  {
+   "lag_months": 2,
+   "n_sitting_months": 71,
+   "youth_irr": 0.9474010709028347,
+   "youth_irr_lo95": 0.7195938113448372,
+   "youth_irr_hi95": 1.247326998922331,
+   "youth_p": 0.7002009240270513,
+   "budget_irr": 1.4828926730634087,
+   "budget_p": 0.0849740693787074
+  }
+ ],
+ "keywords": {
+  "total_hits": 439,
+  "sample": 100,
+  "coded": 100,
+  "precision": 0.96,
+  "by_keyword": {
+   "gaji graduan": {
+    "count": 10,
+    "mean": 0.8
+   },
+   "graduan menganggur": {
+    "count": 3,
+    "mean": 1.0
+   },
+   "guna tenaga tidak penuh": {
+    "count": 10,
+    "mean": 1.0
+   },
+   "ketidakpadanan kemahiran": {
+    "count": 6,
+    "mean": 1.0
+   },
+   "pengangguran belia": {
+    "count": 27,
+    "mean": 0.96
+   },
+   "pengangguran graduan": {
+    "count": 1,
+    "mean": 1.0
+   },
+   "pengangguran siswazah": {
+    "count": 6,
+    "mean": 1.0
+   },
+   "siswazah menganggur": {
+    "count": 5,
+    "mean": 1.0
+   },
+   "underemployment": {
+    "count": 28,
+    "mean": 1.0
+   },
+   "youth unemployment": {
+    "count": 4,
+    "mean": 0.75
+   }
+  }
+ },
+ "representation": {
+  "unmatched_seats": 0,
+  "bloc": {
+   "government": {
+    "flagged": 37,
+    "ranked": 77,
+    "share_flagged": 0.578125,
+    "share_ranked": 0.4967741935483871
+   },
+   "opposition": {
+    "flagged": 25,
+    "ranked": 76,
+    "share_flagged": 0.390625,
+    "share_ranked": 0.49032258064516127
+   },
+   "other": {
+    "flagged": 2,
+    "ranked": 2,
+    "share_flagged": 0.03125,
+    "share_ranked": 0.012903225806451613
+   }
+  },
+  "region": {
+   "Peninsular": {
+    "flagged": 41,
+    "ranked": 122,
+    "share_flagged": 0.640625,
+    "share_ranked": 0.7870967741935484
+   },
+   "Sabah/Labuan": {
+    "flagged": 15,
+    "ranked": 16,
+    "share_flagged": 0.234375,
+    "share_ranked": 0.1032258064516129
+   },
+   "Sarawak": {
+    "flagged": 8,
+    "ranked": 17,
+    "share_flagged": 0.125,
+    "share_ranked": 0.10967741935483871
+   }
+  },
+  "flagged_zero_mentions": 52,
+  "n_flagged": 64,
+  "n_ranked": 155
+ }
+}
