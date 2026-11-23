@@ -26,5 +26,6 @@ def test_every_state_in_shap_table():
 
 def test_clusters():
     c = cluster_states(latest_state_features())
-    assert len(c) == 16 and list(c.columns) == ["state", "cluster", "label"]
+    assert len(c) == 16 and list(c.columns) == ["state", "cluster", "label", "facts"]
+    assert c.set_index("state").loc["Selangor", "facts"].startswith("Manufacturing 28%")  # own value, not group average
     assert 2 <= c.cluster.nunique() <= 5

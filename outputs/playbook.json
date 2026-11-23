@@ -196,7 +196,7 @@
   "state": "Terengganu",
   "light": "green",
   "reason": "next-4-quarter forecast 2.9% (2017-25 excl. 2020-21: p75 4.5%, p90 5.2%): within normal range",
-  "structural": "below",
+  "structural": "above",
   "level_ratio": 1.0,
   "federal": [
    "Monitor quarterly"

@@ -50,11 +50,14 @@ with st.expander("Would the warning have worked? Replay 2019–2026", expanded=F
     pq = rp[rp.forecast == "perfect"].set_index("date")["flagged"]
     nv = rp[rp.forecast == "naive"].set_index("date")["flagged"]
     calm = nv[nv.index >= "2023-01-01"]
+    lfn = rp[(rp.forecast == "naive") & (rp.date >= "2023-01-01")]["lf_share_flagged"]
     callout(f"The rule is re-run at each past quarter using only data known then. With a good forecast it would "
             f"have flagged <b>{int(pq.get(pd.Timestamp('2020-01-01'), 0))} of 16 states</b> in Q1 2020, a quarter "
             f"before the lockdown spike; with a naive forecast it fires in the spike quarter itself "
             f"({int(nv.get(pd.Timestamp('2020-04-01'), 0))} states). In the calm years since 2023 it flags "
-            f"{int(calm.min())}–{int(calm.max())} states, so false alarms are rare. The warning is only as early as "
+            f"{int(calm.min())}–{int(calm.max())} states with a naive forecast "
+            f"({100 * lfn.max():.0f}% of the labour force at most), so a watch flag means 'look closer', not 'act now'. "
+            "The warning is only as early as "
             "the forecast feeding it, and no model here forecast COVID.")
 
 S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
@@ -82,6 +85,10 @@ for i, r in enumerate(pb.itertuples()):
             f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.federal)}</ul>"
             f"<div class='meta' style='margin-top:.4rem'><b>{'Federal Territory levers' if r.territory else 'State levers'}</b></div>"
             f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.state_levers)}</ul></div>", unsafe_allow_html=True)
+st.caption("Most federal programmes listed serve Malaysian citizens; in Sabah a large share of the labour force are "
+           "non-citizens, so citizen programmes reach only part of the measured problem. Greater Kuala Lumpur "
+           "(Selangor, Kuala Lumpur, Putrajaya) is one commuting labour market, and small territories such as Labuan "
+           "rest on small survey samples, so read their scores with care.")
 st.caption("Programmes from the Budget 2026 and Budget 2027 speeches as reported in the news; the RM2,500 graduate "
            "starting wage is a proposal that needs a wage-law amendment. Verify against MOF documents.")
 footer()

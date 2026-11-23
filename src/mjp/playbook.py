@@ -45,9 +45,9 @@ def structural_level(panel: pd.DataFrame, national: pd.Series) -> pd.DataFrame:
     start = end - pd.DateOffset(months=9)
     st = panel[panel.date >= start].groupby("state")["u_rate"].mean()
     nat = national[(national.index >= start) & (national.index <= end)].mean()
-    r = (st / nat).rename("level_ratio")
+    r = (st / nat).rename("level_ratio").round(2)  # tier on the shown (rounded) value so label and number agree
     tier = np.select([r >= HIGH_RATIO, r >= ABOVE_RATIO], ["high", "above"], "below")
-    return pd.DataFrame({"level_ratio": r.round(2), "structural": tier})
+    return pd.DataFrame({"level_ratio": r, "structural": tier})
 
 
 MIN_STEP = 0.1  # pp per quarter; smaller moves are model noise, not a trend
@@ -120,13 +120,18 @@ def replay(panel: pd.DataFrame, start: str = "2019-01-01", min_quarters: int = 8
     for t in sorted(panel.loc[panel.date >= start, "date"].unique()):
         for kind in ("naive", "perfect"):
             n = {"red": 0, "amber": 0, "green": 0}
+            lf_flag = lf_all = 0.0
             for st, g in panel.sort_values("date").groupby("state"):
                 s = g.set_index("date")["u_rate"]
                 hist, fut = s[s.index <= t], s[s.index > t].iloc[:4]
                 if len(_baseline(hist)) < min_quarters or (kind == "perfect" and len(fut) < 4):
                     continue
                 fc = pd.Series(np.repeat(hist.iloc[-1], 4)) if kind == "naive" else fut
-                n[_light(hist, fc)[0]] += 1
+                light = _light(hist, fc)[0]
+                n[light] += 1
+                lf = float(g.loc[g.date <= t, "lf"].iloc[-1])  # labour force at the time: Selangor counts more than Labuan
+                lf_all += lf
+                lf_flag += lf if light != "green" else 0.0
             if sum(n.values()):
-                rows.append({"date": pd.Timestamp(t), "forecast": kind, **n})
-    return pd.DataFrame(rows, columns=["date", "forecast", "red", "amber", "green"])
+                rows.append({"date": pd.Timestamp(t), "forecast": kind, **n, "lf_share_flagged": lf_flag / lf_all})
+    return pd.DataFrame(rows, columns=["date", "forecast", "red", "amber", "green", "lf_share_flagged"])

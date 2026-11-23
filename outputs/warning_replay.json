@@ -4,405 +4,463 @@
   "forecast": "naive",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.03474615022960153
  },
  {
   "date": "2019-01-01 00:00:00",
   "forecast": "perfect",
   "red": 3,
   "amber": 2,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.2992226394193303
  },
  {
   "date": "2019-04-01 00:00:00",
   "forecast": "naive",
   "red": 3,
   "amber": 1,
-  "green": 12
+  "green": 12,
+  "lf_share_flagged": 0.21646398143458837
  },
  {
   "date": "2019-04-01 00:00:00",
   "forecast": "perfect",
   "red": 6,
   "amber": 6,
-  "green": 4
+  "green": 4,
+  "lf_share_flagged": 0.7395585586163128
  },
  {
   "date": "2019-07-01 00:00:00",
   "forecast": "naive",
   "red": 3,
   "amber": 2,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.34812371607568937
  },
  {
   "date": "2019-07-01 00:00:00",
   "forecast": "perfect",
   "red": 10,
   "amber": 3,
-  "green": 3
+  "green": 3,
+  "lf_share_flagged": 0.9492108251566229
  },
  {
   "date": "2019-10-01 00:00:00",
   "forecast": "naive",
   "red": 3,
   "amber": 0,
-  "green": 13
+  "green": 13,
+  "lf_share_flagged": 0.20251414364360557
  },
  {
   "date": "2019-10-01 00:00:00",
   "forecast": "perfect",
   "red": 12,
   "amber": 1,
-  "green": 3
+  "green": 3,
+  "lf_share_flagged": 0.9481885988279168
  },
  {
   "date": "2020-01-01 00:00:00",
   "forecast": "naive",
   "red": 2,
   "amber": 2,
-  "green": 12
+  "green": 12,
+  "lf_share_flagged": 0.3417161168565513
  },
  {
   "date": "2020-01-01 00:00:00",
   "forecast": "perfect",
   "red": 12,
   "amber": 3,
-  "green": 1
+  "green": 1,
+  "lf_share_flagged": 0.9536170940387454
  },
  {
   "date": "2020-04-01 00:00:00",
   "forecast": "naive",
   "red": 11,
   "amber": 2,
-  "green": 3
+  "green": 3,
+  "lf_share_flagged": 0.9197851410490322
  },
  {
   "date": "2020-04-01 00:00:00",
   "forecast": "perfect",
   "red": 11,
   "amber": 4,
-  "green": 1
+  "green": 1,
+  "lf_share_flagged": 0.9688492797631959
  },
  {
   "date": "2020-07-01 00:00:00",
   "forecast": "naive",
   "red": 11,
   "amber": 0,
-  "green": 5
+  "green": 5,
+  "lf_share_flagged": 0.8724417004406398
  },
  {
   "date": "2020-07-01 00:00:00",
   "forecast": "perfect",
   "red": 13,
   "amber": 3,
-  "green": 0
+  "green": 0,
+  "lf_share_flagged": 1.0
  },
  {
   "date": "2020-10-01 00:00:00",
   "forecast": "naive",
   "red": 12,
   "amber": 2,
-  "green": 2
+  "green": 2,
+  "lf_share_flagged": 0.9253064864593277
  },
  {
   "date": "2020-10-01 00:00:00",
   "forecast": "perfect",
   "red": 11,
   "amber": 5,
-  "green": 0
+  "green": 0,
+  "lf_share_flagged": 1.0
  },
  {
   "date": "2021-01-01 00:00:00",
   "forecast": "naive",
   "red": 14,
   "amber": 0,
-  "green": 2
+  "green": 2,
+  "lf_share_flagged": 0.9256202993428448
  },
  {
   "date": "2021-01-01 00:00:00",
   "forecast": "perfect",
   "red": 9,
   "amber": 3,
-  "green": 4
+  "green": 4,
+  "lf_share_flagged": 0.8553634341970464
  },
  {
   "date": "2021-04-01 00:00:00",
   "forecast": "naive",
   "red": 12,
   "amber": 2,
-  "green": 2
+  "green": 2,
+  "lf_share_flagged": 0.9247191996093214
  },
  {
   "date": "2021-04-01 00:00:00",
   "forecast": "perfect",
   "red": 6,
   "amber": 4,
-  "green": 6
+  "green": 6,
+  "lf_share_flagged": 0.841781345087089
  },
  {
   "date": "2021-07-01 00:00:00",
   "forecast": "naive",
   "red": 13,
   "amber": 1,
-  "green": 2
+  "green": 2,
+  "lf_share_flagged": 0.9682986505548827
  },
  {
   "date": "2021-07-01 00:00:00",
   "forecast": "perfect",
   "red": 5,
   "amber": 2,
-  "green": 9
+  "green": 9,
+  "lf_share_flagged": 0.6085173580336299
  },
  {
   "date": "2021-10-01 00:00:00",
   "forecast": "naive",
   "red": 7,
   "amber": 4,
-  "green": 5
+  "green": 5,
+  "lf_share_flagged": 0.5948435079020762
  },
  {
   "date": "2021-10-01 00:00:00",
   "forecast": "perfect",
   "red": 5,
   "amber": 3,
-  "green": 8
+  "green": 8,
+  "lf_share_flagged": 0.6078710876975518
  },
  {
   "date": "2022-01-01 00:00:00",
   "forecast": "naive",
   "red": 5,
   "amber": 1,
-  "green": 10
+  "green": 10,
+  "lf_share_flagged": 0.5593903692623985
  },
  {
   "date": "2022-01-01 00:00:00",
   "forecast": "perfect",
   "red": 3,
   "amber": 3,
-  "green": 10
+  "green": 10,
+  "lf_share_flagged": 0.35805957195353905
  },
  {
   "date": "2022-04-01 00:00:00",
   "forecast": "naive",
   "red": 5,
   "amber": 0,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.32952132704321696
  },
  {
   "date": "2022-04-01 00:00:00",
   "forecast": "perfect",
   "red": 2,
   "amber": 3,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.30321052921416375
  },
  {
   "date": "2022-07-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 5,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.4967159277504105
  },
  {
   "date": "2022-07-01 00:00:00",
   "forecast": "perfect",
   "red": 0,
   "amber": 5,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.2552393115611506
  },
  {
   "date": "2022-10-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 4,
-  "green": 12
+  "green": 12,
+  "lf_share_flagged": 0.22531464980474178
  },
  {
   "date": "2022-10-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 3,
-  "green": 12
+  "green": 12,
+  "lf_share_flagged": 0.25381750915839485
  },
  {
   "date": "2023-01-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 1,
-  "green": 15
+  "green": 15,
+  "lf_share_flagged": 0.02725088593909544
  },
  {
   "date": "2023-01-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.088978317016037
  },
  {
   "date": "2023-04-01 00:00:00",
   "forecast": "naive",
   "red": 1,
   "amber": 2,
-  "green": 13
+  "green": 13,
+  "lf_share_flagged": 0.11717970025048872
  },
  {
   "date": "2023-04-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.2346642913082207
  },
  {
   "date": "2023-07-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 1,
-  "green": 15
+  "green": 15,
+  "lf_share_flagged": 0.027223176552404613
  },
  {
   "date": "2023-07-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.23434518750111447
  },
  {
   "date": "2023-10-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 0,
-  "green": 16
+  "green": 16,
+  "lf_share_flagged": 0.0
  },
  {
   "date": "2023-10-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 3,
-  "green": 12
+  "green": 12,
+  "lf_share_flagged": 0.13574465317320944
  },
  {
   "date": "2024-01-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 3,
-  "green": 13
+  "green": 13,
+  "lf_share_flagged": 0.12029744199881022
  },
  {
   "date": "2024-01-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 4,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.20304580606781678
  },
  {
   "date": "2024-04-01 00:00:00",
   "forecast": "naive",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.011576681508566037
  },
  {
   "date": "2024-04-01 00:00:00",
   "forecast": "perfect",
   "red": 0,
   "amber": 2,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.12652375195352816
  },
  {
   "date": "2024-07-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 0,
-  "green": 16
+  "green": 16,
+  "lf_share_flagged": 0.0
  },
  {
   "date": "2024-07-01 00:00:00",
   "forecast": "perfect",
   "red": 0,
   "amber": 2,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.05911202891068661
  },
  {
   "date": "2024-10-01 00:00:00",
   "forecast": "naive",
   "red": 1,
   "amber": 0,
-  "green": 15
+  "green": 15,
+  "lf_share_flagged": 0.0035871285387726395
  },
  {
   "date": "2024-10-01 00:00:00",
   "forecast": "perfect",
   "red": 0,
   "amber": 6,
-  "green": 10
+  "green": 10,
+  "lf_share_flagged": 0.26033643983353844
  },
  {
   "date": "2025-01-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 1,
-  "green": 15
+  "green": 15,
+  "lf_share_flagged": 0.05547654581102039
  },
  {
   "date": "2025-01-01 00:00:00",
   "forecast": "perfect",
   "red": 2,
   "amber": 5,
-  "green": 9
+  "green": 9,
+  "lf_share_flagged": 0.45668802856055946
  },
  {
   "date": "2025-04-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 0,
-  "green": 16
+  "green": 16,
+  "lf_share_flagged": 0.0
  },
  {
   "date": "2025-04-01 00:00:00",
   "forecast": "perfect",
   "red": 1,
   "amber": 4,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.35467444620484423
  },
  {
   "date": "2025-07-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 2,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.059078919726430285
  },
  {
   "date": "2025-07-01 00:00:00",
   "forecast": "perfect",
   "red": 0,
   "amber": 5,
-  "green": 11
+  "green": 11,
+  "lf_share_flagged": 0.3385716953385775
  },
  {
   "date": "2025-10-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 1,
-  "green": 15
+  "green": 15,
+  "lf_share_flagged": 0.003677561636980442
  },
  {
   "date": "2026-01-01 00:00:00",
   "forecast": "naive",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.1252422789893339
  },
  {
   "date": "2026-04-01 00:00:00",
   "forecast": "naive",
   "red": 0,
   "amber": 2,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.12509985065814605
  },
  {
   "date": "2026-07-01 00:00:00",
   "forecast": "naive",
   "red": 1,
   "amber": 1,
-  "green": 14
+  "green": 14,
+  "lf_share_flagged": 0.12474471841142737
  }
 ]

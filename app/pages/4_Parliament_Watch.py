@@ -58,7 +58,8 @@ with tab2:
     fig.update_layout(hovermode="closest")
     fig.update_xaxes(title_text="Constituency unemployment rate, all ages (DOSM 2023)", title_font=dict(size=12))
     st.plotly_chart(fig, use_container_width=True)
-    st.caption(f"Backbench seats only, party-neutral: no MP is named. 15th Parliament (sittings from 2023). "
+    st.caption(f"Backbench seats only. MPs are not named, but each seat has one MP, so read a flag as a pattern for "
+               f"committees to examine, not a verdict on a person. 15th Parliament (sittings from 2023). "
                f"{exe} seats whose MP held a minister, deputy minister or Deputy Speaker post (read from Hansard "
                f"attendance lists) are left out, because their floor speech is portfolio or chair duty. {nodata} more "
                "seats have too little parsed speech (<2,000 words) to judge.")

@@ -50,7 +50,7 @@ for i, r in df.iterrows():
             f"<div style='display:flex;justify-content:space-between;align-items:center;gap:6px'>"
             f"<b>{html.escape(r.state)}</b>{badge(r.light)}</div>"
             f"<div style='font:700 1.5rem/1.3 var(--mono, Consolas, monospace)'>{r.next4:.1f}%</div>"
-            f"<div class='meta'>{html.escape(r.label)}</div></div>", unsafe_allow_html=True)
+            f"<div class='meta'>{html.escape(r.facts)}</div></div>", unsafe_allow_html=True)
 
 st.markdown("## Forecast path by state")
 state = st.selectbox("State", df.state.tolist())

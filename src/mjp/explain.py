@@ -53,5 +53,8 @@ def cluster_states(X_latest: pd.DataFrame, k_range=range(3, 6)) -> pd.DataFrame:
     for i, cen in enumerate(km.cluster_centers_):
         top = np.argsort(-np.abs(cen))[:2]
         labels[i] = " · ".join(f"{'high' if cen[j] > 0 else 'low'} {NICE.get(cols[j], cols[j])}" for j in top)
+    # cluster labels describe the group average, so cards show each state's own facts instead
+    own = [f"Manufacturing {m:.0f}% of output · unemployment {t:+.1f} pp on a year earlier · participation {p:.0f}%"
+           for m, t, p in zip(X_latest["mfg_share"].fillna(0), X_latest["u_rate_trend"], X_latest["p_rate"])]
     return pd.DataFrame({"state": X_latest["state"].values, "cluster": km.labels_,
-                         "label": [labels[c] for c in km.labels_]})
+                         "label": [labels[c] for c in km.labels_], "facts": own})

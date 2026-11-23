@@ -79,8 +79,10 @@ def test_replay_counts_states_without_future_data():
     from mjp.playbook import replay
     d = pd.date_range("2017-01-01", periods=16, freq="QS")
     u = [3.0 + 0.2 * (i % 2) for i in range(12)] + [6.0, 6.0, 6.0, 6.0]  # calm noise, then a jump
-    panel = pd.DataFrame({"date": list(d) * 2, "state": ["A"] * 16 + ["B"] * 16, "u_rate": u * 2})
+    panel = pd.DataFrame({"date": list(d) * 2, "state": ["A"] * 16 + ["B"] * 16, "u_rate": u * 2,
+                          "lf": [300.0] * 16 + [100.0] * 16})
     r = replay(panel, start="2019-01-01").set_index(["date", "forecast"])
+    assert r.loc[(pd.Timestamp("2019-10-01"), "perfect"), "lf_share_flagged"] == 1.0
     # perfect foresight sees the 2020 jump one quarter ahead; naive only once it has happened
     assert r.loc[(pd.Timestamp("2019-10-01"), "perfect"), "red"] == 2
     assert r.loc[(pd.Timestamp("2019-10-01"), "naive"), "green"] == 2

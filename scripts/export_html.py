@@ -17,7 +17,8 @@ import plotly.io as pio
 ROOT = Path(__file__).resolve().parents[1]
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 sys.path.insert(0, str(ROOT / "app"))
-from load import ACCENT, LIGHT, MUTED, PRIMARY, SCEN_COLOR, SHORT, scenario_labels, style  # noqa: E402
+from load import ACCENT, LIGHT, LIGHT_TEXT, MUTED, PRIMARY, SCEN_COLOR, SHORT, scenario_labels, style  # noqa: E402
+S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
 
 _first = True
 
@@ -116,7 +117,7 @@ def export(out_dir: Path) -> Path:
     parts.append(_section("parliament", "Parliament watch", body))
 
     # 6 Playbook
-    rows = "".join(f"<tr><td>{r.state}</td><td style='color:{LIGHT[r.light]}'>{r.light}</td><td>{r.structural} ({r.level_ratio:.2f}×)</td>"
+    rows = "".join(f"<tr><td>{r.state}</td><td style='color:{LIGHT[r.light]}'>{LIGHT_TEXT[r.light]}</td><td>{S_TEXT[r.structural]} ({r.level_ratio:.2f}×)</td>"
                    f"<td>{html.escape('; '.join(r.federal))}</td><td>{html.escape('; '.join(r.state_levers))}</td></tr>"
                    for r in pb.itertuples())
     parts.append(_section("playbook", "Decision playbook", "<table><tr><th>State</th><th>Cyclical</th><th>Structural</th>"
@@ -125,7 +126,8 @@ def export(out_dir: Path) -> Path:
     # 7 Methods
     sb = _j("scoreboard_national")
     t = pd.DataFrame(sb["youth_monthly"]).round(3).to_html(index=False)
-    parts.append(_section("methods", "Methods & accuracy", t + "<p>Bands calibrated from backtest errors. See README for limitations.</p>"))
+    parts.append(_section("methods", "Methods & accuracy", "<p><b>Backtest accuracy, youth unemployment (monthly)</b>: MASE, lower is better; "
+                          "compare each model with the naive row.</p>" + t + "<p>Bands calibrated from backtest errors. See README for limitations.</p>"))
 
     css = ("body{font-family:system-ui,sans-serif;max-width:1100px;margin:auto;padding:16px;color:#1C1630;background:#FBFAFD}"
            "h1{color:#4B2E83}section{background:#fff;border-radius:8px;padding:16px;margin:16px 0}"

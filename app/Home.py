@@ -46,26 +46,29 @@ grp = read_parquet("sru_groups")
 yearly = lambda d: d.groupby(d.index.year).mean()
 age = grp[(grp.dim == "age") & (grp.group != "overall")]
 pers = age[age.variable == "persons"].pivot(index="date", columns="group", values="value")
-py = yearly(pers)
+rate = age[age.variable == "rate"].pivot(index="date", columns="group", values="value")
+py, ry = yearly(pers), yearly(rate)
 y0, y1 = py.index[0], py.index[-1]
 share25 = 100 * (1 - pers.iloc[-1]["15-24"] / pers.iloc[-1].sum())
 sex = grp[(grp.dim == "sex") & (grp.variable == "rate")].pivot(index="date", columns="group", values="value")
-sy = yearly(sex)
-gap0, gap1 = sy.loc[y0, "female"] - sy.loc[y0, "male"], sy.loc[y1, "female"] - sy.loc[y1, "male"]
-callout(f"<b>Not a starter-job phase.</b> {share25:.0f}% of underemployed tertiary-educated workers are aged 25 or "
-        f"older, and the 35–44 group grew from {py.loc[y0, '35-44']:.0f}k to {py.loc[y1, '35-44']:.0f}k "
-        f"({y0}–{y1}). Women's rate is {gap1:.1f} pp above men's, against {gap0:.1f} pp in {y0}.")
+gap = (sex["female"] - sex["male"])[sex.index >= "2024-01-01"]  # level since the likely 2024 series change
+callout(f"<b>Rates rose in every age group.</b> {ry.loc[y1, '15-24']:.0f}% of tertiary-educated workers aged 15–24 are "
+        f"in jobs below their skills ({ry.loc[y0, '15-24']:.0f}% in {y0}). Most underemployed people ({share25:.0f}%) are "
+        f"25 or older, partly because far more graduates are now in their 30s and 40s: the 35–44 headcount doubled "
+        f"while its rate rose {ry.loc[y1, '35-44'] - ry.loc[y0, '35-44']:.1f} pp. Women's rate has been "
+        f"{gap.min():.0f}–{gap.max():.0f} pp above men's since 2024.")
 left, right = st.columns(2, gap="large")
 with left:
     fig = go.Figure()
     for y, col in [(y0, "#93C5FD"), (y1, PRIMARY)]:
-        fig.add_trace(go.Bar(x=py.columns, y=py.loc[y], name=f"{y}" + (" (to date)" if y == y1 else ""),
-                             marker_color=col, text=[f"{v:.0f}k" for v in py.loc[y]], textposition="outside"))
+        fig.add_trace(go.Bar(x=ry.columns, y=ry.loc[y], name=f"{y}" + (" (to date)" if y == y1 else ""),
+                             marker_color=col, text=[f"{v:.0f}%" for v in ry.loc[y]], textposition="outside",
+                             customdata=py.loc[y].values, hovertemplate="%{y:.1f}% · %{customdata:.0f}k people<extra></extra>"))
     fig.update_layout(barmode="group")
-    st.plotly_chart(style(fig, 320, "Underemployed persons ('000)"), use_container_width=True)
-    st.caption("By age band, yearly average. Snapshots of age bands, not the same people followed over time. "
-               "Youth is officially 15–30 since Jan 2026 (youth organisations); DOSM publishes youth unemployment for both 15–24 "
-               "and 15–30 (left chart).")
+    st.plotly_chart(style(fig, 320, "% of tertiary-educated employed"), use_container_width=True)
+    st.caption("Skill-related underemployment rate by age band, yearly average (hover for headcounts). Snapshots of age "
+               "bands, not the same people followed over time. Youth is officially 15–30 since Jan 2026 (youth "
+               "organisations); DOSM publishes youth unemployment for both 15–24 and 15–30 (chart above).")
 with right:
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=sex.index, y=sex["female"], name="Women", line=dict(color=ACCENT, width=2.6)))
