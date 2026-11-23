@@ -6,7 +6,7 @@ from mjp import datasets
 from mjp.datasets import DATASETS, download_all, snapshot_manifest
 
 CORE = ["lfs_month_youth", "lfs_qtr_sru_sex", "lfs_qtr_sru_age", "lfs_qtr_state",
-        "lfs_month", "ipi", "economic_indicators", "formal_wages", "cpi_state",
+        "lfs_month", "ipi", "economic_indicators", "formal_wages",
         "gdp_state_real_supply", "wages_education", "lfs_parlimen"]
 
 

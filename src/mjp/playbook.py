@@ -1,16 +1,43 @@
-"""Decision playbook: per-state traffic light on forecast risk -> existing government programmes."""
+"""Decision playbook. Two separate risk axes per state, each mapped to federal and state levers:
+- cyclical: is unemployment about to rise against the state's own past? (traffic light on the forecast)
+- structural: is the state's jobless rate chronically above the national rate? (level vs national)
+A state can be calm on one axis and high on the other (e.g. stable but chronically high)."""
 from __future__ import annotations
 
 import numpy as np
 import pandas as pd
 
-PROGRAMMES = {
-    "red": ["Khazanah K-Youth placements (RM200m, Budget 2026)",
-            "PERKESO mobility incentive (up to RM1,000 per jobseeker)",
-            "MARA Industrial Boot Camp (RM30m)"],
-    "amber": ["Rakan Muda upskilling (RM40m)", "TVET seat expansion in the state"],
+# Labour, PERKESO, higher education and the budget are federal (Ninth Schedule); states hold investment,
+# industrial land, state SME grants and state skills centres. Sources: Budget 2026 and 2027 speeches (news reports).
+FEDERAL = {
+    "red": ["PERKESO job-matching and Employment Insurance support targeted at the state (MYFutureJobs)",
+            "K-Youth on-the-job training for youth without degrees (Budget 2026: RM200m, 11,000 places)"],
+    "amber": ["MYFutureJobs outreach and job fairs in the state"],
     "green": ["Monitor quarterly"],
 }
+STATE = {
+    "red": ["State skills development centre: short reskilling courses for laid-off workers",
+            "State SME hiring grants"],
+    "amber": ["State skills development centre: course intake aligned to current vacancies"],
+    "green": [],
+}
+STRUCTURAL_FEDERAL = ["Proposed RM2,500 starting wage for graduates and semi-skilled workers (Budget 2027; needs a "
+                      "wage-law amendment)", "Higher-education and TVET course mix matched to the state's job openings"]
+STRUCTURAL_STATE = ["State investment agency: target higher-skill investment and industrial parks",
+                    "Anchor-employer partnerships with the state skills centre"]
+PROGRAMMES = FEDERAL  # cyclical light -> federal levers (kept for callers)
+HIGH_RATIO, ABOVE_RATIO = 1.25, 1.0  # state rate / national rate, last 4 quarters
+
+
+def structural_level(panel: pd.DataFrame, national: pd.Series) -> pd.DataFrame:
+    """Each state's mean jobless rate over the last 4 published quarters, relative to the national rate."""
+    end = panel["date"].max()
+    start = end - pd.DateOffset(months=9)
+    st = panel[panel.date >= start].groupby("state")["u_rate"].mean()
+    nat = national[(national.index >= start) & (national.index <= end)].mean()
+    r = (st / nat).rename("level_ratio")
+    tier = np.select([r >= HIGH_RATIO, r >= ABOVE_RATIO], ["high", "above"], "below")
+    return pd.DataFrame({"level_ratio": r.round(2), "structural": tier})
 
 
 MIN_STEP = 0.1  # pp per quarter; smaller moves are model noise, not a trend
@@ -48,10 +75,16 @@ def _light(history: pd.Series, forecast: pd.Series) -> tuple[str, str]:
     return "green", f"{lvl}: within normal range"
 
 
-def build_playbook(state_fc: pd.DataFrame, panel: pd.DataFrame) -> pd.DataFrame:
+def build_playbook(state_fc: pd.DataFrame, panel: pd.DataFrame, national: pd.Series) -> pd.DataFrame:
+    lv = structural_level(panel, national)
     rows = []
     for st, g in state_fc.sort_values("date").groupby("state"):
         hist = panel[panel.state == st].set_index("date")["u_rate"]
         light, reason = _light(hist, g["mean"])
-        rows.append({"state": st, "light": light, "reason": reason, "actions": PROGRAMMES[light]})
-    return pd.DataFrame(rows, columns=["state", "light", "reason", "actions"])
+        s_tier = lv.loc[st, "structural"]
+        fed, sta = list(FEDERAL[light]), list(STATE[light])
+        if s_tier == "high":
+            fed, sta = [x for x in fed if x != "Monitor quarterly"] + STRUCTURAL_FEDERAL, sta + STRUCTURAL_STATE
+        rows.append({"state": st, "light": light, "reason": reason, "structural": s_tier,
+                     "level_ratio": float(lv.loc[st, "level_ratio"]), "federal": fed, "state_levers": sta})
+    return pd.DataFrame(rows, columns=["state", "light", "reason", "structural", "level_ratio", "federal", "state_levers"])

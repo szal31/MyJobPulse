@@ -4,6 +4,11 @@ import pandas as pd
 from mjp.playbook import PROGRAMMES, build_playbook, traffic_light
 
 
+def _nat():
+    from mjp.prep import _raw
+    return _raw("lfs_qtr").set_index("date")["u_rate"]
+
+
 def _h(vals):
     return pd.Series(vals, index=pd.date_range("2016-01-01", periods=len(vals), freq="QS"))
 
@@ -32,9 +37,10 @@ def test_playbook_every_state_has_action():
     p = load_state_panel()
     fc = pd.DataFrame({"date": np.repeat(pd.date_range("2026-10-01", periods=4, freq="QS"), 16),
                        "state": list(sorted(p.state.unique())) * 4, "mean": 3.0})
-    pb = build_playbook(fc, p)
-    assert len(pb) == 16 and list(pb.columns) == ["state", "light", "reason", "actions"]
-    assert pb.actions.map(len).min() >= 1
+    pb = build_playbook(fc, p, _nat())
+    assert len(pb) == 16 and list(pb.columns) == ["state", "light", "reason", "structural", "level_ratio",
+                                                  "federal", "state_levers"]
+    assert pb.federal.map(len).min() >= 1
     assert set(PROGRAMMES) == {"red", "amber", "green"}
 
 
@@ -50,5 +56,15 @@ def test_reason_names_rule():
     st = sorted(p.state.unique())
     fc = pd.DataFrame({"date": np.repeat(pd.date_range("2026-10-01", periods=4, freq="QS"), 16),
                        "state": st * 4, "mean": np.repeat([1.0, 2.0, 3.0, 4.0], 16)})
-    pb = build_playbook(fc, p)
+    pb = build_playbook(fc, p, _nat())
     assert pb.reason.str.contains("rising").any()
+
+
+def test_structural_axis_flags_chronically_high_state():
+    from mjp.playbook import structural_level
+    d = pd.date_range("2025-10-01", periods=4, freq="QS")
+    panel = pd.DataFrame({"date": list(d) * 3, "state": ["A"] * 4 + ["B"] * 4 + ["C"] * 4,
+                          "u_rate": [6.0] * 4 + [3.1] * 4 + [2.0] * 4})
+    lv = structural_level(panel, pd.Series(3.0, index=d))
+    assert lv.loc["A", "structural"] == "high" and lv.loc["B", "structural"] == "above"
+    assert lv.loc["C", "structural"] == "below"

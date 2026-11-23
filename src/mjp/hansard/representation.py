@@ -45,19 +45,41 @@ def mentions_by_constituency(sittings: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame([(k, v[0], v[1]) for k, v in agg.items()], columns=["parlimen", "mentions", "words"])
 
 
-def representation_table(sittings: pd.DataFrame, min_words: int = 1) -> pd.DataFrame:
+_ROLE = re.compile(r"^\d{1,3}\.\s+(?:Timbalan\s+)?(?:Perdana\s+)?Menteri"
+                   r"|^\d{1,3}\.\s+(?:Timbalan\s+)?Yang di-Pertua Dewan Rakyat")
+
+
+def executive_seats(sittings: pd.DataFrame) -> set[str]:
+    """Seats whose MP held a minister, deputy minister or (Deputy) Speaker post in any sitting, read from the
+    attendance list ('12.  Menteri Sumber Manusia, Dato' Sri X (Sungai Buloh)'). Their floor speech is
+    portfolio or chair duty, so they are kept out of the backbench ranking rather than credited or penalised."""
+    seats, out = seat_names(), set()
+    for text in sittings["text"]:
+        flat = re.sub(r"\s+", " ", text[:40000])  # attendance list sits at the top of each sitting
+        for item in re.split(r"\s(?=\d{1,3}\.\s+[A-Z])", flat):
+            if _ROLE.match(item):
+                # last bracket that is a seat: ministry names can carry their own brackets
+                hit = next((p.strip().lower() for p in reversed(re.findall(r"\(([^()]+)\)", item[:300]))
+                            if p.strip().lower() in seats), None)
+                if hit:
+                    out.add(seats[hit])
+    return out
+
+
+def representation_table(sittings: pd.DataFrame, min_words: int = 1, executive: set[str] = frozenset()) -> pd.DataFrame:
     lp = _raw("lfs_parlimen")
     lp = lp[lp.date == lp.date.max()].copy()
     lp["parlimen"] = lp["parlimen"].str.replace(r"^P\.\d+\s+", "", regex=True)
     m = mentions_by_constituency(sittings)
     t = lp[["parlimen", "state", "u_rate"]].merge(m, on="parlimen", how="left").fillna({"mentions": 0, "words": 0})
     t["mentions_per_100k"] = np.where(t.words > 0, t.mentions / t.words.clip(lower=1) * 1e5, 0.0)
-    has = t.words >= max(min_words, 1)  # ministers speak under ministry titles; too little parsed speech = no data
+    exe = t.parlimen.isin(executive)
+    has = (t.words >= max(min_words, 1)) & ~exe  # too little parsed backbench speech = no data
     hi_need = t.u_rate >= t.u_rate.median()
     nz = t.mentions_per_100k[has & (t.mentions_per_100k > 0)]
     hi_voice = t.mentions_per_100k >= (nz.median() if len(nz) else np.inf)  # most seats have 0 mentions
     t["quadrant"] = np.select(
-        [~has, hi_need & ~hi_voice, hi_need & hi_voice, ~hi_need & hi_voice],
-        ["no data", "high need · low voice", "high need · high voice", "low need · high voice"],
+        [exe, ~has, hi_need & ~hi_voice, hi_need & hi_voice, ~hi_need & hi_voice],
+        ["executive or chair role", "no data", "high need · low voice", "high need · high voice", "low need · high voice"],
         "low need · low voice")
     return t[["parlimen", "state", "u_rate", "mentions", "words", "mentions_per_100k", "quadrant"]]

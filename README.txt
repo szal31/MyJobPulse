@@ -29,10 +29,10 @@ SOFTWARE
 NAVIGATING THE DASHBOARD (left sidebar)
   Home              The hidden gap: headline vs youth unemployment, underemployment, RM cost
   Forecast to 2030  Choose measure + scenario; fan chart with 80/95% ranges; model accuracy table
-  State Risk Map    Risk tiles per state, forecast path, SHAP drivers (all-ages unemployment)
+  State Risk        Structural vs cyclical risk, forecast path, SHAP drivers (all-ages unemployment)
   Scenario Lab      Compare scenarios for 2030 and the RM cost path
   Parliament Watch  Attention gap, representation gap by constituency, promise tracker
-  Decision Playbook Traffic light per state -> Budget 2026 programme
+  Decision Playbook Cyclical + structural risk per state -> federal and state levers
   Methods and Data  Sources, methods, limitations
 
 REBUILDING THE RESULTS (optional)
@@ -47,7 +47,7 @@ REBUILDING THE RESULTS (optional)
 DATA
   Department of Statistics Malaysia via data.gov.my / OpenDOSM (CC BY 4.0): labour force
   (monthly, quarterly, state, constituency), skill-related underemployment, industrial
-  production, leading index, CPI, formal wages, wages by skill, state GDP, school completion.
+  production, leading index, CPI, formal wages, wages by skill and education, state GDP.
   Hansard Dewan Rakyat: malaysia-ai crawl (Apache-2.0) to Jul 2024 + parlimen.gov.my PDFs.
   Snapshot list with dates: data/raw/MANIFEST.csv
 
@@ -61,4 +61,5 @@ LIMITATIONS AND ASSUMPTIONS
     25% / 50% / 100% of the skilled vs semi-skilled median wage gap.
   - Official youth data end Jun 2026; underemployment and state data end 2026 Q3.
   - Hansard keyword counts miss paraphrases; not every MP's seat is parsed.
-  - Budget 2026 programme amounts are taken from news reports.
+  - Budget 2026/2027 programme details are taken from news reports; the RM2,500 graduate
+    starting wage is a proposal pending a wage-law amendment.

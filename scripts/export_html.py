@@ -76,7 +76,8 @@ def export(out_dir: Path) -> Path:
 
     # 3 State risk
     pb = pd.DataFrame(_j("playbook"))
-    tiles = "".join(f"<div class='tile' style='border-color:{LIGHT[r.light]}'><b>{r.state}</b><br>{html.escape(r.reason)}</div>"
+    tiles = "".join(f"<div class='tile' style='border-color:{LIGHT[r.light]}'><b>{r.state}</b><br>{html.escape(r.reason)}"
+                    f"<br>Structural: {r.structural} national ({r.level_ratio:.2f}×)</div>"
                     for r in pb.itertuples())
     parts.append(_section("state-risk", "State risk (all-ages unemployment)", f"<div class='tiles'>{tiles}</div>"))
 
@@ -100,13 +101,15 @@ def export(out_dir: Path) -> Path:
     if rp.exists():
         r = pd.read_parquet(rp)
         hn = r[r.quadrant == "high need · low voice"].sort_values("u_rate", ascending=False).head(10)
-        body += "<p><b>High need · low voice constituencies:</b> " + ", ".join(hn.parlimen) + "</p>"
+        body += "<p><b>High need · low voice constituencies (backbench seats only):</b> " + ", ".join(hn.parlimen) + "</p>"
     parts.append(_section("parliament", "Parliament watch", body))
 
     # 6 Playbook
-    rows = "".join(f"<tr><td>{r.state}</td><td style='color:{LIGHT[r.light]}'>{r.light}</td><td>{html.escape('; '.join(r.actions))}</td></tr>"
+    rows = "".join(f"<tr><td>{r.state}</td><td style='color:{LIGHT[r.light]}'>{r.light}</td><td>{r.structural} ({r.level_ratio:.2f}×)</td>"
+                   f"<td>{html.escape('; '.join(r.federal))}</td><td>{html.escape('; '.join(r.state_levers))}</td></tr>"
                    for r in pb.itertuples())
-    parts.append(_section("playbook", "Decision playbook", f"<table><tr><th>State</th><th>Light</th><th>Actions</th></tr>{rows}</table>"))
+    parts.append(_section("playbook", "Decision playbook", "<table><tr><th>State</th><th>Cyclical</th><th>Structural</th>"
+                          f"<th>Federal levers</th><th>State levers</th></tr>{rows}</table>"))
 
     # 7 Methods
     sb = _j("scoreboard_national")

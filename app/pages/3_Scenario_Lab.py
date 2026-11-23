@@ -24,7 +24,7 @@ if "baseline" in chosen and "nimp" in chosen:
           {"label": "…at NIMP pace", "value": f"{y.loc['nimp', 'mean']:.1f}%", "tone": "hl",
            "note": f"{y.loc['nimp', 'mean'] - y.loc['baseline', 'mean']:+.1f} pp"},
           {"label": "Underemployment 2030, NIMP vs current", "value": f"{u.loc['nimp', 'mean'] - u.loc['baseline', 'mean']:+.1f} pp",
-           "note": "growth barely moves job quality"}])
+           "note": "no measurable link to output growth (39 quarters)"}])
 
 c1, c2 = st.columns(2, gap="large")
 for col, d, title in [(c1, y, "Youth unemployment in 2030"), (c2, u, "Skill-related underemployment in 2030")]:
@@ -47,10 +47,17 @@ for n in chosen:
 st.plotly_chart(style(fig, 320, "RM bn per year (central estimate)"), use_container_width=True)
 
 st.markdown("## Reading the result")
+h = read_parquet("history").set_index("date")["sru_rate"].dropna()
+sru_now, d_now = h.iloc[-1], h.index[-1]
+years_left = (pd.Timestamp("2030-12-31") - d_now).days / 365.25
 st.markdown(
-    "- Faster industrial growth is associated with lower **youth unemployment**, but barely moves **underemployment**: "
-    "growth alone creates jobs, not better-matched jobs.\n"
-    "- Only a skills-side policy (illustrated by the TVET scenario) bends the underemployment curve and its RM cost.")
+    "- Faster output growth probably lowers **youth unemployment**: the link keeps its size when the lockdown months "
+    "are removed, though the evidence weakens (p ≈ 0.09).\n"
+    "- For **underemployment** we find no measurable link to output growth. With 39 quarters this cannot rule an "
+    "effect in or out, so growth alone cannot be relied on to fix the skills mismatch.\n"
+    f"- In backtests a simple 'no change' forecast beats every model for underemployment, so the latest value "
+    f"(**{sru_now:.1f}%**, {d_now:%b %Y}) is the safer reference than the modelled 2030 path. Reaching **30% by 2030** "
+    f"from there needs about **{(sru_now - 30) / years_left:.1f} pp a year**: a target for policy, not a forecast.")
 drv = read_json("drivers")["youth"]["ipi"]
 callout(f"<b>How to read NIMP vs current pace.</b> The model links youth unemployment to the industrial production index "
         f"(coefficient {drv['coef']:.3f}, 95% CI {drv['lo95']:.3f} to {drv['hi95']:.3f}, p = {drv['p']:.3f}). This is a "

@@ -19,12 +19,12 @@ _IDS = [
     # context
     "lfs_month", "lfs_month_sa", "lfs_qtr", "lfs_year",
     # drivers
-    "ipi", "economic_indicators", "formal_wages", "cpi_state", "cpi_headline",
+    "ipi", "economic_indicators", "formal_wages", "cpi_headline",
     "gdp_state_real_supply", "gdp_annual_real_supply",
     # cost of inaction
     "wages_education", "wages_skill",
-    # SDG 4 + constituency layers
-    "completion_school_state", "enrolment_school_district", "lfs_parlimen",
+    # constituency layer
+    "lfs_parlimen",
 ]
 # shortcut: full catalogue via the API (one call per dataset); fine for ~20 snapshots, switch to bulk parquet if a dataset exceeds API row limits.
 DATASETS: dict[str, str] = {i: API.format(id=i) for i in _IDS}

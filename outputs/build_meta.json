@@ -1,13 +1,10 @@
 {
- "git": "ba80354",
- "built_at": "2026-11-14T13:24:06",
- "seconds": 286,
+ "git": "5936a5f",
+ "built_at": "2026-11-23T13:06:40",
+ "seconds": 504,
  "data_max_dates": {
-  "completion_school_state": "2025-01-01",
   "cpi_headline": "2026-09-01",
-  "cpi_state": "2026-09-01",
   "economic_indicators": "2026-08-01",
-  "enrolment_school_district": "2025-06-30",
   "formal_wages": "2026-06-01",
   "gdp_annual_real_supply": "2025-01-01",
   "gdp_state_real_supply": "2025-01-01",

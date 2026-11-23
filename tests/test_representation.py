@@ -42,3 +42,16 @@ def test_seats_without_speech_are_no_data():
                       "text": ["Tuan A [Kota Bharu]: pengangguran belia"]})
     t = representation_table(s).set_index("parlimen")
     assert t.loc["Padang Besar", "quadrant"] == "no data"
+
+
+def test_executive_seats_from_attendance_list():
+    s = pd.DataFrame({"date": pd.to_datetime(["2025-03-01"]), "url": ["u"], "text": [
+        "1.  Menteri di Jabatan Perdana Menteri (Wilayah Persekutuan), Puan A \n(Segambut) "
+        "2.  Timbalan Menteri Ekonomi, Tuan B (Paya Besar) 3.  Tuan C (Kota Bharu) "
+        "4.  Timbalan Yang di-Pertua Dewan Rakyat, Puan D (Lanang)\nTuan C [Kota Bharu]: pengangguran belia"]})
+    from mjp.hansard.representation import executive_seats
+    exe = executive_seats(s)
+    assert exe == {"Segambut", "Paya Besar", "Lanang"}  # backbencher Kota Bharu not included
+    t = representation_table(s, executive=exe).set_index("parlimen")
+    assert t.loc["Paya Besar", "quadrant"] == "executive or chair role"
+    assert "voice" in t.loc["Kota Bharu", "quadrant"]

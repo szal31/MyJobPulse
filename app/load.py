@@ -111,8 +111,8 @@ def kpis(items: list[dict]) -> None:
     st.markdown(f"<div class='mjp-kpis'>{cells}</div>", unsafe_allow_html=True)
 
 
-def badge(light: str) -> str:
-    return f"<span class='mjp-badge' style='color:{LIGHT[light]}'>{LIGHT_TEXT[light]}</span>"
+def badge(light: str, prefix: str = "") -> str:
+    return f"<span class='mjp-badge' style='color:{LIGHT[light]}'>{prefix}{LIGHT_TEXT[light]}</span>"
 
 
 def callout(text_html: str, warn: bool = False) -> None:

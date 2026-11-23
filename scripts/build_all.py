@@ -26,7 +26,7 @@ from mjp.scenarios import SCENARIOS, driver_coefficients, run_scenario  # noqa: 
 
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 REQUIRED_OUTPUTS = [
-    PROC / "history.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
+    PROC / "history.parquet", PROC / "sru_groups.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
     OUT / "scoreboard_national.json", OUT / "scoreboard_state.json", OUT / "cost.json",
     OUT / "playbook.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
@@ -52,6 +52,10 @@ def history():
     sru = load_sru_quarterly("overall").rename("sru_rate")
     out = h.join(sru, how="outer").reset_index(names="date")
     out.to_parquet(PROC / "history.parquet")
+    # who is underemployed: SRU rate and persons (000) by age band and by sex, as published
+    g = pd.concat([_raw(f).rename(columns={dim: "group"}).assign(dim=dim)
+                   for f, dim in [("lfs_qtr_sru_age", "age"), ("lfs_qtr_sru_sex", "sex")]])
+    g[["date", "dim", "group", "variable", "sru"]].rename(columns={"sru": "value"}).to_parquet(PROC / "sru_groups.parquet")
 
 
 def national():
@@ -81,7 +85,7 @@ def states(res):
     X = build_features(p, load_drivers("Q")).dropna(subset=["u_rate_lag4"])
     shap_by_state(train(X), X).to_parquet(PROC / "shap.parquet")
     cluster_states(latest_state_features()).to_parquet(PROC / "clusters.parquet")
-    pb = playbook.build_playbook(sf, p)
+    pb = playbook.build_playbook(sf, p, nat)
     _dump(pb.to_dict("records"), "playbook.json")
 
 
@@ -96,7 +100,7 @@ def hansard(res):
     from mjp.hansard.attention import KEYWORDS, granger, lead_lag, monthly_mentions
     from mjp.hansard.corpus import build_sittings
     from mjp.hansard.promises import assess, extract_candidates
-    from mjp.hansard.representation import representation_table
+    from mjp.hansard.representation import executive_seats, representation_table
     parts = [pd.read_parquet(PROC / "hansard_hf.parquet")]
     if (PROC / "hansard_scraped.parquet").exists():
         parts.append(pd.read_parquet(PROC / "hansard_scraped.parquet"))
@@ -109,7 +113,7 @@ def hansard(res):
            "lead_lag": lead_lag(att, youth).to_dict("records"),
            "granger": granger(att, youth)}, "attention.json")
     recent = s[s.date >= "2023-01-01"]  # 15th Parliament; seat names match lfs_parlimen delineation
-    representation_table(recent, min_words=2000).to_parquet(PROC / "representation.parquet")
+    representation_table(recent, min_words=2000, executive=executive_seats(recent)).to_parquet(PROC / "representation.parquet")
     extract_candidates(recent).to_csv(PROC / "promise_candidates.csv", index=False)
     vf = ROOT / "data" / "manual" / "promises_verified.csv"
     if vf.exists():
