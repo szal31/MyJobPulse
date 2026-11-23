@@ -44,7 +44,23 @@ st.dataframe(tbl.rename(columns={"model": "Model", "mase": "MASE (lower is bette
              hide_index=True, use_container_width=True,
              column_config={"MASE (lower is better)": st.column_config.NumberColumn(format="%.3f"),
                             "MAPE %": st.column_config.NumberColumn(format="%.2f")})
-st.caption("Rolling-origin backtest. Honest result: no model beats a naive 'same as last value' forecast by a meaningful "
-           "margin, as expected for near-random-walk labour series. That is why ranges are calibrated from backtest "
-           "errors, and the policy story is carried by scenarios rather than point forecasts.")
+st.caption("Rolling-origin backtest; the regime dummies (COVID, 2025 rebase) are held at their value at each start "
+           "date, so no forecast knows in advance when COVID ends. Honest result: no model beats a naive 'same as last "
+           "value' forecast, as expected for near-random-walk labour series. SARIMAX is kept for the scenarios because "
+           "they need a model linked to industrial production; the policy story rests on scenarios, not point forecasts. "
+           "MASE is scaled by in-sample naive error, which includes COVID swings, so values well below 1 do not mean "
+           "'better than naive'.")
+
+st.markdown("## Can the ranges be trusted?")
+cov = read_json("coverage")["youth_monthly" if series == "youth" else "sru_quarterly"]
+c, n = cov["sarimax"], cov["naive"]
+kpis([{"label": "80% range contained the actual", "value": f"{c['coverage80']:.0%}", "tone": "pri",
+       "note": f"{c['n_points']} test forecasts, {c['n_origins']} start dates"},
+      {"label": "95% range contained the actual", "value": f"{c['coverage95']:.0%}", "note": "target: 95%"},
+      {"label": "Interval score (80%, lower is better)", "value": f"{c['winkler80']:.2f}",
+       "note": f"naive with the same method: {n['winkler80']:.2f}"}])
+st.caption(f"Out-of-sample test: forecasts started {c['first_origin'][:7]} to {c['last_origin'][:7]}, each with ranges "
+           "built only from errors already known at its start date. The ranges are built from past errors that "
+           "include COVID, so in calmer years they are cautious (wider than an exact 80%), not too narrow. "
+           "Interval score: Winkler / Gneiting & Raftery (2007).")
 footer()

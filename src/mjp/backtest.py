@@ -48,3 +48,28 @@ def widths_for(widths: pd.DataFrame, h: int) -> pd.DataFrame:
     base = widths.reindex(np.minimum(k, H)).to_numpy()
     scale = np.sqrt(np.maximum(k, H) / H)[:, None]
     return pd.DataFrame(base * scale, index=k, columns=["w80", "w95"])
+
+
+def sequential_coverage(errors: pd.DataFrame, h: int, step: int, min_past: int = 6) -> dict:
+    """Out-of-sample check of the 80/95% ranges: each origin's widths come only from errors already
+    observed at that origin (earlier origins whose whole horizon had passed), never from itself."""
+    origins = sorted(errors["origin"].unique())
+    gap = -(-h // step)  # origins whose targets are still in the future at the current origin
+    hits, wink, width = {80: [], 95: []}, [], []
+    for i in range(min_past + gap, len(origins)):
+        w = conformal_widths(errors[errors["origin"].isin(origins[:i - gap])])
+        cur = errors[errors["origin"] == origins[i]].join(w, on="k")
+        a = cur["err"].abs()
+        hits[80] += list(a <= cur["w80"])
+        hits[95] += list(a <= cur["w95"])
+        # Winkler interval score at 80% (Gneiting & Raftery 2007): width + 2/alpha x miss distance
+        wink += list(2 * cur["w80"] + (2 / 0.2) * (a - cur["w80"]).clip(lower=0))
+        width += list(2 * cur["w80"])
+    n = len(hits[80])
+    tested = origins[min_past + gap:]
+    return {"n_points": n, "n_origins": len(tested),
+            "first_origin": str(pd.Timestamp(tested[0]).date()) if tested else None,
+            "last_origin": str(pd.Timestamp(tested[-1]).date()) if tested else None,
+            "coverage80": float(np.mean(hits[80])) if n else None,
+            "coverage95": float(np.mean(hits[95])) if n else None,
+            "winkler80": float(np.mean(wink)) if n else None, "width80": float(np.mean(width)) if n else None}

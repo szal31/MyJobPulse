@@ -19,9 +19,9 @@ with tab2:
     st.markdown("""
 - **National forecasts:** naive, seasonal naive and drift benchmarks; ETS (damped); ARIMA (d=1, AIC); SARIMAX with
   industrial production, leading index and COVID / 2025-census dummies; equal-weight ensemble.
-- **Validation:** rolling-origin backtests (monthly: 72-month start, 12-month horizon; quarterly: 20/4); MASE headline.
+- **Validation:** rolling-origin backtests (monthly: 72-month start, 12-month horizon; quarterly: 20/4); MASE headline; regime dummies held at their start-date value (no foresight of when COVID ends).
 - **Uncertainty:** 80/95% ranges from each model's own backtest errors (split-conformal), widened by √(h/H) beyond the
-  tested horizon.
+  tested horizon. Checked out of sample: every 2024–26 test outcome fell inside the 80% range, so the ranges are cautious rather than too narrow.
 - **State model:** LightGBM pooled over 16 states × 39 quarters with lagged unemployment, manufacturing share (previous
   year, as published) and drivers; exact TreeSHAP explanations; k-means risk profiles; reconciled to the national forecast.
 - **Scenarios:** industrial production at 3.1%/yr (current), 6.5%/yr (NIMP 2030 target for manufacturing value added, applied to the production index as a proxy), −5% shock in 2027; TVET push illustrative.
@@ -31,7 +31,7 @@ with tab2:
 """)
 with tab3:
     st.markdown("""
-- No model meaningfully beats naive on these series; forecasts are shown as ranges and scenarios.
+- No model beats naive on these series; SARIMAX is used for scenarios only because they need a link to industrial production. Forecasts are shown as ranges and scenarios.
 - State series are all-ages unemployment; no official youth or underemployment series by state is published quarterly.
 - Scenario effects rely on historical driver relationships; the TVET effect is assumed, not estimated.
 - The wage penalty uses constant 2025 wages and an all-ages skilled median, so it leans high for younger workers; penalty estimates are associations, not causal effects.

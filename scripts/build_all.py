@@ -19,6 +19,7 @@ import pandas as pd  # noqa: E402
 from mjp import cost, playbook  # noqa: E402
 from mjp.datasets import download_all, snapshot_manifest  # noqa: E402
 from mjp.explain import cluster_states, latest_state_features, shap_by_state  # noqa: E402
+from mjp.backtest import MONTHLY, QUARTERLY, rolling_errors, sequential_coverage  # noqa: E402
 from mjp.forecast_stats import fit_forecast, scoreboard  # noqa: E402
 from mjp.ml_state import build_features, reconcile, state_scoreboard, train  # noqa: E402
 from mjp.prep import _raw, load_drivers, load_sru_quarterly, load_state_panel, load_youth_monthly  # noqa: E402
@@ -28,7 +29,7 @@ PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 REQUIRED_OUTPUTS = [
     PROC / "history.parquet", PROC / "sru_groups.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
-    OUT / "scoreboard_national.json", OUT / "scoreboard_state.json", OUT / "cost.json",
+    OUT / "scoreboard_national.json", OUT / "coverage.json", OUT / "scoreboard_state.json", OUT / "cost.json",
     OUT / "playbook.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
 ]
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
@@ -62,6 +63,11 @@ def national():
     _dump({"youth_monthly": scoreboard(load_youth_monthly(), MODELS, "monthly").to_dict("records"),
            "sru_quarterly": scoreboard(load_sru_quarterly("overall"), MODELS, "quarterly").to_dict("records")},
           "scoreboard_national.json")
+    cov = {}
+    for key, y, cfg in [("youth_monthly", load_youth_monthly(), MONTHLY), ("sru_quarterly", load_sru_quarterly("overall"), QUARTERLY)]:
+        cov[key] = {m: sequential_coverage(rolling_errors(y, lambda tr, h, m=m: fit_forecast(tr, m, h)["mean"].values, **cfg),
+                                           cfg["h"], cfg["step"]) for m in ["sarimax", "naive"]}
+    _dump(cov, "coverage.json")
 
 
 def scenarios() -> dict:

@@ -1,0 +1,46 @@
+{
+ "youth_monthly": {
+  "sarimax": {
+   "n_points": 60,
+   "n_origins": 5,
+   "first_origin": "2024-06-01",
+   "last_origin": "2025-06-01",
+   "coverage80": 1.0,
+   "coverage95": 1.0,
+   "winkler80": 2.208469640066943,
+   "width80": 2.208469640066943
+  },
+  "naive": {
+   "n_points": 60,
+   "n_origins": 5,
+   "first_origin": "2024-06-01",
+   "last_origin": "2025-06-01",
+   "coverage80": 1.0,
+   "coverage95": 1.0,
+   "winkler80": 2.0599999999999996,
+   "width80": 2.0599999999999996
+  }
+ },
+ "sru_quarterly": {
+  "sarimax": {
+   "n_points": 24,
+   "n_origins": 6,
+   "first_origin": "2024-04-01",
+   "last_origin": "2025-07-01",
+   "coverage80": 1.0,
+   "coverage95": 1.0,
+   "winkler80": 2.1232040806473713,
+   "width80": 2.1232040806473713
+  },
+  "naive": {
+   "n_points": 24,
+   "n_origins": 6,
+   "first_origin": "2024-04-01",
+   "last_origin": "2025-07-01",
+   "coverage80": 1.0,
+   "coverage95": 1.0,
+   "winkler80": 1.6433333333333302,
+   "width80": 1.6433333333333302
+  }
+ }
+}

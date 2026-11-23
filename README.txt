@@ -52,7 +52,8 @@ DATA
   Snapshot list with dates: data/raw/MANIFEST.csv
 
 LIMITATIONS AND ASSUMPTIONS
-  - No model meaningfully beats a naive forecast on these series; results are shown as
+  - No model beats a naive forecast on these series (backtests hold the COVID dummy at its
+    start-date value); results are shown as
     calibrated ranges and scenarios rather than precise predictions.
   - State figures are all-ages unemployment (no official quarterly youth series by state).
   - Scenario effects come from historical relationships with industrial production.

@@ -140,8 +140,11 @@ def _driver_exog(y: pd.Series, h: int, exog_hist=None, exog_future=None):
                 fut[c] = s.iloc[-1] + slope * k
             exog_future = fut
         exog_hist = hist if exog_hist is None else exog_hist
-    xh = pd.concat([exog_hist.reindex(y.index), break_dummies(y.index)], axis=1)
-    xf = pd.concat([exog_future.reindex(fut_idx)[DRIVERS], break_dummies(fut_idx)], axis=1)
+    bd = break_dummies(y.index)
+    xh = pd.concat([exog_hist.reindex(y.index), bd], axis=1)
+    # real time: at the origin nobody knows when a regime (e.g. COVID) ends, so dummies keep their last value
+    held = pd.DataFrame([bd.iloc[-1].to_numpy()] * len(fut_idx), index=fut_idx, columns=bd.columns)
+    xf = pd.concat([exog_future.reindex(fut_idx)[DRIVERS], held], axis=1)
     xh = xh.loc[:, xh.std() > 0]  # constant dummies (e.g. no 2025 in a short backtest window) break SARIMAX
     return xh, xf[xh.columns]
 
