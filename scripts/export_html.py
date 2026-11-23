@@ -77,7 +77,7 @@ def export(out_dir: Path) -> Path:
     # 3 State risk
     pb = pd.DataFrame(_j("playbook"))
     tiles = "".join(f"<div class='tile' style='border-color:{LIGHT[r.light]}'><b>{r.state}</b><br>{html.escape(r.reason)}"
-                    f"<br>Structural: {r.structural} national ({r.level_ratio:.2f}×)</div>"
+                    f"<br>Structural: {dict(high='chronically high', above='above national', below='below national')[r.structural]} ({r.level_ratio:.2f}× national)</div>"
                     for r in pb.itertuples())
     parts.append(_section("state-risk", "State risk (all-ages unemployment)", f"<div class='tiles'>{tiles}</div>"))
 
