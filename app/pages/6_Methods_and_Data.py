@@ -24,8 +24,8 @@ with tab2:
   tested horizon.
 - **State model:** LightGBM pooled over 16 states × 39 quarters with lagged unemployment, manufacturing share (previous
   year, as published) and drivers; exact TreeSHAP explanations; k-means risk profiles; reconciled to the national forecast.
-- **Scenarios:** industrial production at 3.1%/yr (current), 8%/yr (NIMP 2030), −5% shock in 2027; TVET push illustrative.
-- **Wages lost:** underemployed workers × share of the skilled vs semi-skilled median wage gap × 12 (25 / 50 / 100%).
+- **Scenarios:** industrial production at 3.1%/yr (current), 6.5%/yr (NIMP 2030 target for manufacturing value added, applied to the production index as a proxy), −5% shock in 2027; TVET push illustrative.
+- **Wage penalty:** underemployed workers × skilled-job median wage × published Malaysian over-education penalty (5 / 10 / 17%: IZA World of Labor 2020; Zakariya 2014) × 12. A private wage penalty, not lost GDP.
 - **Parliament:** keyword rates, lead/lag correlation, Granger tests; constituency speaker parsing; numeric commitment
   extraction with manual verification.
 """)
@@ -34,7 +34,7 @@ with tab3:
 - No model meaningfully beats naive on these series; forecasts are shown as ranges and scenarios.
 - State series are all-ages unemployment; no official youth or underemployment series by state is published quarterly.
 - Scenario effects rely on historical driver relationships; the TVET effect is assumed, not estimated.
-- Wages lost use constant 2025 wages and an assumed share of the wage gap.
+- The wage penalty uses constant 2025 wages and an all-ages skilled median, so it leans high for younger workers; penalty estimates are associations, not causal effects.
 - Hansard keyword counts miss paraphrases; speaker parsing matches most but not all seats.
 """)
 footer()

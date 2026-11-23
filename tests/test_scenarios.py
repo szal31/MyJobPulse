@@ -8,16 +8,16 @@ from mjp.scenarios import SCENARIOS, driver_path, run_scenario
 def test_registry():
     assert set(SCENARIOS) == {"baseline", "nimp", "downturn", "tvet_push"}
     assert SCENARIOS["tvet_push"]["illustrative"] is True
-    assert SCENARIOS["baseline"]["mfg_growth"] == 0.031 and SCENARIOS["nimp"]["mfg_growth"] == 0.08
+    assert SCENARIOS["baseline"]["mfg_growth"] == 0.031 and SCENARIOS["nimp"]["mfg_growth"] == 0.065
 
 
-def test_nimp_path_compounds_8pct():
+def test_nimp_path_compounds_official_rate():
     hist = load_drivers("M")
     last = hist["ipi"].dropna().index[-1]
     base = hist.loc[last, "ipi"]
     p = driver_path("nimp", hist)
     t = last + pd.DateOffset(years=4)
-    assert p.loc[t, "ipi"] == pytest.approx(base * 1.08 ** 4, rel=1e-3)
+    assert p.loc[t, "ipi"] == pytest.approx(base * 1.065 ** 4, rel=1e-3)
     assert p.index.max() == pd.Timestamp("2030-12-01")
     assert p[["ipi", "leading_index", "real_wage", "cpi"]].loc["2027-01-01":].notna().all().all()
 

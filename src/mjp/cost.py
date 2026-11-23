@@ -1,4 +1,8 @@
-"""Cost of inaction: wages forgone by skill-related underemployment, in RM per year."""
+"""Wage penalty of skill-related underemployment, in RM per year.
+
+What underemployed tertiary-educated workers earn less than matched peers with the same qualifications,
+using published Malaysian over-education wage penalties. A private wage penalty, not lost GDP: Malaysia
+does not create enough skilled jobs for everyone to move up (BNM; World Bank MEM Apr 2026)."""
 from __future__ import annotations
 
 import numpy as np
@@ -6,16 +10,15 @@ import pandas as pd
 
 from .prep import _raw
 
-# Share of the skilled-vs-semi-skilled median wage gap counted as forgone.
-# Assumption (stated in report): underemployed graduates earn somewhat above the semi-skilled median,
-# so the full gap is an upper bound.
-GAP_SHARES = (0.25, 0.5, 1.0)
+# Low: ~6% from panel studies controlling for ability (IZA World of Labor 2020); mid: 9-11% for Malaysia;
+# high: 14-17% when the job is unrelated to the field of study (Zakariya 2014, Jurnal Ekonomi Malaysia).
+PENALTIES = (0.05, 0.10, 0.17)
 
 
-def annual_cost(underemployed: float, wage_grad: float, wage_semi: float) -> float:
-    if wage_grad < wage_semi:
-        raise ValueError("graduate-level wage below semi-skilled wage")
-    return underemployed * (wage_grad - wage_semi) * 12
+def annual_cost(underemployed: float, matched_wage: float, penalty: float) -> float:
+    if not 0 <= penalty < 1:
+        raise ValueError("penalty must be a share between 0 and 1")
+    return underemployed * matched_wage * penalty * 12
 
 
 def wage_gap() -> dict:
@@ -45,7 +48,7 @@ def cost_path(sru_fc: pd.DataFrame) -> pd.DataFrame:
     grp = persons.groupby(persons.index.year)
     yearly = grp.mean()
     out = pd.DataFrame({"year": yearly.index, "quarters": grp.size().values, "persons_mn": yearly.values / 1e6})
-    for name, share in zip(["rm_low_bn", "rm_mid_bn", "rm_high_bn"], GAP_SHARES):
-        out[name] = [annual_cost(p, g["semi_skilled"] + share * (g["skilled"] - g["semi_skilled"]),
-                                 g["semi_skilled"]) / 1e9 for p in yearly.values]
+    # matched wage = skilled-job median (all ages): leans high for younger underemployed workers
+    for name, pen in zip(["rm_low_bn", "rm_mid_bn", "rm_high_bn"], PENALTIES):
+        out[name] = [annual_cost(p, g["skilled"], pen) / 1e9 for p in yearly.values]
     return out.reset_index(drop=True)

@@ -38,7 +38,7 @@ for col, d, title in [(c1, y, "Youth unemployment in 2030"), (c2, u, "Skill-rela
         st.plotly_chart(style(fig, 340, "%"), use_container_width=True)
 st.caption("* TVET push is illustrative. Error bars show 80% ranges calibrated from backtest errors.")
 
-st.markdown("## Wages lost to underemployment")
+st.markdown("## Wage penalty of underemployment")
 fig = go.Figure()
 for n in chosen:
     c = pd.DataFrame(cost["by_scenario"][n]).query("quarters == 4")  # full years only

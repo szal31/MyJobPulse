@@ -1,16 +1,16 @@
 import pandas as pd
 import pytest
 
-from mjp.cost import GAP_SHARES, annual_cost, cost_path, wage_gap
+from mjp.cost import PENALTIES, annual_cost, cost_path, wage_gap
 
 
 def test_annual_cost_known():
-    assert annual_cost(1_000, 4_000, 2_500) == 18_000_000
+    assert annual_cost(1_000, 5_000, 0.10) == pytest.approx(6_000_000)
 
 
-def test_annual_cost_rejects_negative_gap():
+def test_annual_cost_rejects_bad_penalty():
     with pytest.raises(ValueError):
-        annual_cost(1_000, 2_000, 2_500)
+        annual_cost(1_000, 5_000, 1.5)
 
 
 def test_wage_gap_2025():
@@ -25,7 +25,7 @@ def test_cost_path_ordered_and_annual():
     c = cost_path(sru)
     assert list(c.columns) == ["year", "quarters", "persons_mn", "rm_low_bn", "rm_mid_bn", "rm_high_bn"]
     assert (c.rm_low_bn <= c.rm_mid_bn).all() and (c.rm_mid_bn <= c.rm_high_bn).all()
-    assert c.year.max() == 2030 and GAP_SHARES == (0.25, 0.5, 1.0)
+    assert c.year.max() == 2030 and PENALTIES == (0.05, 0.10, 0.17)
 
 
 def test_cost_path_reports_quarters():

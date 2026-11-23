@@ -91,7 +91,7 @@ def states(res):
 
 def cost_outputs(res):
     _dump(driver_coefficients(), "drivers.json")
-    _dump({"wage_gap": cost.wage_gap(), "gap_shares": cost.GAP_SHARES,
+    _dump({"wage_gap": cost.wage_gap(), "penalties": cost.PENALTIES,
            "by_scenario": {n: cost.cost_path(r["sru"]).to_dict("records") for n, r in res.items()}},
           "cost.json")
 

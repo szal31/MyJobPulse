@@ -4,7 +4,7 @@ MDIT 2026 Datathon (SDG 8.5 / 8.6 / 4.4, with SDG 9 drivers and SDG 16 Parliamen
 
 WHAT IT IS
   An interactive dashboard that forecasts youth unemployment (15-24) and skill-related
-  underemployment to 2030 under four scenarios, prices the wages lost to underemployment,
+  underemployment to 2030 under four scenarios, prices the wage penalty of underemployment,
   flags states at risk with existing government programmes, and compares Parliament's
   attention (Hansard) with the data.
 
@@ -58,7 +58,8 @@ LIMITATIONS AND ASSUMPTIONS
   - Scenario effects come from historical relationships with industrial production.
     The TVET scenario is illustrative (assumed -0.5 pp/yr), not estimated.
   - Cost of inaction uses constant 2025 wages and assumes underemployed workers forgo
-    25% / 50% / 100% of the skilled vs semi-skilled median wage gap.
+    a published 5% / 10% / 17% over-education wage penalty on the skilled-job median wage
+    (a private wage penalty, not lost GDP).
   - Official youth data end Jun 2026; underemployment and state data end 2026 Q3.
   - Hansard keyword counts miss paraphrases; not every MP's seat is parsed.
   - Budget 2026/2027 programme details are taken from news reports; the RM2,500 graduate

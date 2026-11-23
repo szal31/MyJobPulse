@@ -53,7 +53,7 @@ def export(out_dir: Path) -> Path:
     kpi = (f"<div class='kpis'><div><b>{hd.iloc[-1]:.1f}%</b>headline unemployment</div>"
            f"<div><b>{y.iloc[-1]:.1f}%</b>youth (15–24) unemployment</div>"
            f"<div><b>{sr.iloc[-1]:.1f}%</b>skill-related underemployment</div>"
-           f"<div><b>RM{now['rm_mid_bn']:.0f}bn/yr</b>wages lost (range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn)</div></div>")
+           f"<div><b>RM{now['rm_mid_bn']:.0f}bn/yr</b>wage penalty (range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn)</div></div>")
     f = go.Figure([go.Scatter(x=hd.index, y=hd, name="All ages"), go.Scatter(x=y.index, y=y, name="Youth 15–24")])
     parts.append(_section("hidden-gap", "The hidden gap", kpi + _fig(style(f, 340, "%"))))
 

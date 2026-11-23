@@ -20,8 +20,8 @@ kpis([
      "note": f"{youth_gap_pp(youth, head):+.1f} pp vs headline, same month · {youth.index[-1]:%b %Y}"},
     {"label": "Skill-related underemployment", "value": f"{sru.iloc[-1]:.1f}%", "tone": "pri",
      "note": f"Tertiary-educated in semi/low-skilled jobs · {sru.index[-1]:%b %Y}"},
-    {"label": f"Wages lost to underemployment, {now['year']}", "value": f"RM{now['rm_mid_bn']:.0f}bn", "tone": "hl",
-     "note": f"Per year · range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn"},
+    {"label": f"Wage penalty of underemployment, {now['year']}", "value": f"RM{now['rm_mid_bn']:.0f}bn", "tone": "hl",
+     "note": f"Per year, paid by workers · range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn (5–17% penalty)"},
 ])
 
 left, right = st.columns(2, gap="large")

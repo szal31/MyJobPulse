@@ -13,7 +13,8 @@ from .prep import load_drivers, load_sru_quarterly, load_state_panel, load_youth
 END = "2030-12-01"
 SCENARIOS: dict[str, dict] = {
     "baseline": {"label": "Current pace", "mfg_growth": 0.031, "illustrative": False},
-    "nimp": {"label": "NIMP 2030 pace", "mfg_growth": 0.08, "illustrative": False},
+    "nimp": {"label": "NIMP 2030 target pace", "mfg_growth": 0.065,  # MIDA: manufacturing value added +6.5%/yr to 2030
+              "illustrative": False},
     "downturn": {"label": "Downturn (IPI −5% y/y through 2027, no catch-up)", "mfg_growth": 0.031,
                  "shock": (-0.05, "2027-01-01", "2027-12-01"), "illustrative": False},
     "tvet_push": {"label": "TVET push (illustrative)", "mfg_growth": 0.031,
