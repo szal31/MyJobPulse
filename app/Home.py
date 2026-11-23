@@ -5,7 +5,7 @@ from gap import youth_gap_pp
 from load import ACCENT, MUTED, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
 
 page("The hidden gap", "MyJobPulse · Overview",
-     "Malaysia's unemployment is at a decade low, yet 1 in 10 young people is unemployed and about 1 in 3 "
+     "Malaysia's unemployment is at a decade low, yet 1 in 10 young people in the labour force is unemployed and about 1 in 3 "
      "tertiary-educated workers is in a job below their skill level. MyJobPulse forecasts both to 2030, prices the "
      "gap, flags states at risk and checks what Parliament is doing about it.")
 
@@ -30,6 +30,8 @@ with left:
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=head.index, y=head.values, name="All ages", line=dict(color=MUTED, width=2, dash="dot")))
     fig.add_trace(go.Scatter(x=youth.index, y=youth.values, name="Youth 15–24", line=dict(color=PRIMARY, width=2.6)))
+    y30 = h["youth_15_30_u_rate"].dropna()
+    fig.add_trace(go.Scatter(x=y30.index, y=y30.values, name="Youth 15–30", line=dict(color=PRIMARY, width=1.8, dash="dash")))
     st.plotly_chart(style(fig, 340, "% of labour force"), use_container_width=True)
     st.caption("Monthly unemployment rate, DOSM Labour Force Survey.")
 with right:
@@ -62,7 +64,8 @@ with left:
     fig.update_layout(barmode="group")
     st.plotly_chart(style(fig, 320, "Underemployed persons ('000)"), use_container_width=True)
     st.caption("By age band, yearly average. Snapshots of age bands, not the same people followed over time. "
-               "Youth is officially 15–30 since Jan 2026 (youth organisations), but DOSM youth figures use 15–24.")
+               "Youth is officially 15–30 since Jan 2026 (youth organisations); DOSM publishes youth unemployment for both 15–24 "
+               "and 15–30 (left chart).")
 with right:
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=sex.index, y=sex["female"], name="Women", line=dict(color=ACCENT, width=2.6)))

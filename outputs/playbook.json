@@ -8,7 +8,8 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Kedah",
@@ -19,12 +20,13 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Kelantan",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.7% (2017-25 excl. 2020-21: p75 4.2%, p90 4.8%): within normal range",
+  "reason": "next-4-quarter forecast 3.8% (2017-25 excl. 2020-21: p75 4.2%, p90 4.8%): within normal range",
   "structural": "high",
   "level_ratio": 1.37,
   "federal": [
@@ -34,18 +36,20 @@
   "state_levers": [
    "State investment agency: target higher-skill investment and industrial parks",
    "Anchor-employer partnerships with the state skills centre"
-  ]
+  ],
+  "territory": false
  },
  {
   "state": "Kuala Lumpur",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.1% (2017-25 excl. 2020-21: p75 3.3%, p90 3.5%): within normal range",
+  "reason": "next-4-quarter forecast 3.2% (2017-25 excl. 2020-21: p75 3.3%, p90 3.5%): within normal range",
   "structural": "above",
   "level_ratio": 1.13,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": true
  },
  {
   "state": "Labuan",
@@ -58,20 +62,21 @@
    "Higher-education and TVET course mix matched to the state's job openings"
   ],
   "state_levers": [
-   "State investment agency: target higher-skill investment and industrial parks",
-   "Anchor-employer partnerships with the state skills centre"
-  ]
+   "Federal Territories Department and local authority: investment promotion and local skills partnerships with anchor employers"
+  ],
+  "territory": true
  },
  {
   "state": "Melaka",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.1% (2017-25 excl. 2020-21: p75 2.6%, p90 2.8%): within normal range",
+  "reason": "next-4-quarter forecast 2.2% (2017-25 excl. 2020-21: p75 2.6%, p90 2.8%): within normal range",
   "structural": "below",
   "level_ratio": 0.68,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Negeri Sembilan",
@@ -82,7 +87,8 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Pahang",
@@ -93,18 +99,20 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Perak",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.1% (2017-25 excl. 2020-21: p75 4.0%, p90 4.3%): within normal range",
+  "reason": "next-4-quarter forecast 3.2% (2017-25 excl. 2020-21: p75 4.0%, p90 4.3%): within normal range",
   "structural": "above",
   "level_ratio": 1.15,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Perlis",
@@ -115,7 +123,8 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Pulau Pinang",
@@ -128,7 +137,8 @@
   ],
   "state_levers": [
    "State skills development centre: course intake aligned to current vacancies"
-  ]
+  ],
+  "territory": false
  },
  {
   "state": "Putrajaya",
@@ -139,12 +149,13 @@
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": true
  },
  {
   "state": "Sabah",
   "light": "green",
-  "reason": "next-4-quarter forecast 5.4% (2017-25 excl. 2020-21: p75 7.5%, p90 8.1%): within normal range",
+  "reason": "next-4-quarter forecast 5.5% (2017-25 excl. 2020-21: p75 7.5%, p90 8.1%): within normal range",
   "structural": "high",
   "level_ratio": 1.92,
   "federal": [
@@ -154,39 +165,43 @@
   "state_levers": [
    "State investment agency: target higher-skill investment and industrial parks",
    "Anchor-employer partnerships with the state skills centre"
-  ]
+  ],
+  "territory": false
  },
  {
   "state": "Sarawak",
   "light": "green",
-  "reason": "next-4-quarter forecast 3.0% (2017-25 excl. 2020-21: p75 3.4%, p90 3.4%): within normal range",
+  "reason": "next-4-quarter forecast 3.1% (2017-25 excl. 2020-21: p75 3.4%, p90 3.4%): within normal range",
   "structural": "above",
   "level_ratio": 1.08,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Selangor",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.1% (2017-25 excl. 2020-21: p75 2.9%, p90 3.2%): within normal range",
+  "reason": "next-4-quarter forecast 2.2% (2017-25 excl. 2020-21: p75 2.9%, p90 3.2%): within normal range",
   "structural": "below",
   "level_ratio": 0.69,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  },
  {
   "state": "Terengganu",
   "light": "green",
-  "reason": "next-4-quarter forecast 2.8% (2017-25 excl. 2020-21: p75 4.5%, p90 5.2%): within normal range",
+  "reason": "next-4-quarter forecast 2.9% (2017-25 excl. 2020-21: p75 4.5%, p90 5.2%): within normal range",
   "structural": "below",
   "level_ratio": 1.0,
   "federal": [
    "Monitor quarterly"
   ],
-  "state_levers": []
+  "state_levers": [],
+  "territory": false
  }
 ]

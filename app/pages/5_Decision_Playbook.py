@@ -80,7 +80,7 @@ for i, r in enumerate(pb.itertuples()):
             f"<div class='meta'>{html.escape(r.reason)}</div>"
             f"<div class='meta' style='margin-top:.5rem'><b>Federal levers</b></div>"
             f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.federal)}</ul>"
-            f"<div class='meta' style='margin-top:.4rem'><b>State levers</b></div>"
+            f"<div class='meta' style='margin-top:.4rem'><b>{'Federal Territory levers' if r.territory else 'State levers'}</b></div>"
             f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.state_levers)}</ul></div>", unsafe_allow_html=True)
 st.caption("Programmes from the Budget 2026 and Budget 2027 speeches as reported in the news; the RM2,500 graduate "
            "starting wage is a proposal that needs a wage-law amendment. Verify against MOF documents.")

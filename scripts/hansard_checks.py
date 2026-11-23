@@ -42,16 +42,20 @@ def sittings() -> pd.DataFrame:
 def attention_model(s: pd.DataFrame, lag: int) -> dict:
     m = s.assign(month=s.date.dt.to_period("M").dt.to_timestamp()).groupby("month")[["hits", "words"]].sum()
     youth = load_youth_monthly()
-    known = youth.shift(lag, freq="MS").rename("youth_known")  # rate MPs could see at the time
+    known = youth.shift(lag, freq="MS").rename("youth_known")  # DOSM monthly LFS appears about 2 months after the month
     d = m.join(known, how="inner")
     d["budget"] = d.index.month.isin([10, 11]).astype(int)
     d["covid"] = ((d.index >= "2020-03-01") & (d.index <= "2021-12-31")).astype(int)
-    X = sm.add_constant(d[["youth_known", "budget", "covid"]])
-    # negative binomial with words as exposure; HAC errors for leftover serial correlation between sittings
-    r = sm.GLM(d["hits"], X, family=sm.families.NegativeBinomial(alpha=1.0),
-               offset=np.log(d["words"])).fit(cov_type="HAC", cov_kwds={"maxlags": 3})
+    # Parliament terms (13th is the base): sitting patterns and government/opposition line-ups differ
+    d["parl14"] = ((d.index >= "2018-07-01") & (d.index <= "2022-10-31")).astype(int)
+    d["parl15"] = (d.index >= "2022-12-01").astype(int)
+    X = sm.add_constant(d[["youth_known", "budget", "covid", "parl14", "parl15"]])
+    # negative binomial with the dispersion estimated by maximum likelihood and words spoken as exposure;
+    # HAC errors for leftover serial correlation between sitting months
+    r = sm.NegativeBinomial(d["hits"], X, exposure=d["words"]).fit(disp=False, maxiter=200, cov_type="HAC",
+                                                                    cov_kwds={"maxlags": 3})
     ci = r.conf_int().loc["youth_known"]
-    return {"lag_months": lag, "n_sitting_months": int(len(d)),
+    return {"lag_months": lag, "n_sitting_months": int(len(d)), "alpha": float(r.params["alpha"]),
             "youth_irr": float(np.exp(r.params["youth_known"])), "youth_irr_lo95": float(np.exp(ci[0])),
             "youth_irr_hi95": float(np.exp(ci[1])), "youth_p": float(r.pvalues["youth_known"]),
             "budget_irr": float(np.exp(r.params["budget"])), "budget_p": float(r.pvalues["budget"])}
@@ -97,7 +101,7 @@ def breakdown(rep: pd.DataFrame, blocs: pd.DataFrame) -> dict:
 
 def main() -> dict:
     s = sittings()
-    res = {"attention": [attention_model(s, lag) for lag in (5, 2)]}
+    res = {"attention": [attention_model(s, lag) for lag in (2, 3)]}
     sample, n_hits = keyword_sample(s)
     MANUAL.mkdir(exist_ok=True)
     f = MANUAL / "keyword_precision_sample.csv"

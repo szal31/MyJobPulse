@@ -47,12 +47,15 @@ for n in chosen:
 st.plotly_chart(style(fig, 320, "RM bn per year (central estimate)"), use_container_width=True)
 
 st.markdown("## Reading the result")
+rob = read_json("drivers")["robustness"]["youth"]
 h = read_parquet("history").set_index("date")["sru_rate"].dropna()
 sru_now, d_now = h.iloc[-1], h.index[-1]
 years_left = (pd.Timestamp("2030-12-31") - d_now).days / 365.25
 st.markdown(
-    "- Faster output growth probably lowers **youth unemployment**: the link keeps its size when the lockdown months "
-    "are removed, though the evidence weakens (p ≈ 0.09).\n"
+    f"- Faster output growth may lower **youth unemployment** slightly, but the evidence is weak (p = "
+    f"{rob['main']['p']:.2f}; p = {rob['lockdown_dummied']['p']:.2f} with every lockdown month removed). An earlier "
+    "version that also used the leading index showed a much stronger link, but the two drivers move together "
+    "(correlation 0.89), so that version was dropped.\n"
     "- For **underemployment** we find no measurable link to output growth. With 39 quarters this cannot rule an "
     "effect in or out, so growth alone cannot be relied on to fix the skills mismatch.\n"
     f"- In backtests a simple 'no change' forecast beats every model for underemployment, so the latest value "

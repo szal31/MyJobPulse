@@ -13,9 +13,10 @@ page("Parliament watch", "Accountability · SDG 16",
 r = read_parquet("representation")
 hn = r[r.quadrant == "high need · low voice"].sort_values("u_rate", ascending=False)
 g = att["granger"]
+hc = read_json("hansard_checks")["attention"][0]  # main spec: 2-month publication lag
 kpis([{"label": "Sittings analysed", "value": f"{att['n_sittings']}", "note": "2016–2026", "tone": "pri"},
       {"label": "Attention follows the trend?", "value": "No", "tone": "hl",
-       "note": f"Granger p = {g['youth_to_attention_p']:.2f} (needs < 0.05)"},
+       "note": f"count model p = {hc['youth_p']:.2f} (needs < 0.05)"},
       {"label": "High need, low voice seats", "value": f"{len(hn)}",
        "note": f"of {int((~r.quadrant.isin(['no data', 'executive or chair role'])).sum())} backbench seats with enough speech"}])
 
@@ -32,9 +33,14 @@ with tab1:
     fig.update_yaxes(title_text="Mentions per 100k words", secondary_y=False)
     fig.update_yaxes(title_text="Youth unemployment %", secondary_y=True, showgrid=False)
     st.plotly_chart(fig, use_container_width=True)
-    callout(f"<b>Finding.</b> Parliament's attention does <b>not</b> track the youth unemployment trend in either direction "
-            f"(Granger p = {g['attention_to_youth_p']:.2f} attention→youth, {g['youth_to_attention_p']:.2f} youth→attention). "
-            "Debate comes in bursts unrelated to how the problem is moving: an early-warning signal is missing.")
+    callout(f"<b>Finding.</b> Parliament's attention does <b>not</b> track youth unemployment. A count model on "
+            f"{hc['n_sitting_months']} sitting months (words spoken as exposure; youth rate as published about two months "
+            f"later; Budget-month, COVID and Parliament-term controls) finds no link (rate ratio {hc['youth_irr']:.2f} per "
+            f"point, p = {hc['youth_p']:.2f}), while Budget-debate months bring about "
+            f"{100 * (hc['budget_irr'] - 1):.0f}% more mentions (p = {hc['budget_p']:.2f}). Debate follows the budget "
+            f"calendar, not the data. Granger tests agree (p = {g['attention_to_youth_p']:.2f} and "
+            f"{g['youth_to_attention_p']:.2f}). With about 70 sitting months the test has limited power: no detectable "
+            "link, not proof of none.")
 with tab2:
     colors = {"high need · low voice": "#DC2626", "high need · high voice": PRIMARY,
               "low need · high voice": "#93C5FD", "low need · low voice": "#CBD5E1"}

@@ -25,6 +25,16 @@ STRUCTURAL_FEDERAL = ["Proposed RM2,500 starting wage for graduates and semi-ski
                       "wage-law amendment)", "Higher-education and TVET course mix matched to the state's job openings"]
 STRUCTURAL_STATE = ["State investment agency: target higher-skill investment and industrial parks",
                     "Anchor-employer partnerships with the state skills centre"]
+# Federal Territories have no state government: their local levers sit with the Federal Territories Department
+# and the local authority (DBKL, Perbadanan Putrajaya, Labuan Corporation)
+TERRITORIES = {"Kuala Lumpur", "Putrajaya", "Labuan"}
+TERRITORY = {
+    "red": ["Federal Territories Department and local authority: local job-matching drives and SME hiring support"],
+    "amber": ["Federal Territories Department and local authority: course intake aligned to current vacancies"],
+    "green": [],
+}
+STRUCTURAL_TERRITORY = ["Federal Territories Department and local authority: investment promotion and local skills "
+                        "partnerships with anchor employers"]
 PROGRAMMES = FEDERAL  # cyclical light -> federal levers (kept for callers)
 HIGH_RATIO, ABOVE_RATIO = 1.25, 1.0  # state rate / national rate, last 4 quarters
 
@@ -91,12 +101,15 @@ def build_playbook(state_fc: pd.DataFrame, panel: pd.DataFrame, national: pd.Ser
         hist = panel[panel.state == st].set_index("date")["u_rate"]
         light, reason = _light(hist, g["mean"])
         s_tier = lv.loc[st, "structural"]
-        fed, sta = list(FEDERAL[light]), list(STATE[light])
+        ft = st in TERRITORIES
+        fed, sta = list(FEDERAL[light]), list((TERRITORY if ft else STATE)[light])
         if s_tier == "high":
-            fed, sta = [x for x in fed if x != "Monitor quarterly"] + STRUCTURAL_FEDERAL, sta + STRUCTURAL_STATE
+            fed = [x for x in fed if x != "Monitor quarterly"] + STRUCTURAL_FEDERAL
+            sta = sta + (STRUCTURAL_TERRITORY if ft else STRUCTURAL_STATE)
         rows.append({"state": st, "light": light, "reason": reason, "structural": s_tier,
-                     "level_ratio": float(lv.loc[st, "level_ratio"]), "federal": fed, "state_levers": sta})
-    return pd.DataFrame(rows, columns=["state", "light", "reason", "structural", "level_ratio", "federal", "state_levers"])
+                     "level_ratio": float(lv.loc[st, "level_ratio"]), "federal": fed, "state_levers": sta, "territory": ft})
+    return pd.DataFrame(rows, columns=["state", "light", "reason", "structural", "level_ratio", "federal",
+                                       "state_levers", "territory"])
 
 
 def replay(panel: pd.DataFrame, start: str = "2019-01-01", min_quarters: int = 8) -> pd.DataFrame:

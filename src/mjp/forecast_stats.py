@@ -15,7 +15,8 @@ from functools import lru_cache
 from .backtest import MONTHLY, QUARTERLY, conformal_widths, rolling_backtest, rolling_errors, widths_for
 from .prep import load_drivers
 
-DRIVERS = ["ipi", "leading_index"]
+# leading index dropped: 0.89 correlated with IPI, wrong-signed, and it inflated the IPI coefficient ~3x
+DRIVERS = ["ipi"]
 Z80, Z95 = norm.ppf(0.9), norm.ppf(0.975)
 COLS = ["date", "mean", "lo80", "hi80", "lo95", "hi95"]
 

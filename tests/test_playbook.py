@@ -39,7 +39,7 @@ def test_playbook_every_state_has_action():
                        "state": list(sorted(p.state.unique())) * 4, "mean": 3.0})
     pb = build_playbook(fc, p, _nat())
     assert len(pb) == 16 and list(pb.columns) == ["state", "light", "reason", "structural", "level_ratio",
-                                                  "federal", "state_levers"]
+                                                  "federal", "state_levers", "territory"]
     assert pb.federal.map(len).min() >= 1
     assert set(PROGRAMMES) == {"red", "amber", "green"}
 
@@ -85,3 +85,13 @@ def test_replay_counts_states_without_future_data():
     assert r.loc[(pd.Timestamp("2019-10-01"), "perfect"), "red"] == 2
     assert r.loc[(pd.Timestamp("2019-10-01"), "naive"), "green"] == 2
     assert r.loc[(pd.Timestamp("2020-01-01"), "naive"), "red"] == 2
+
+
+def test_federal_territories_get_no_state_levers():
+    from mjp.prep import load_state_panel
+    p = load_state_panel()
+    fc = pd.DataFrame({"date": np.repeat(pd.date_range("2026-10-01", periods=4, freq="QS"), 16),
+                       "state": list(sorted(p.state.unique())) * 4, "mean": 9.0})
+    pb = build_playbook(fc, p, _nat()).set_index("state")
+    assert pb.loc["Labuan", "territory"] and not pb.loc["Sabah", "territory"]
+    assert all("Federal Territories" in a for a in pb.loc["Labuan", "state_levers"])

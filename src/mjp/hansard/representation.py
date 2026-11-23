@@ -13,13 +13,17 @@ from ..prep import _raw
 from .attention import count_hits
 from .corpus import normalise
 
+SPELLING = {"ipoh timur": "ipoh timor", "tanjong piai": "tanjung piai"}
 _SPEAKER = re.compile(r"^[^\n\[\]]{3,120}\[([^\]\n]{2,60})\]\s*:", re.M)
 
 
 def seat_names() -> dict[str, str]:
     """lower-case seat name -> canonical name, from lfs_parlimen ('P.001 Padang Besar' -> 'Padang Besar')."""
     seats = _raw("lfs_parlimen")["parlimen"].str.replace(r"^P\.\d+\s+", "", regex=True).unique()
-    return {s.lower(): s for s in seats}
+    names = {s.lower(): s for s in seats}
+    # Hansard spells these seats differently from DOSM (found by fuzzy-matching unmatched speaker tags, 2023+)
+    names.update({k: names[v] for k, v in SPELLING.items() if v in names})
+    return names
 
 
 def parse_speakers(text: str) -> list[tuple[str, str]]:

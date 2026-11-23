@@ -23,14 +23,14 @@ from mjp.backtest import MONTHLY, QUARTERLY, rolling_errors, sequential_coverage
 from mjp.forecast_stats import fit_forecast, scoreboard  # noqa: E402
 from mjp.ml_state import build_features, reconcile, state_scoreboard, train  # noqa: E402
 from mjp.prep import _raw, load_drivers, load_sru_quarterly, load_state_panel, load_youth_monthly  # noqa: E402
-from mjp.scenarios import SCENARIOS, driver_coefficients, run_scenario  # noqa: E402
+from mjp.scenarios import SCENARIOS, driver_coefficients, driver_robustness, run_scenario  # noqa: E402
 
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 REQUIRED_OUTPUTS = [
     PROC / "history.parquet", PROC / "sru_groups.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
     OUT / "scoreboard_national.json", OUT / "coverage.json", OUT / "scoreboard_state.json", OUT / "cost.json",
-    OUT / "playbook.json", OUT / "warning_replay.json", OUT / "drivers.json", OUT / "attention.json", OUT / "promises.json", OUT / "build_meta.json",
+    OUT / "playbook.json", OUT / "warning_replay.json", OUT / "drivers.json", OUT / "attention.json", OUT / "hansard_checks.json", OUT / "promises.json", OUT / "build_meta.json",
 ]
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
 
@@ -49,7 +49,8 @@ def _dump(obj, name):
 
 def history():
     lm = _raw("lfs_month").set_index("date")["u_rate"].rename("headline_u_rate")
-    h = pd.concat([lm, load_youth_monthly().rename("youth_u_rate")], axis=1, sort=True)
+    y30 = _raw("lfs_month_youth").set_index("date")["u_rate_15_30"].rename("youth_15_30_u_rate")
+    h = pd.concat([lm, load_youth_monthly().rename("youth_u_rate"), y30], axis=1, sort=True)
     sru = load_sru_quarterly("overall").rename("sru_rate")
     out = h.join(sru, how="outer").reset_index(names="date")
     out.to_parquet(PROC / "history.parquet")
@@ -97,7 +98,7 @@ def states(res):
 
 
 def cost_outputs(res):
-    _dump(driver_coefficients(), "drivers.json")
+    _dump({**driver_coefficients(), "robustness": driver_robustness()}, "drivers.json")
     _dump({"wage_gap": cost.wage_gap(), "penalties": cost.PENALTIES,
            "by_scenario": {n: cost.cost_path(r["sru"]).to_dict("records") for n, r in res.items()}},
           "cost.json")
@@ -129,6 +130,8 @@ def hansard(res):
         _dump({"status": "verified", "items": assess(v, fc).to_dict("records")}, "promises.json")
     else:
         _dump({"status": "pending verification", "items": []}, "promises.json")
+    import hansard_checks  # count model, keyword precision, flagged seats by bloc/region -> hansard_checks.json
+    hansard_checks.main()
 
 
 def main(download: bool = False, skip_hansard: bool = False) -> None:

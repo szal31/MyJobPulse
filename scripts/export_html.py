@@ -17,13 +17,17 @@ import plotly.io as pio
 ROOT = Path(__file__).resolve().parents[1]
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 sys.path.insert(0, str(ROOT / "app"))
-from load import LIGHT, SCEN_COLOR, scenario_labels, style  # noqa: E402
+from load import ACCENT, LIGHT, MUTED, PRIMARY, SCEN_COLOR, SHORT, scenario_labels, style  # noqa: E402
 
 _first = True
 
 
 def _fig(fig: go.Figure) -> str:
     global _first
+    # wider margins than the app: printed pages are narrower and clipped the y-axis labels
+    fig.update_layout(margin=dict(l=60, r=20, t=30, b=60))
+    fig.update_yaxes(automargin=True)
+    fig.update_xaxes(automargin=True)
     s = pio.to_html(fig, full_html=False, include_plotlyjs="inline" if _first else False,
                     config={"displaylogo": False})
     _first = False
@@ -54,7 +58,9 @@ def export(out_dir: Path) -> Path:
            f"<div><b>{y.iloc[-1]:.1f}%</b>youth (15–24) unemployment</div>"
            f"<div><b>{sr.iloc[-1]:.1f}%</b>skill-related underemployment</div>"
            f"<div><b>RM{now['rm_mid_bn']:.0f}bn/yr</b>wage penalty (range RM{now['rm_low_bn']:.0f}–{now['rm_high_bn']:.0f}bn)</div></div>")
-    f = go.Figure([go.Scatter(x=hd.index, y=hd, name="All ages"), go.Scatter(x=y.index, y=y, name="Youth 15–24")])
+    hd16 = hd[hd.index >= y.index[0]]
+    f = go.Figure([go.Scatter(x=hd16.index, y=hd16, name="All ages", line=dict(color=MUTED, dash="dot")),
+                   go.Scatter(x=y.index, y=y, name="Youth 15–24", line=dict(color=PRIMARY, width=2.4))])
     parts.append(_section("hidden-gap", "The hidden gap", kpi + _fig(style(f, 340, "%"))))
 
     # 2 Forecast: scenario dropdown via buttons
@@ -68,7 +74,7 @@ def export(out_dir: Path) -> Path:
         f.add_trace(go.Scatter(x=d.date, y=d["mean"], name=labels[n], line=dict(color=SCEN_COLOR[n], dash="dot"),
                                visible=n == "baseline"))
         traces.append(n)
-    f.add_trace(go.Scatter(x=y.index, y=y, name="Actual", line=dict(color="#1C1630")))
+    f.add_trace(go.Scatter(x=y.index, y=y, name="Actual", line=dict(color=PRIMARY)))
     buttons = [dict(label=labels[n], method="update",
                     args=[{"visible": [t == n for t in traces for _ in range(3)] + [True]}]) for n in traces]
     f.update_layout(updatemenus=[dict(buttons=buttons, x=0, y=1.15, xanchor="left")])
@@ -83,8 +89,8 @@ def export(out_dir: Path) -> Path:
 
     # 4 Scenario lab
     d = s[(s.date.dt.year == 2030)].groupby(["series", "scenario"])["mean"].mean().unstack(0)
-    f = go.Figure([go.Bar(x=[labels[i] for i in d.index], y=d["youth"], name="Youth unemployment 2030"),
-                   go.Bar(x=[labels[i] for i in d.index], y=d["sru"], name="Underemployment 2030")])
+    f = go.Figure([go.Bar(x=[SHORT[i] for i in d.index], y=d["youth"], name="Youth unemployment 2030", marker_color=PRIMARY),
+                   go.Bar(x=[SHORT[i] for i in d.index], y=d["sru"], name="Underemployment 2030", marker_color=ACCENT)])
     parts.append(_section("scenario-lab", "Scenario lab (2030)", _fig(style(f, 360, "%"))))
 
     # 5 Parliament
@@ -92,11 +98,16 @@ def export(out_dir: Path) -> Path:
     m = pd.DataFrame(att.get("monthly", []))
     body = ""
     if not m.empty:
-        f = go.Figure(go.Bar(x=pd.to_datetime(m.date), y=m.mentions_per_100k, name="Mentions per 100k words"))
+        f = go.Figure(go.Bar(x=pd.to_datetime(m.date), y=m.mentions_per_100k, name="Mentions per 100k words",
+                             marker_color=PRIMARY))
         body += _fig(style(f, 300, "per 100k words"))
     if "granger" in att:
         g = att["granger"]
-        body += f"<p>Granger p-values: attention→youth {g['attention_to_youth_p']:.2f}, youth→attention {g['youth_to_attention_p']:.2f}.</p>"
+        hc = _j("hansard_checks")["attention"][0]
+        body += (f"<p>Attention does not follow youth unemployment: count model on {hc['n_sitting_months']} sitting months, "
+                 f"rate ratio {hc['youth_irr']:.2f} per point (p = {hc['youth_p']:.2f}); Budget-debate months "
+                 f"+{100 * (hc['budget_irr'] - 1):.0f}% mentions (p = {hc['budget_p']:.2f}). Granger tests agree: "
+                 f"p = {g['attention_to_youth_p']:.2f} and {g['youth_to_attention_p']:.2f}.</p>")
     rp = PROC / "representation.parquet"
     if rp.exists():
         r = pd.read_parquet(rp)
@@ -109,7 +120,7 @@ def export(out_dir: Path) -> Path:
                    f"<td>{html.escape('; '.join(r.federal))}</td><td>{html.escape('; '.join(r.state_levers))}</td></tr>"
                    for r in pb.itertuples())
     parts.append(_section("playbook", "Decision playbook", "<table><tr><th>State</th><th>Cyclical</th><th>Structural</th>"
-                          f"<th>Federal levers</th><th>State levers</th></tr>{rows}</table>"))
+                          f"<th>Federal levers</th><th>State / Federal Territory levers</th></tr>{rows}</table>"))
 
     # 7 Methods
     sb = _j("scoreboard_national")
@@ -122,7 +133,11 @@ def export(out_dir: Path) -> Path:
            ".kpis div{background:#F1EDF7;padding:12px;border-radius:6px}.kpis b{display:block;font-size:1.6em}"
            ".tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}"
            ".tile{border-left:6px solid;padding:8px;background:#fff;font-size:.9em}"
-           "table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #E6E1EF;padding:6px;text-align:left}")
+           "table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #E6E1EF;padding:6px;text-align:left}"
+           # print (Dashboard.pdf): keep chart colours, never split a chart or tile across pages
+           "*{-webkit-print-color-adjust:exact;print-color-adjust:exact}"
+           ".plotly-graph-div,.kpis,.tile,tr{break-inside:avoid}h2{break-after:avoid}"
+           "@page{size:A4;margin:12mm}")
     doc = (f"<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>"
            f"<title>MyJobPulse (offline)</title><style>{css}</style></head><body><h1>MyJobPulse</h1>"
            f"<p>Offline edition of the MyJobPulse dashboard: youth job quality in Malaysia, forecast to 2030.</p>"

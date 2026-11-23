@@ -97,3 +97,33 @@ def driver_coefficients() -> dict:
                          "p": float(res.pvalues[d])} for d in DRIVERS if d in res.params}
         out[name]["order"] = f"{o}x{s}"
     return out
+
+
+def driver_robustness() -> dict:
+    """IPI coefficient under alternative specifications (same ARIMA order as the main model), so the report's
+    robustness table comes from the pipeline: main, plus leading index, every lockdown period dummied out
+    (calendar kept intact), and no COVID control."""
+    import warnings
+    from statsmodels.tsa.statespace.sarimax import SARIMAX
+    from .forecast_stats import _driver_exog, _select_order
+    from .prep import load_drivers
+    out = {}
+    for name, y in {"youth": load_youth_monthly(), "sru": load_sru_quarterly("overall")}.items():
+        xh, _ = _driver_exog(y, 1)
+        o, s = _select_order(y, xh)
+        freq = "M" if name == "youth" else "Q"
+        lead = load_drivers(freq)["leading_index"].reindex(y.index).interpolate(limit_direction="both")
+        lock = xh.drop(columns=["covid"])
+        for d in y.index[(y.index >= "2020-03-01") & (y.index <= "2021-12-31")]:
+            lock[f"d{d:%Y%m}"] = (y.index == d).astype(int)
+        specs = {"main": xh, "plus_leading_index": xh.assign(leading_index=lead),
+                 "lockdown_dummied": lock, "no_covid_control": xh.drop(columns=["covid"])}
+        out[name] = {}
+        for k, x in specs.items():
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                r = SARIMAX(y, exog=x, order=o, seasonal_order=s).fit(disp=False)
+            ci = r.conf_int().loc["ipi"]
+            out[name][k] = {"coef": float(r.params["ipi"]), "lo95": float(ci[0]), "hi95": float(ci[1]),
+                            "p": float(r.pvalues["ipi"])}
+    return out

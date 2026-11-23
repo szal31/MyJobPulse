@@ -26,7 +26,7 @@ def test_table_party_neutral_and_matched():
     t = representation_table(s)
     assert not {"mp_name", "party"} & set(t.columns)
     assert {"parlimen", "u_rate", "mentions_per_100k", "quadrant"} <= set(t.columns)
-    assert len(seat_names()) == 222
+    assert len(set(seat_names().values())) == 222  # aliases add keys, not seats
 
 
 def test_zero_mention_seat_is_low_voice():
@@ -55,3 +55,9 @@ def test_executive_seats_from_attendance_list():
     t = representation_table(s, executive=exe).set_index("parlimen")
     assert t.loc["Paya Besar", "quadrant"] == "executive or chair role"
     assert "voice" in t.loc["Kota Bharu", "quadrant"]
+
+
+def test_hansard_spellings_map_to_dosm_seats():
+    s = pd.DataFrame({"date": pd.to_datetime(["2023-03-01"]), "url": ["u"],
+                      "text": ["Tuan A [Ipoh Timur]: pengangguran belia" + chr(10) + "Tuan B [Tanjong Piai]: underemployment"]})
+    assert set(mentions_by_constituency(s).parlimen) == {"Ipoh Timor", "Tanjung Piai"}
