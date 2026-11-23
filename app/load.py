@@ -73,14 +73,26 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-v
 """
 
 
+# The file's modified time is part of the cache key: Streamlit Cloud keeps the cache across redeploys, so without it
+# a push with new data kept serving the old files.
 @st.cache_data
+def _parquet(path: str, mtime: float) -> pd.DataFrame:
+    return pd.read_parquet(path)
+
+
+@st.cache_data
+def _json(path: str, mtime: float):
+    return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
 def read_parquet(name: str) -> pd.DataFrame:
-    return pd.read_parquet(PROC / f"{name}.parquet")
+    p = PROC / f"{name}.parquet"
+    return _parquet(str(p), p.stat().st_mtime)
 
 
-@st.cache_data
 def read_json(name: str):
-    return json.loads((OUT / f"{name}.json").read_text(encoding="utf-8"))
+    p = OUT / f"{name}.json"
+    return _json(str(p), p.stat().st_mtime)
 
 
 def scenario_labels() -> dict[str, str]:
