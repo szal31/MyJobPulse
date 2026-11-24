@@ -2,6 +2,8 @@
 
 Usage: python scripts/package.py TeamName [out_dir]
 Expects Dashboard.pdf in the project root (print MyJobPulse_offline.html to PDF first).
+Zip layout follows the MDIT guideline: Data Product.pdf (static), Data Product.html (interactive, opens offline),
+README.txt, data/ (raw and processed), plus the full Streamlit source.
 """
 from __future__ import annotations
 
@@ -11,7 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE_DIRS = ["app", "src", "scripts", "tests", "data/raw", "data/processed", "data/manual", "outputs", ".streamlit"]
-INCLUDE_FILES = ["README.txt", "requirements.txt", "pytest.ini", "Dashboard.pdf"]
+INCLUDE_FILES = ["README.txt", "requirements.txt", "pytest.ini"]
 EXCLUDE_PARTS = {"__pycache__", ".pytest_cache"}
 EXCLUDE_PREFIXES = ("data/raw/hansard/", "data/raw/hansard_pdf/")  # raw Hansard (1.2 GB); src/mjp/hansard stays
 MAX_MB = 500
@@ -24,12 +26,14 @@ def package(team: str, out_dir: Path) -> Path:
             for p in (ROOT / d).rglob("*"):
                 rel = p.relative_to(ROOT)
                 if (p.is_file() and not (EXCLUDE_PARTS & set(rel.parts[:-1])) and p.suffix != ".log"
-                        and not rel.as_posix().startswith(EXCLUDE_PREFIXES)):
+                        and not rel.as_posix().startswith(EXCLUDE_PREFIXES)
+                        and rel.as_posix() != "outputs/MyJobPulse_offline.html"):  # shipped once, as Data Product.html
                     z.write(p, rel.as_posix())
         for f in INCLUDE_FILES:
             if (ROOT / f).exists():
                 z.write(ROOT / f, f)
-        z.write(ROOT / "outputs" / "MyJobPulse_offline.html", "MyJobPulse_offline.html")
+        z.write(ROOT / "outputs" / "MyJobPulse_offline.html", "Data Product.html")
+        z.write(ROOT / "Dashboard.pdf", "Data Product.pdf")
     mb = out.stat().st_size / 1e6
     if mb > MAX_MB:
         raise RuntimeError(f"zip is {mb:.0f} MB > {MAX_MB} MB")

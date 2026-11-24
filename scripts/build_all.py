@@ -30,7 +30,7 @@ REQUIRED_OUTPUTS = [
     PROC / "history.parquet", PROC / "sru_groups.parquet", PROC / "scenarios.parquet", PROC / "state_scenarios.parquet",
     PROC / "state_forecast.parquet", PROC / "shap.parquet", PROC / "clusters.parquet",
     OUT / "scoreboard_national.json", OUT / "coverage.json", OUT / "scoreboard_state.json", OUT / "cost.json",
-    OUT / "playbook.json", OUT / "warning_replay.json", OUT / "drivers.json", OUT / "attention.json", OUT / "hansard_checks.json", OUT / "promises.json", OUT / "build_meta.json",
+    OUT / "playbook.json", OUT / "warning_replay.json", OUT / "states_geo.json", OUT / "drivers.json", OUT / "attention.json", OUT / "hansard_checks.json", OUT / "promises.json", OUT / "build_meta.json",
 ]
 MODELS = ["naive", "snaive", "drift", "ets", "arima", "sarimax", "ensemble"]
 
@@ -97,6 +97,31 @@ def states(res):
     _dump(playbook.replay(p).to_dict("records"), "warning_replay.json")
 
 
+def geo():
+    """State boundaries (geoBoundaries gbOpen MYS ADM1, simplified; OpenStreetMap, ODbL) with DOSM state names
+    and an approximate label point per state, for the dashboard map."""
+    g = json.loads((ROOT / "data" / "raw" / "geo" / "malaysia_states.geojson").read_text(encoding="utf-8"))
+    rename = {"Malacca": "Melaka", "Penang": "Pulau Pinang"}
+
+    def area(r):  # shoelace: positive = counter-clockwise
+        return sum(x0 * y1 - x1 * y0 for (x0, y0, *_), (x1, y1, *_) in zip(r, r[1:]))
+
+    for f in g["features"]:
+        name = f["properties"]["shapeName"]
+        polys = f["geometry"]["coordinates"] if f["geometry"]["type"] == "MultiPolygon" else [f["geometry"]["coordinates"]]
+        # Plotly (d3-geo) needs clockwise outer rings; the other winding fills the whole globe instead of the state
+        for poly in polys:
+            for k, r in enumerate(poly):
+                if (area(r) > 0) == (k == 0):
+                    r.reverse()
+        ring = max((p[0] for p in polys), key=len)  # outer ring of the largest polygon
+        f["properties"] = {"state": rename.get(name, name), "lon": sum(c[0] for c in ring) / len(ring),
+                           "lat": sum(c[1] for c in ring) / len(ring)}
+    states = {f["properties"]["state"] for f in g["features"]}
+    assert states == set(load_state_panel().state.unique()), states  # every DOSM state has a shape
+    _dump(g, "states_geo.json")
+
+
 def cost_outputs(res):
     _dump({**driver_coefficients(), "robustness": driver_robustness()}, "drivers.json")
     _dump({"wage_gap": cost.wage_gap(), "penalties": cost.PENALTIES,
@@ -145,6 +170,7 @@ def main(download: bool = False, skip_hansard: bool = False) -> None:
     national()
     res = scenarios()
     states(res)
+    geo()
     cost_outputs(res)
     if not skip_hansard:
         hansard(res)

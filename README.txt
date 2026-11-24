@@ -8,9 +8,23 @@ WHAT IT IS
   flags states at risk with existing government programmes, and compares Parliament's
   attention (Hansard) with the data.
 
+WHAT IS IN THIS ZIP
+  Data Product.html   Interactive data product, single file, opens offline in any browser
+  Data Product.pdf    Static version of the dashboard (for documentation)
+  README.txt          This file
+  app/, src/, scripts/  Full source of the interactive Streamlit dashboard and the analysis pipeline
+  data/raw/           Official data snapshots used (listed with dates in data/raw/MANIFEST.csv)
+  data/processed/, outputs/  Clean data and results the dashboard reads
+  tests/              Automated tests (python -m pytest -q)
+
+MALAYSIAN DATA USED (bonus criterion)
+  Yes. All labour, economic and wage data are Malaysian official statistics from the Department of
+  Statistics Malaysia (DOSM) via data.gov.my / OpenDOSM, and the Parliament layer uses Hansard Parlimen
+  (Dewan Rakyat). Seat information comes from the Malaysian Election Corpus.
+
 THREE WAYS TO OPEN IT
   1. Live link (no install):  https://myjobpulse.streamlit.app/
-  2. Offline file (no install): open MyJobPulse_offline.html in any modern browser.
+  2. Offline file (no install, no internet): open "Data Product.html" in any modern browser.
   3. Run locally (full interactive app):
        - Install Python 3.13 or 3.14 (tested on 3.14.8, Windows 11)
        - In this folder:
@@ -29,7 +43,7 @@ SOFTWARE
 NAVIGATING THE DASHBOARD (left sidebar)
   Home              The hidden gap: headline vs youth unemployment, underemployment, RM cost
   Forecast to 2030  Choose measure + scenario; fan chart with 80/95% ranges; model accuracy table
-  State Risk        Structural vs cyclical risk, forecast path, SHAP drivers (all-ages unemployment)
+  State Risk        Malaysia map, structural vs cyclical risk, forecast path, SHAP drivers (all-ages)
   Scenario Lab      Compare scenarios for 2030 and the RM cost path
   Parliament Watch  Attention gap, representation gap by constituency, promise tracker
   Decision Playbook Cyclical + structural risk per state -> federal and state levers
@@ -38,7 +52,7 @@ NAVIGATING THE DASHBOARD (left sidebar)
 REBUILDING THE RESULTS (optional)
   python scripts/build_all.py            rebuild everything from data/raw (offline, ~5 min)
   python scripts/build_all.py --download refresh data/raw from api.data.gov.my first
-  python scripts/export_html.py          regenerate MyJobPulse_offline.html
+  python scripts/export_html.py          regenerate outputs/MyJobPulse_offline.html (= Data Product.html)
   python -m pytest -q                    run the test suite
   Hansard source text (1.2 GB) is not included; processed sittings are in
   data/processed/hansard_*.parquet. To rebuild from scratch, download hansard.jsonl from
@@ -49,6 +63,8 @@ DATA
   (monthly, quarterly, state, constituency), skill-related underemployment, industrial
   production, leading index, CPI, formal wages, wages by skill and education, state GDP.
   Hansard Dewan Rakyat: malaysia-ai crawl (Apache-2.0) to Jul 2024 + parlimen.gov.my PDFs.
+  State boundaries for the map: geoBoundaries gbOpen MYS ADM1 (OpenStreetMap contributors, ODbL 1.0).
+  GE15 seat winners: Malaysian Election Corpus (CC0).
   Snapshot list with dates: data/raw/MANIFEST.csv
 
 LIMITATIONS AND ASSUMPTIONS

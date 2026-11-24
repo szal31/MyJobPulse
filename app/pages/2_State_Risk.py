@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from load import ACCENT, GRID, LIGHT, LIGHT_TEXT, MUTED, PRIMARY, badge, callout, footer, page, read_json, read_parquet, style
+from mapviz import state_map
 from mjp_paths import state_history
 
 page("State risk", "States",
@@ -16,6 +17,12 @@ cl = read_parquet("clusters").set_index("state")
 sf = read_parquet("state_forecast")
 nxt = sf.sort_values("date").groupby("state")["mean"].apply(lambda s: s.iloc[:4].mean()).rename("next4")
 df = pb.join(cl).join(nxt).sort_values("next4", ascending=False).reset_index()
+
+st.markdown("## Where the risk sits")
+st.plotly_chart(state_map(df, read_json("states_geo")), use_container_width=True)
+st.caption("Colour: each state's jobless rate over the last four quarters relative to the national rate (blue below, "
+           "red above). Rings: states whose forecast is turning worse against their own past. Boundaries: "
+           "geoBoundaries (OpenStreetMap contributors, ODbL).")
 
 st.markdown("## Two kinds of risk")
 callout("<b>Chronic is not the same as sudden.</b> A state can be calm against its own past and still sit far above "

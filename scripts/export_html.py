@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 sys.path.insert(0, str(ROOT / "app"))
 from load import ACCENT, LIGHT, LIGHT_TEXT, MUTED, PRIMARY, SCEN_COLOR, SHORT, scenario_labels, style  # noqa: E402
+from mapviz import state_map  # noqa: E402
 S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
 
 _first = True
@@ -86,7 +87,11 @@ def export(out_dir: Path) -> Path:
     tiles = "".join(f"<div class='tile' style='border-color:{LIGHT[r.light]}'><b>{r.state}</b><br>{html.escape(r.reason)}"
                     f"<br>Structural: {dict(high='chronically high', above='above national', below='below national')[r.structural]} ({r.level_ratio:.2f}× national)</div>"
                     for r in pb.itertuples())
-    parts.append(_section("state-risk", "State risk (all-ages unemployment)", f"<div class='tiles'>{tiles}</div>"))
+    smap = _fig(state_map(pb, _j("states_geo"), 420))
+    parts.append(_section("state-risk", "State risk (all-ages unemployment)",
+                          "<p>Colour: state rate ÷ national rate, last four quarters (blue below, red above). Ring: "
+                          "cyclical warning. Boundaries: geoBoundaries (OpenStreetMap contributors, ODbL).</p>"
+                          + smap + f"<div class='tiles'>{tiles}</div>"))
 
     # 4 Scenario lab
     d = s[(s.date.dt.year == 2030)].groupby(["series", "scenario"])["mean"].mean().unstack(0)
