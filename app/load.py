@@ -1,7 +1,7 @@
 """Shared readers, design tokens, page shell and chart helpers.
 
-Reads only data/processed and outputs (no network). Design system: "Data-Dense Dashboard",
-navy/blue data palette with amber highlights (ui-ux-pro-max). Fonts: system stack (offline).
+Reads only data/processed and outputs (no network). Design system: Editorial Civic Ledger
+(Operate mode) — slate neutrals, navy primary, WCAG-AA amber highlights. Fonts: system stack (offline).
 """
 from __future__ import annotations
 
@@ -17,58 +17,309 @@ ROOT = Path(__file__).resolve().parents[1]
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 
 # --- design tokens ---------------------------------------------------------------
-INK = "#0F172A"          # body text (contrast 17:1 on bg)
-MUTED = "#475569"        # secondary text (7.5:1)
-GRID = "#E2E8F0"
-PRIMARY = "#1E40AF"      # navy: actuals, primary series
-SECONDARY = "#3B82F6"
-ACCENT = "#D97706"       # amber: forecasts / highlights
+INK = "#0F172A"          # primary text (17:1 on white)
+MUTED = "#475569"        # secondary text (7.5:1 on white)
+BG = "#F8FAFC"           # page canvas
+SURFACE = "#FFFFFF"      # card / plot surface
+SURFACE_SUBTLE = "#EEF2F8"
+GRID = "#E2E8F0"         # hairline borders & gridlines
+BORDER_STRONG = "#CBD5E1"
+PRIMARY = "#1E40AF"      # navy: actuals, primary series (8.6:1 on white)
+PRIMARY_TINT = "#EFF6FF"
+PRIMARY_BORDER = "#BFDBFE"
+SECONDARY = "#2563EB"    # interactive focus & hover
+ACCENT = "#D97706"       # amber: chart strokes (3.2:1 non-text AA)
+ACCENT_TEXT = "#B45309"  # amber: WCAG-AA text & badges (5.0:1 on white)
 ACCENT_SOFT = "#93C5FD"
-LIGHT = {"red": "#DC2626", "amber": "#D97706", "green": "#15803D"}
+WARN_TINT = "#FFFBEB"
+WARN_BORDER = "#FDE68A"
+
+# Traffic-light tokens — every foreground meets WCAG AA (>=4.5:1) on white and its own tint
+LIGHT = {"red": "#B91C1C", "amber": "#B45309", "green": "#15803D"}
+LIGHT_BG = {"red": "#FEF2F2", "amber": "#FFFBEB", "green": "#F0FDF4"}
+LIGHT_BORDER = {"red": "#FECACA", "amber": "#FDE68A", "green": "#BBF7D0"}
 LIGHT_TEXT = {"red": "High risk", "amber": "Watch", "green": "Normal"}
-SCEN_COLOR = {"baseline": "#1E40AF", "nimp": "#15803D", "downturn": "#DC2626", "tvet_push": "#D97706"}
+LIGHT_SYMBOL = {"red": "diamond", "amber": "triangle-up", "green": "circle"}
+
+# Scenario tokens — all >=5.0:1 contrast with white bar labels
+SCEN_COLOR = {"baseline": "#1E40AF", "nimp": "#15803D", "downturn": "#B91C1C", "tvet_push": "#B45309"}
 SCEN_DASH = {"baseline": "solid", "nimp": "dash", "downturn": "dot", "tvet_push": "dashdot"}
 SHORT = {"baseline": "Current pace", "nimp": "NIMP pace", "downturn": "Downturn", "tvet_push": "TVET push*"}
+
 FONT = '"Fira Sans", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif'
 MONO = '"Fira Code", "Cascadia Code", Consolas, "SFMono-Regular", Menlo, monospace'
 
 _CSS = f"""
 <style>
-html, body, [class*="css"], .stMarkdown, .stText, button, input, select {{ font-family: {FONT}; }}
-.block-container {{ padding-top: 3rem; padding-bottom: 3rem; max-width: 1280px; }}
-h1, h2, h3 {{ color: {INK}; letter-spacing: -0.01em; }}
-h2 {{ font-size: 1.25rem !important; margin-top: 1.6rem !important; }}
-p, li {{ line-height: 1.55; }}
-/* page header */
-.mjp-eyebrow {{ font: 600 .75rem/1.6 {MONO}; letter-spacing: .12em; text-transform: uppercase; color: {PRIMARY}; margin-bottom: .45rem; }}
-.mjp-title {{ font-size: 2rem; font-weight: 700; color: {INK}; margin: 0 0 .35rem 0; line-height: 1.15; }}
-.mjp-sub {{ color: {MUTED}; font-size: 1.02rem; max-width: 62rem; margin-bottom: 1.2rem; }}
-/* KPI cards */
-.mjp-kpis {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: .4rem 0 1.2rem; }}
-.mjp-kpi {{ background: #fff; border: 1px solid {GRID}; border-radius: 10px; padding: 14px 16px; }}
-.mjp-kpi .lbl {{ color: {MUTED}; font-size: .82rem; font-weight: 500; }}
-.mjp-kpi .val {{ font: 700 1.9rem/1.15 {MONO}; color: {INK}; margin: 4px 0 2px; font-variant-numeric: tabular-nums; }}
-.mjp-kpi .note {{ color: {MUTED}; font-size: .8rem; }}
-.mjp-kpi.hl {{ border-left: 4px solid {ACCENT}; }}
-.mjp-kpi.pri {{ border-left: 4px solid {PRIMARY}; }}
-/* cards + badges */
-.mjp-card {{ background: #fff; border: 1px solid {GRID}; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }}
-.mjp-card b {{ color: {INK}; }}
-.mjp-card .meta {{ color: {MUTED}; font-size: .85rem; margin-top: 2px; }}
-.mjp-badge {{ display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 600;
-  padding: 2px 9px; border-radius: 999px; border: 1px solid currentColor; white-space: nowrap; }}
-.mjp-badge::before {{ content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }}
-.mjp-callout {{ background: #EFF6FF; border-left: 4px solid {PRIMARY}; padding: 12px 16px; border-radius: 6px; margin: .6rem 0 1rem; color: {INK}; }}
-.mjp-callout.warn {{ background: #FFF7ED; border-left-color: {ACCENT}; }}
-/* sidebar brand */
-.mjp-brand {{ font: 700 1.15rem/1.2 {FONT}; color: {INK}; }}
-.mjp-brand span {{ color: {PRIMARY}; }}
-.mjp-brand-sub {{ color: {MUTED}; font-size: .78rem; margin-top: 2px; }}
-/* accessibility: visible keyboard focus, respect reduced motion */
-a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-visible, [tabindex]:focus-visible {{
-  outline: 3px solid {SECONDARY} !important; outline-offset: 2px !important; }}
-@media (prefers-reduced-motion: reduce) {{ * {{ transition: none !important; animation: none !important; }} }}
-[data-testid="stSidebarNav"] a {{ cursor: pointer; }}
+:root {{
+  --mjp-ink: {INK};
+  --mjp-muted: {MUTED};
+  --mjp-bg: {BG};
+  --mjp-surface: {SURFACE};
+  --mjp-surface-subtle: {SURFACE_SUBTLE};
+  --mjp-border: {GRID};
+  --mjp-border-strong: {BORDER_STRONG};
+  --mjp-primary: {PRIMARY};
+  --mjp-primary-tint: {PRIMARY_TINT};
+  --mjp-primary-border: {PRIMARY_BORDER};
+  --mjp-secondary: {SECONDARY};
+  --mjp-accent: {ACCENT};
+  --mjp-accent-text: {ACCENT_TEXT};
+  --mjp-warn-tint: {WARN_TINT};
+  --mjp-warn-border: {WARN_BORDER};
+  --mjp-font: {FONT};
+  --mjp-mono: {MONO};
+  --mono: {MONO};
+}}
+
+html, body, [class*="css"], .stMarkdown, .stText, button, input, select {{
+  font-family: var(--mjp-font);
+  color: var(--mjp-ink);
+}}
+
+/* browser surface craft */
+::selection {{ background: #DBEAFE; color: var(--mjp-ink); }}
+a {{ text-underline-offset: 0.18em; }}
+.block-container {{
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  max-width: 1240px;
+}}
+
+/* typographic hierarchy (fixed Operate scale, >=1.25x steps) */
+h1, h2, h3, .mjp-title {{
+  color: var(--mjp-ink);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}}
+h2 {{
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  margin-top: 2rem !important;
+  margin-bottom: 0.5rem !important;
+  padding-top: 0.25rem;
+}}
+h3 {{
+  font-size: 1.05rem !important;
+  font-weight: 600 !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.35rem !important;
+}}
+p, li {{
+  line-height: 1.58;
+  text-wrap: pretty;
+}}
+.stMarkdown p, .stMarkdown ul {{ max-width: 72ch; }}
+table {{ font-variant-numeric: tabular-nums; }}
+
+/* page header (no eyebrow kicker — heading carries its own weight) */
+.mjp-header {{
+  padding-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--mjp-border);
+}}
+.mjp-title {{
+  font-size: 2.05rem;
+  font-weight: 700;
+  color: var(--mjp-ink);
+  margin: 0 0 0.45rem 0;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}}
+.mjp-sub {{
+  color: var(--mjp-muted);
+  font-size: 1rem;
+  line-height: 1.55;
+  max-width: 68ch;
+  margin: 0;
+  text-wrap: pretty;
+}}
+
+/* KPI strip — full borders + subtle semantic surface tints (no one-sided stripes) */
+.mjp-kpis {{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  margin: 0.25rem 0 1.4rem;
+}}
+.mjp-kpi {{
+  background: var(--mjp-surface);
+  border: 1px solid var(--mjp-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: border-color 160ms ease-out, box-shadow 160ms ease-out;
+}}
+.mjp-kpi:hover {{
+  border-color: var(--mjp-border-strong);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+}}
+.mjp-kpi.pri {{
+  background: var(--mjp-primary-tint);
+  border-color: var(--mjp-primary-border);
+}}
+.mjp-kpi.hl {{
+  background: var(--mjp-warn-tint);
+  border-color: var(--mjp-warn-border);
+}}
+.mjp-kpi .lbl {{
+  color: var(--mjp-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.3;
+}}
+.mjp-kpi.pri .lbl {{ color: #1E3A8A; }}
+.mjp-kpi.hl .lbl {{ color: #92400E; }}
+.mjp-kpi .val {{
+  font: 700 1.85rem/1.15 var(--mjp-mono);
+  color: var(--mjp-ink);
+  margin: 6px 0 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}}
+.mjp-kpi .note {{
+  color: var(--mjp-muted);
+  font-size: 0.78rem;
+  line-height: 1.38;
+}}
+.mjp-kpi.pri .note {{ color: #334155; }}
+.mjp-kpi.hl .note {{ color: #78350F; }}
+
+/* cards + semantic badges */
+.mjp-card {{
+  background: var(--mjp-surface);
+  border: 1px solid var(--mjp-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}}
+.mjp-card.tone-red {{ background: {LIGHT_BG['red']}; border-color: {LIGHT_BORDER['red']}; }}
+.mjp-card.tone-amber {{ background: {LIGHT_BG['amber']}; border-color: {LIGHT_BORDER['amber']}; }}
+.mjp-card b {{ color: var(--mjp-ink); }}
+.mjp-card-head {{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}}
+.mjp-card-val {{
+  font: 700 1.55rem/1.25 var(--mjp-mono);
+  color: var(--mjp-ink);
+  margin: 6px 0 4px;
+  font-variant-numeric: tabular-nums;
+}}
+.mjp-card .meta {{
+  color: var(--mjp-muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  margin-top: 3px;
+}}
+.mjp-card ul {{
+  margin: 0.25rem 0 0 1.1rem;
+  padding: 0;
+  font-size: 0.9rem;
+}}
+.mjp-card li {{
+  margin-bottom: 0.2rem;
+  line-height: 1.45;
+}}
+.mjp-badge {{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}}
+.mjp-badge::before {{
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}}
+
+/* callouts — full semantic border + gentle surface tint (no left bar) */
+.mjp-callout {{
+  background: var(--mjp-primary-tint);
+  border: 1px solid var(--mjp-primary-border);
+  padding: 13px 16px;
+  border-radius: 10px;
+  margin: 0.75rem 0 1.25rem;
+  color: var(--mjp-ink);
+  font-size: 0.94rem;
+  line-height: 1.55;
+  max-width: 74ch;
+  text-wrap: pretty;
+}}
+.mjp-callout.warn {{
+  background: var(--mjp-warn-tint);
+  border-color: var(--mjp-warn-border);
+  color: #451A03;
+}}
+.mjp-callout.warn b {{ color: #78350F; }}
+
+/* sidebar brand & navigation refinement */
+.mjp-brand-box {{
+  padding: 0.15rem 0 0.75rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--mjp-border);
+}}
+.mjp-brand {{
+  font: 700 1.2rem/1.2 var(--mjp-font);
+  color: var(--mjp-ink);
+  letter-spacing: -0.02em;
+}}
+.mjp-brand span {{ color: var(--mjp-primary); }}
+.mjp-brand-sub {{
+  color: var(--mjp-muted);
+  font-size: 0.78rem;
+  margin-top: 3px;
+  line-height: 1.35;
+}}
+[data-testid="stSidebarNav"] a {{
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 150ms ease-out;
+}}
+
+/* tabs & explore links */
+.stTabs [data-baseweb="tab-list"] {{
+  gap: 6px;
+  border-bottom: 1px solid var(--mjp-border);
+}}
+.stTabs [data-baseweb="tab"] {{
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 8px 14px;
+}}
+
+/* footer */
+.mjp-footer {{
+  margin-top: 2.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--mjp-border);
+  color: var(--mjp-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}}
+
+/* accessibility: crisp keyboard focus & reduced motion */
+a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {{
+  outline: 2px solid var(--mjp-secondary) !important;
+  outline-offset: 2px !important;
+}}
+@media (prefers-reduced-motion: reduce) {{
+  *, *::before, *::after {{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }}
+}}
 </style>
 """
 
@@ -101,17 +352,17 @@ def scenario_labels() -> dict[str, str]:
 
 
 # --- page shell ---------------------------------------------------------------------
-def page(title: str, eyebrow: str, subtitle: str = "") -> None:
+def page(title: str, eyebrow: str = "", subtitle: str = "") -> None:
     """Call first on every page: config, CSS, sidebar brand, header."""
     st.set_page_config(page_title=f"{title} · MyJobPulse", layout="wide", initial_sidebar_state="expanded")
     st.markdown(_CSS, unsafe_allow_html=True)
     with st.sidebar:
-        st.markdown("<div class='mjp-brand'>My<span>Job</span>Pulse</div>"
-                    "<div class='mjp-brand-sub'>Youth job-quality early warning · Malaysia</div>",
+        st.markdown("<div class='mjp-brand-box'><div class='mjp-brand'>My<span>Job</span>Pulse</div>"
+                    "<div class='mjp-brand-sub'>Youth job-quality early warning · Malaysia</div></div>",
                     unsafe_allow_html=True)
-    sub = f"<div class='mjp-sub'>{subtitle}</div>" if subtitle else ""
-    st.markdown(f"<div class='mjp-eyebrow'>{html.escape(eyebrow)}</div>"
-                f"<h1 class='mjp-title'>{html.escape(title)}</h1>{sub}", unsafe_allow_html=True)
+    sub = f"<p class='mjp-sub'>{html.escape(subtitle)}</p>" if subtitle else ""
+    st.markdown(f"<header class='mjp-header'><h1 class='mjp-title'>{html.escape(title)}</h1>{sub}</header>",
+                unsafe_allow_html=True)
 
 
 def kpis(items: list[dict]) -> None:
@@ -124,7 +375,20 @@ def kpis(items: list[dict]) -> None:
 
 
 def badge(light: str, prefix: str = "") -> str:
-    return f"<span class='mjp-badge' style='color:{LIGHT[light]}'>{prefix}{LIGHT_TEXT[light]}</span>"
+    return (f"<span class='mjp-badge' style='color:{LIGHT[light]};background:{LIGHT_BG[light]};"
+            f"border-color:{LIGHT_BORDER[light]}'>{html.escape(prefix)}{LIGHT_TEXT[light]}</span>")
+
+
+def pill(text: str, tone: str = "neutral") -> str:
+    """Semantic status pill for structural or secondary badges (all WCAG-AA contrast)."""
+    pal = {
+        "red": (LIGHT["red"], LIGHT_BG["red"], LIGHT_BORDER["red"]),
+        "amber": (LIGHT["amber"], LIGHT_BG["amber"], LIGHT_BORDER["amber"]),
+        "green": (LIGHT["green"], LIGHT_BG["green"], LIGHT_BORDER["green"]),
+        "neutral": (MUTED, SURFACE_SUBTLE, GRID),
+    }
+    fg, bg, bd = pal.get(tone, pal["neutral"])
+    return f"<span class='mjp-badge' style='color:{fg};background:{bg};border-color:{bd}'>{html.escape(text)}</span>"
 
 
 def callout(text_html: str, warn: bool = False) -> None:
@@ -133,13 +397,21 @@ def callout(text_html: str, warn: bool = False) -> None:
 
 # --- charts ---------------------------------------------------------------------------
 def style(fig: go.Figure, height: int = 380, y_title: str = "") -> go.Figure:
-    fig.update_layout(height=height, margin=dict(l=8, r=8, t=28, b=8), plot_bgcolor="white",
-                      paper_bgcolor="rgba(0,0,0,0)", font=dict(family=FONT, color=INK, size=13),
-                      legend=dict(orientation="h", y=-0.18, x=0, font=dict(size=12)),
-                      hovermode="x unified", hoverlabel=dict(font_family=FONT))
-    fig.update_xaxes(showgrid=False, linecolor=GRID, tickfont=dict(color=MUTED))
-    fig.update_yaxes(gridcolor=GRID, zeroline=False, title=y_title, tickfont=dict(color=MUTED),
-                     title_font=dict(color=MUTED, size=12))
+    fig.update_layout(
+        height=height,
+        margin=dict(l=8, r=12, t=42, b=12),
+        plot_bgcolor=SURFACE,
+        paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(family=FONT, color=INK, size=13),
+        legend=dict(orientation="h", y=1.03, yanchor="bottom", x=0, xanchor="left",
+                    font=dict(size=12, color=MUTED), bgcolor="rgba(0,0,0,0)"),
+        hovermode="x unified",
+        hoverlabel=dict(bgcolor=SURFACE, bordercolor=BORDER_STRONG, font=dict(family=FONT, size=12, color=INK)),
+    )
+    fig.update_xaxes(showgrid=False, linecolor=GRID, tickfont=dict(color=MUTED, size=11),
+                     title_font=dict(color=MUTED, size=12), automargin=True)
+    fig.update_yaxes(gridcolor=GRID, zeroline=False, title=y_title, tickfont=dict(color=MUTED, size=11),
+                     title_font=dict(color=MUTED, size=12), automargin=True)
     return fig
 
 
@@ -148,21 +420,39 @@ def fan(hist: pd.Series, fc: pd.DataFrame, color: str = ACCENT, name: str = "For
     r, g, b = (int(color[i:i + 2], 16) for i in (1, 3, 5))
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=fc.date, y=fc.hi95, line=dict(width=0), showlegend=False, hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo95, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.12)",
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo95, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.11)",
                              line=dict(width=0), name="95% range", hoverinfo="skip"))
     fig.add_trace(go.Scatter(x=fc.date, y=fc.hi80, line=dict(width=0), showlegend=False, hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo80, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.24)",
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo80, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.22)",
                              line=dict(width=0), name="80% range", hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=hist.index, y=hist.values, line=dict(color=PRIMARY, width=2.2), name="Actual"))
+    fig.add_trace(go.Scatter(x=hist.index, y=hist.values, line=dict(color=PRIMARY, width=2.3), name="Actual"))
     fig.add_trace(go.Scatter(x=fc.date, y=fc["mean"], line=dict(color=color, width=2.6, dash="dash"), name=name))
-    fig.add_vline(x=hist.index[-1], line=dict(color=GRID, width=1, dash="dot"))
-    fig.add_annotation(x=hist.index[-1], y=1, yref="paper", text="forecast →", showarrow=False,
-                       xanchor="left", font=dict(color=MUTED, size=11))
+    fig.add_vline(x=hist.index[-1], line=dict(color=BORDER_STRONG, width=1.2, dash="dot"))
+    fig.add_annotation(x=hist.index[-1], y=0.98, yref="paper", text=" forecast →", showarrow=False,
+                       xanchor="left", yanchor="top", font=dict(color=MUTED, size=11))
     return fig
+
+
+def _vintage_summary(meta: dict) -> str:
+    d = meta.get("data_max_dates", {})
+    parts = []
+    if d.get("lfs_month"):
+        parts.append(f"LFS to {pd.Timestamp(d['lfs_month']):%b %Y}")
+    if d.get("lfs_month_youth"):
+        parts.append(f"Youth to {pd.Timestamp(d['lfs_month_youth']):%b %Y}")
+    if d.get("lfs_qtr"):
+        q = pd.Timestamp(d["lfs_qtr"])
+        parts.append(f"Quarterly SRU to Q{(q.month - 1) // 3 + 1} {q.year}")
+    return " · ".join(parts)
 
 
 def footer():
     meta = read_json("build_meta")
-    st.markdown("---")
-    st.caption(f"Data: Department of Statistics Malaysia via data.gov.my / OpenDOSM (CC BY 4.0) · Hansard Dewan Rakyat. "
-               f"Built {meta['built_at'][:10]} · commit {meta['git']}.")
+    vintage = _vintage_summary(meta)
+    v_str = f" · {vintage}" if vintage else ""
+    st.markdown(
+        f"<footer class='mjp-footer'>Data: Department of Statistics Malaysia via data.gov.my / OpenDOSM (CC BY 4.0) · "
+        f"Hansard Dewan Rakyat{html.escape(v_str)}. Built {html.escape(meta['built_at'][:10])} · "
+        f"commit <code>{html.escape(meta['git'])}</code>.</footer>",
+        unsafe_allow_html=True,
+    )

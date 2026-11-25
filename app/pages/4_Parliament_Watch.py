@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
 
-from load import ACCENT, INK, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
+from load import ACCENT, ACCENT_SOFT, BORDER_STRONG, INK, LIGHT, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
 
 att = read_json("attention")
 page("Parliament watch", "Accountability · SDG 16",
@@ -42,8 +42,8 @@ with tab1:
             f"{g['youth_to_attention_p']:.2f}). With about 70 sitting months the test has limited power: no detectable "
             "link, not proof of none.")
 with tab2:
-    colors = {"high need · low voice": "#DC2626", "high need · high voice": PRIMARY,
-              "low need · high voice": "#93C5FD", "low need · low voice": "#CBD5E1"}
+    colors = {"high need · low voice": LIGHT["red"], "high need · high voice": PRIMARY,
+              "low need · high voice": ACCENT_SOFT, "low need · low voice": BORDER_STRONG}
     symbols = {"high need · low voice": "diamond", "high need · high voice": "circle",
                "low need · high voice": "circle-open", "low need · low voice": "circle-open"}
     nodata = int((r.quadrant == "no data").sum())
@@ -51,9 +51,9 @@ with tab2:
     fig = go.Figure()
     for q, d in r[~r.quadrant.isin(["no data", "executive or chair role"])].groupby("quadrant"):
         fig.add_trace(go.Scatter(x=d.u_rate, y=d.mentions_per_100k, mode="markers", name=q,
-                                 marker=dict(color=colors[q], symbol=symbols[q], size=9, line=dict(color=colors[q], width=1)),
+                                 marker=dict(color=colors[q], symbol=symbols[q], size=9, line=dict(color=colors[q], width=1.2)),
                                  text=d.parlimen + " (" + d.state + ")",
-                                 hovertemplate="%{text}<br>%{x:.1f}% unemployed<br>%{y:.1f} per 100k<extra></extra>"))
+                                 hovertemplate="<b>%{text}</b><br>%{x:.1f}% unemployed<br>%{y:.1f} per 100k<extra></extra>"))
     style(fig, 420, "Youth-job mentions per 100k words spoken")
     fig.update_layout(hovermode="closest")
     fig.update_xaxes(title_text="Constituency unemployment rate, all ages (DOSM 2023)", title_font=dict(size=12))
@@ -63,7 +63,7 @@ with tab2:
                f"{exe} seats whose MP held a minister, deputy minister or Deputy Speaker post (read from Hansard "
                f"attendance lists) are left out, because their floor speech is portfolio or chair duty. {nodata} more "
                "seats have too little parsed speech (<2,000 words) to judge.")
-    st.markdown(f"#### {len(hn)} constituencies: above-median unemployment, rarely raised in the chamber")
+    st.markdown(f"### {len(hn)} constituencies: above-median unemployment, rarely raised in the chamber")
     st.dataframe(hn[["parlimen", "state", "u_rate"]].rename(
         columns={"parlimen": "Constituency", "state": "State", "u_rate": "Unemployment %"}),
         hide_index=True, use_container_width=True, height=320)

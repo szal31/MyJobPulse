@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from load import ACCENT, LIGHT, MUTED, PRIMARY, badge, callout, footer, kpis, page, read_json, style
+from load import ACCENT, MUTED, PRIMARY, badge, callout, footer, kpis, page, pill, read_json, style
 
 page("Decision playbook", "Action",
      "Each state is scored on two separate questions: is unemployment about to rise against its own past "
@@ -61,7 +61,7 @@ with st.expander("Would the warning have worked? Replay 2019–2026", expanded=F
             "the forecast feeding it, and no model here forecast COVID.")
 
 S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
-S_COLOR = {"high": LIGHT["red"], "above": LIGHT["amber"], "below": MUTED}
+S_TONE = {"high": "red", "above": "amber", "below": "neutral"}
 order = {"red": 0, "amber": 1, "green": 2}
 pb = pb.assign(_o=pb.light.map(order), _s=pb.structural.map({"high": 0, "above": 1, "below": 2})
                ).sort_values(["_o", "_s", "level_ratio"], ascending=[True, True, False])
@@ -73,18 +73,18 @@ def _list(items):
 
 cols = st.columns(2, gap="medium")
 for i, r in enumerate(pb.itertuples()):
-    s_badge = (f"<span class='mjp-badge' style='color:{S_COLOR[r.structural]}'>{S_TEXT[r.structural]} · "
-               f"{r.level_ratio:.2f}×</span>")
+    s_badge = pill(f"{S_TEXT[r.structural]} · {r.level_ratio:.2f}×", S_TONE[r.structural])
+    tone_cls = f" tone-{r.light}" if r.light != "green" else ""
     with cols[i % 2]:
         st.markdown(
-            f"<div class='mjp-card' style='border-left:4px solid {LIGHT[r.light]}'>"
-            f"<div style='display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap'><b>{html.escape(r.state)}</b>"
-            f"<span>{badge(r.light, 'Cyclical: ')} {s_badge}</span></div>"
+            f"<div class='mjp-card{tone_cls}'>"
+            f"<div class='mjp-card-head'><b>{html.escape(r.state)}</b>"
+            f"<span style='display:inline-flex;gap:6px;flex-wrap:wrap'>{badge(r.light, 'Cyclical: ')}{s_badge}</span></div>"
             f"<div class='meta'>{html.escape(r.reason)}</div>"
-            f"<div class='meta' style='margin-top:.5rem'><b>Federal levers</b></div>"
-            f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.federal)}</ul>"
-            f"<div class='meta' style='margin-top:.4rem'><b>{'Federal Territory levers' if r.territory else 'State levers'}</b></div>"
-            f"<ul style='margin:.2rem 0 0 1rem;padding:0'>{_list(r.state_levers)}</ul></div>", unsafe_allow_html=True)
+            f"<div class='meta' style='margin-top:.55rem'><b>Federal levers</b></div>"
+            f"<ul>{_list(r.federal)}</ul>"
+            f"<div class='meta' style='margin-top:.45rem'><b>{'Federal Territory levers' if r.territory else 'State levers'}</b></div>"
+            f"<ul>{_list(r.state_levers)}</ul></div>", unsafe_allow_html=True)
 st.caption("Most federal programmes listed serve Malaysian citizens; in Sabah a large share of the labour force are "
            "non-citizens, so citizen programmes reach only part of the measured problem. Greater Kuala Lumpur "
            "(Selangor, Kuala Lumpur, Putrajaya) is one commuting labour market, and small territories such as Labuan "

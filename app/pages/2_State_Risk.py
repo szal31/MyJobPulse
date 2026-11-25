@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from load import ACCENT, GRID, LIGHT, LIGHT_TEXT, MUTED, PRIMARY, badge, callout, footer, page, read_json, read_parquet, style
+from load import ACCENT, GRID, LIGHT, LIGHT_SYMBOL, LIGHT_TEXT, MUTED, PRIMARY, badge, callout, footer, page, read_json, read_parquet, style
 from mapviz import state_map
 from mjp_paths import state_history
 
@@ -36,11 +36,12 @@ for light in ["red", "amber", "green"]:
     fig.add_trace(go.Scatter(x=d.level_ratio, y=d.next4, mode="markers+text", text=d.state.where(d.level_ratio >= 1.1, ""), customdata=d.state,
                              textposition="top center",
                              name=f"Cyclical: {LIGHT_TEXT[light]}", textfont=dict(size=11, color=MUTED),
-                             marker=dict(color=LIGHT[light], size=12, line=dict(color="white", width=1)),
-                             hovertemplate="%{customdata}<br>%{x:.2f}× national<br>next 4 quarters %{y:.1f}%<extra></extra>"))
+                             marker=dict(color=LIGHT[light], symbol=LIGHT_SYMBOL[light], size=12, line=dict(color="white", width=1.2)),
+                             hovertemplate="<b>%{customdata}</b><br>%{x:.2f}× national<br>Next 4 quarters: %{y:.1f}%<extra></extra>"))
 for x, lbl, side in [(1.0, "national rate", "right"), (1.25, "chronically high (1.25×)", "left")]:
-    fig.add_vline(x=x, line=dict(color=GRID if x == 1.0 else LIGHT["red"], width=1, dash="dot"))
-    fig.add_annotation(x=x, y=1, yref="paper", text=lbl, showarrow=False, xanchor=side, font=dict(color=MUTED, size=11))
+    fig.add_vline(x=x, line=dict(color=GRID if x == 1.0 else LIGHT["red"], width=1.2, dash="dot"))
+    fig.add_annotation(x=x, y=0.98, yref="paper", text=f" {lbl} ", showarrow=False, xanchor=side, yanchor="top",
+                       font=dict(color=MUTED if x == 1.0 else LIGHT["red"], size=11))
 style(fig, 440, "Forecast unemployment, next 4 quarters (%)")
 fig.update_layout(hovermode="closest")
 fig.update_xaxes(title_text="Structural: state rate ÷ national rate, last 4 quarters", title_font=dict(size=12, color=MUTED))
@@ -51,12 +52,12 @@ st.caption("Both axes use all-ages unemployment; DOSM publishes no quarterly you
 st.markdown("## Next four quarters")
 cols = st.columns(4)
 for i, r in df.iterrows():
+    tone_cls = f" tone-{r.light}" if r.light != "green" else ""
     with cols[i % 4]:
         st.markdown(
-            f"<div class='mjp-card' style='border-top:3px solid {LIGHT[r.light]}'>"
-            f"<div style='display:flex;justify-content:space-between;align-items:center;gap:6px'>"
-            f"<b>{html.escape(r.state)}</b>{badge(r.light)}</div>"
-            f"<div style='font:700 1.5rem/1.3 var(--mono, Consolas, monospace)'>{r.next4:.1f}%</div>"
+            f"<div class='mjp-card{tone_cls}'>"
+            f"<div class='mjp-card-head'><b>{html.escape(r.state)}</b>{badge(r.light)}</div>"
+            f"<div class='mjp-card-val'>{r.next4:.1f}%</div>"
             f"<div class='meta'>{html.escape(r.facts)}</div></div>", unsafe_allow_html=True)
 
 st.markdown("## Forecast path by state")

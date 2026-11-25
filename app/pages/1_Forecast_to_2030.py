@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-from load import SCEN_COLOR, callout, fan, footer, kpis, page, read_json, read_parquet, scenario_labels, style
+from load import ACCENT, SCEN_COLOR, callout, fan, footer, kpis, page, read_json, read_parquet, scenario_labels, style
 
 page("Forecast to 2030", "Forecast",
      "Pick a measure and a scenario. The solid line is what DOSM measured; the dashed line and shaded bands are "
@@ -29,7 +29,7 @@ if scen == "tvet_push":
     callout("<b>Illustrative scenario.</b> Assumes a policy effect of −0.5 pp a year on underemployment from 2027; "
             "this effect is not estimated from data.", warn=True)
 
-fig = fan(hist, fc, SCEN_COLOR[scen] if scen != "baseline" else "#D97706", labels[scen])
+fig = fan(hist, fc, SCEN_COLOR[scen] if scen != "baseline" else ACCENT, labels[scen])
 st.plotly_chart(style(fig, 440, "%"), use_container_width=True)
 
 with st.expander("Forecast table (yearly averages)"):

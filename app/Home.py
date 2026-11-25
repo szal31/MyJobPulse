@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 from gap import youth_gap_pp
-from load import ACCENT, MUTED, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
+from load import ACCENT, ACCENT_SOFT, MUTED, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
 
 page("The hidden gap", "MyJobPulse · Overview",
      "Malaysia's unemployment is at a decade low, yet 1 in 10 young people in the labour force is unemployed and about 1 in 3 "
@@ -26,7 +26,7 @@ kpis([
 
 left, right = st.columns(2, gap="large")
 with left:
-    st.markdown("#### Everyone vs youth")
+    st.markdown("### Everyone vs youth")
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=head.index, y=head.values, name="All ages", line=dict(color=MUTED, width=2, dash="dot")))
     fig.add_trace(go.Scatter(x=youth.index, y=youth.values, name="Youth 15–24", line=dict(color=PRIMARY, width=2.6)))
@@ -35,13 +35,13 @@ with left:
     st.plotly_chart(style(fig, 340, "% of labour force"), use_container_width=True)
     st.caption("Monthly unemployment rate, DOSM Labour Force Survey.")
 with right:
-    st.markdown("#### Workers in jobs below their skills")
+    st.markdown("### Workers in jobs below their skills")
     fig = go.Figure(go.Scatter(x=sru.index, y=sru.values, name="Skill-related underemployment",
                                line=dict(color=ACCENT, width=2.6), fill="tozeroy", fillcolor="rgba(217,119,6,0.10)"))
     st.plotly_chart(style(fig, 340, "% of tertiary-educated employed"), use_container_width=True)
     st.caption("Quarterly; a separate measure from unemployment, so shown on its own axis.")
 
-st.markdown("#### Who is stuck in jobs below their skills")
+st.markdown("## Who is stuck in jobs below their skills")
 grp = read_parquet("sru_groups")
 yearly = lambda d: d.groupby(d.index.year).mean()
 age = grp[(grp.dim == "age") & (grp.group != "overall")]
@@ -60,12 +60,12 @@ callout(f"<b>Rates rose in every age group.</b> {ry.loc[y1, '15-24']:.0f}% of te
 left, right = st.columns(2, gap="large")
 with left:
     fig = go.Figure()
-    for y, col in [(y0, "#93C5FD"), (y1, PRIMARY)]:
+    for y, col in [(y0, ACCENT_SOFT), (y1, PRIMARY)]:
         fig.add_trace(go.Bar(x=ry.columns, y=ry.loc[y], name=f"{y}" + (" (to date)" if y == y1 else ""),
                              marker_color=col, text=[f"{v:.0f}%" for v in ry.loc[y]], textposition="outside",
                              customdata=py.loc[y].values, hovertemplate="%{y:.1f}% · %{customdata:.0f}k people<extra></extra>"))
     fig.update_layout(barmode="group")
-    st.plotly_chart(style(fig, 320, "% of tertiary-educated employed"), use_container_width=True)
+    st.plotly_chart(style(fig, 330, "% of tertiary-educated employed"), use_container_width=True)
     st.caption("Skill-related underemployment rate by age band, yearly average (hover for headcounts). Snapshots of age "
                "bands, not the same people followed over time. Youth is officially 15–30 since Jan 2026 (youth "
                "organisations); DOSM publishes youth unemployment for both 15–24 and 15–30 (chart above).")
@@ -74,11 +74,11 @@ with right:
     fig.add_trace(go.Scatter(x=sex.index, y=sex["female"], name="Women", line=dict(color=ACCENT, width=2.6)))
     fig.add_trace(go.Scatter(x=sex.index, y=sex["male"], name="Men", line=dict(color=PRIMARY, width=2.2)))
     fig.add_vline(x="2024-01-01", line=dict(color=MUTED, width=1, dash="dot"))
-    st.plotly_chart(style(fig, 320, "% of tertiary-educated employed"), use_container_width=True)
+    st.plotly_chart(style(fig, 330, "% of tertiary-educated employed"), use_container_width=True)
     st.caption("Skill-related underemployment by sex, quarterly. The men's series drops sharply in Q1 2024 while the "
                "overall rate stays flat, so part of the widening gap may reflect a survey change; read with care.")
 
-st.markdown("#### Explore")
+st.markdown("## Explore")
 c = st.columns(3)
 links = [("pages/1_Forecast_to_2030.py", "Forecast to 2030", "Fan charts under four scenarios"),
          ("pages/2_State_Risk.py", "State risk", "Which states to watch, and why"),

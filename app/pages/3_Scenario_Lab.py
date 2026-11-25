@@ -34,7 +34,7 @@ for col, d, title in [(c1, y, "Youth unemployment in 2030"), (c2, u, "Skill-rela
                            text=[f"{v:.1f}%" for v in d["mean"]], textposition="inside", insidetextanchor="start",
                            textfont=dict(color="white")))
     with col:
-        st.markdown(f"#### {title}")
+        st.markdown(f"### {title}")
         st.plotly_chart(style(fig, 340, "%"), use_container_width=True)
 st.caption("* TVET push is illustrative. Error bars show 80% ranges calibrated from backtest errors.")
 
