@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import streamlit as st
 
-from load import ACCENT, ACCENT_SOFT, BORDER_STRONG, INK, LIGHT, PRIMARY, callout, footer, kpis, page, read_json, read_parquet, style
+from load import ACCENT, ACCENT_SOFT, BORDER_STRONG, INK, LIGHT, PRIMARY, callout, footer, kpis, page, pill, read_json, read_parquet, style
 
 att = read_json("attention")
 page("Parliament watch", "Accountability · SDG 16",
@@ -70,8 +70,10 @@ with tab2:
 with tab3:
     pr = read_json("promises")
     if pr["status"] != "verified" or not pr["items"]:
-        callout("Candidate commitments extracted from Hansard are being verified by the team; verified promises and "
-                "their on-track status will appear here.")
+        callout(f"{pill('Pending manual verification', 'amber')}<div style='margin-top:6px'>"
+                "Candidate numeric commitments extracted from Hansard are being verified by the team against primary "
+                "parliamentary records. Verified commitments and their on-track status will appear here once audit "
+                "checks finish.</div>", warn=True)
     else:
         t = pd.DataFrame(pr["items"])
         st.dataframe(t[["date", "speaker_role", "quote", "target", "target_year", "status"]].rename(

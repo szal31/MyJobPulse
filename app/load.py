@@ -1,7 +1,6 @@
-"""Shared readers, design tokens, page shell and chart helpers.
+"""Shared readers, design tokens, page shell, and chart helpers.
 
-Reads only data/processed and outputs (no network). Design system: Editorial Civic Ledger
-(Operate mode) — slate neutrals, navy primary, WCAG-AA amber highlights. Fonts: system stack (offline).
+Reads only data/processed and outputs (no network). Direction and rationale live in DESIGN.md.
 """
 from __future__ import annotations
 
@@ -16,32 +15,30 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parents[1]
 PROC, OUT = ROOT / "data" / "processed", ROOT / "outputs"
 
-# --- design tokens ---------------------------------------------------------------
-INK = "#0F172A"          # primary text (17:1 on white)
-MUTED = "#475569"        # secondary text (7.5:1 on white)
-BG = "#F8FAFC"           # page canvas
-SURFACE = "#FFFFFF"      # card / plot surface
+# Design tokens (all text pairings verified >=4.5:1 via contrast-check.py)
+INK = "#0F172A"
+MUTED = "#475569"
+BG = "#F8FAFC"
+SURFACE = "#FFFFFF"
 SURFACE_SUBTLE = "#EEF2F8"
-GRID = "#E2E8F0"         # hairline borders & gridlines
+GRID = "#E2E8F0"
 BORDER_STRONG = "#CBD5E1"
-PRIMARY = "#1E40AF"      # navy: actuals, primary series (8.6:1 on white)
+PRIMARY = "#1E40AF"
 PRIMARY_TINT = "#EFF6FF"
 PRIMARY_BORDER = "#BFDBFE"
-SECONDARY = "#2563EB"    # interactive focus & hover
-ACCENT = "#D97706"       # amber: chart strokes (3.2:1 non-text AA)
-ACCENT_TEXT = "#B45309"  # amber: WCAG-AA text & badges (5.0:1 on white)
+SECONDARY = "#2563EB"
+ACCENT = "#D97706"       # chart stroke (3.19:1 non-text AA)
+ACCENT_TEXT = "#B45309"  # WCAG-AA text and badges (5.02:1 on white)
 ACCENT_SOFT = "#93C5FD"
 WARN_TINT = "#FFFBEB"
 WARN_BORDER = "#FDE68A"
 
-# Traffic-light tokens — every foreground meets WCAG AA (>=4.5:1) on white and its own tint
 LIGHT = {"red": "#B91C1C", "amber": "#B45309", "green": "#15803D"}
 LIGHT_BG = {"red": "#FEF2F2", "amber": "#FFFBEB", "green": "#F0FDF4"}
 LIGHT_BORDER = {"red": "#FECACA", "amber": "#FDE68A", "green": "#BBF7D0"}
 LIGHT_TEXT = {"red": "High risk", "amber": "Watch", "green": "Normal"}
 LIGHT_SYMBOL = {"red": "diamond", "amber": "triangle-up", "green": "circle"}
 
-# Scenario tokens — all >=5.0:1 contrast with white bar labels
 SCEN_COLOR = {"baseline": "#1E40AF", "nimp": "#15803D", "downturn": "#B91C1C", "tvet_push": "#B45309"}
 SCEN_DASH = {"baseline": "solid", "nimp": "dash", "downturn": "dot", "tvet_push": "dashdot"}
 SHORT = {"baseline": "Current pace", "nimp": "NIMP pace", "downturn": "Downturn", "tvet_push": "TVET push*"}
@@ -77,7 +74,16 @@ html, body, [class*="css"], .stMarkdown, .stText, button, input, select {{
   color: var(--mjp-ink);
 }}
 
-/* browser surface craft */
+/* pointer cursor base layer (R-39) */
+a[href], button, summary, select, label[for],
+label:has(> input[type="checkbox"], > input[type="radio"]),
+[role="button"], [role="link"], [role="tab"], [role="menuitem"], [role="option"], [role="switch"],
+input[type="checkbox"], input[type="radio"], input[type="file"],
+input[type="submit"], input[type="button"], input[type="reset"], input[type="range"], input[type="color"] {{
+  cursor: pointer;
+}}
+:disabled, [aria-disabled="true"] {{ cursor: not-allowed; }}
+
 ::selection {{ background: #DBEAFE; color: var(--mjp-ink); }}
 a {{ text-underline-offset: 0.18em; }}
 .block-container {{
@@ -86,7 +92,6 @@ a {{ text-underline-offset: 0.18em; }}
   max-width: 1240px;
 }}
 
-/* typographic hierarchy (fixed Operate scale, >=1.25x steps) */
 h1, h2, h3, .mjp-title {{
   color: var(--mjp-ink);
   letter-spacing: -0.015em;
@@ -112,7 +117,6 @@ p, li {{
 .stMarkdown p, .stMarkdown ul {{ max-width: 72ch; }}
 table {{ font-variant-numeric: tabular-nums; }}
 
-/* page header (no eyebrow kicker — heading carries its own weight) */
 .mjp-header {{
   padding-bottom: 1rem;
   margin-bottom: 1.25rem;
@@ -135,10 +139,9 @@ table {{ font-variant-numeric: tabular-nums; }}
   text-wrap: pretty;
 }}
 
-/* KPI strip — full borders + subtle semantic surface tints (no one-sided stripes) */
 .mjp-kpis {{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
   gap: 12px;
   margin: 0.25rem 0 1.4rem;
 }}
@@ -148,7 +151,7 @@ table {{ font-variant-numeric: tabular-nums; }}
   border-radius: 10px;
   padding: 14px 16px;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  transition: border-color 160ms ease-out, box-shadow 160ms ease-out;
+  transition: border-color 150ms ease-out, box-shadow 150ms ease-out;
 }}
 .mjp-kpi:hover {{
   border-color: var(--mjp-border-strong);
@@ -185,7 +188,6 @@ table {{ font-variant-numeric: tabular-nums; }}
 .mjp-kpi.pri .note {{ color: #334155; }}
 .mjp-kpi.hl .note {{ color: #78350F; }}
 
-/* cards + semantic badges */
 .mjp-card {{
   background: var(--mjp-surface);
   border: 1px solid var(--mjp-border);
@@ -247,7 +249,6 @@ table {{ font-variant-numeric: tabular-nums; }}
   flex-shrink: 0;
 }}
 
-/* callouts — full semantic border + gentle surface tint (no left bar) */
 .mjp-callout {{
   background: var(--mjp-primary-tint);
   border: 1px solid var(--mjp-primary-border);
@@ -267,7 +268,6 @@ table {{ font-variant-numeric: tabular-nums; }}
 }}
 .mjp-callout.warn b {{ color: #78350F; }}
 
-/* sidebar brand & navigation refinement */
 .mjp-brand-box {{
   padding: 0.15rem 0 0.75rem;
   margin-bottom: 0.5rem;
@@ -286,12 +286,11 @@ table {{ font-variant-numeric: tabular-nums; }}
   line-height: 1.35;
 }}
 [data-testid="stSidebarNav"] a {{
-  cursor: pointer;
   border-radius: 8px;
+  min-height: 40px;
   transition: background-color 150ms ease-out;
 }}
 
-/* tabs & explore links */
 .stTabs [data-baseweb="tab-list"] {{
   gap: 6px;
   border-bottom: 1px solid var(--mjp-border);
@@ -299,10 +298,10 @@ table {{ font-variant-numeric: tabular-nums; }}
 .stTabs [data-baseweb="tab"] {{
   font-weight: 600;
   font-size: 0.92rem;
-  padding: 8px 14px;
+  padding: 10px 14px;
+  min-height: 44px;
 }}
 
-/* footer */
 .mjp-footer {{
   margin-top: 2.25rem;
   padding-top: 0.9rem;
@@ -312,10 +311,24 @@ table {{ font-variant-numeric: tabular-nums; }}
   line-height: 1.5;
 }}
 
-/* accessibility: crisp keyboard focus & reduced motion */
 a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {{
   outline: 2px solid var(--mjp-secondary) !important;
   outline-offset: 2px !important;
+}}
+
+/* tablet and mobile register (R-03) */
+@media (max-width: 900px) {{
+  .block-container {{ padding-top: 1.8rem; padding-left: 1.25rem; padding-right: 1.25rem; }}
+  .mjp-title {{ font-size: 1.75rem; }}
+}}
+@media (max-width: 600px) {{
+  .block-container {{ padding-top: 1.25rem; padding-left: 0.9rem; padding-right: 0.9rem; }}
+  .mjp-title {{ font-size: 1.5rem; }}
+  .mjp-kpi .val {{ font-size: 1.5rem; }}
+  .mjp-kpi, .mjp-card {{ padding: 12px 13px; }}
+}}
+@media (pointer: coarse) {{
+  [data-testid="stSidebarNav"] a, button, [role="tab"] {{ min-height: 44px; }}
 }}
 @media (prefers-reduced-motion: reduce) {{
   *, *::before, *::after {{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }}
@@ -324,8 +337,7 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-v
 """
 
 
-# The file's modified time is part of the cache key: Streamlit Cloud keeps the cache across redeploys, so without it
-# a push with new data kept serving the old files.
+# File mtime is part of the cache key so Streamlit Cloud picks up updated data on redeploy.
 @st.cache_data
 def _parquet(path: str, mtime: float) -> pd.DataFrame:
     return pd.read_parquet(path)
@@ -338,12 +350,20 @@ def _json(path: str, mtime: float):
 
 def read_parquet(name: str) -> pd.DataFrame:
     p = PROC / f"{name}.parquet"
-    return _parquet(str(p), p.stat().st_mtime)
+    try:
+        return _parquet(str(p), p.stat().st_mtime)
+    except (FileNotFoundError, OSError, ValueError) as exc:
+        st.error(f"Could not load processed dataset `{p.name}` ({exc}). Run `python scripts/build_all.py` to rebuild outputs.")
+        st.stop()
 
 
 def read_json(name: str):
     p = OUT / f"{name}.json"
-    return _json(str(p), p.stat().st_mtime)
+    try:
+        return _json(str(p), p.stat().st_mtime)
+    except (FileNotFoundError, OSError, ValueError) as exc:
+        st.error(f"Could not load output file `{p.name}` ({exc}). Run `python scripts/build_all.py` to rebuild outputs.")
+        st.stop()
 
 
 def scenario_labels() -> dict[str, str]:
@@ -351,9 +371,8 @@ def scenario_labels() -> dict[str, str]:
             "downturn": "Downturn (IPI −5% in 2027, no catch-up)", "tvet_push": "TVET push (illustrative)"}
 
 
-# --- page shell ---------------------------------------------------------------------
 def page(title: str, eyebrow: str = "", subtitle: str = "") -> None:
-    """Call first on every page: config, CSS, sidebar brand, header."""
+    """Configure page layout, CSS tokens, sidebar brand, and main heading."""
     st.set_page_config(page_title=f"{title} · MyJobPulse", layout="wide", initial_sidebar_state="expanded")
     st.markdown(_CSS, unsafe_allow_html=True)
     with st.sidebar:
@@ -366,7 +385,7 @@ def page(title: str, eyebrow: str = "", subtitle: str = "") -> None:
 
 
 def kpis(items: list[dict]) -> None:
-    """items: {label, value, note?, tone? ('pri'|'hl')}"""
+    """Render responsive KPI cards from {label, value, note?, tone? ('pri'|'hl')} dicts."""
     cells = "".join(
         f"<div class='mjp-kpi {i.get('tone', '')}' role='group' aria-label='{html.escape(i['label'])}'>"
         f"<div class='lbl'>{html.escape(i['label'])}</div><div class='val'>{html.escape(i['value'])}</div>"
@@ -380,7 +399,6 @@ def badge(light: str, prefix: str = "") -> str:
 
 
 def pill(text: str, tone: str = "neutral") -> str:
-    """Semantic status pill for structural or secondary badges (all WCAG-AA contrast)."""
     pal = {
         "red": (LIGHT["red"], LIGHT_BG["red"], LIGHT_BORDER["red"]),
         "amber": (LIGHT["amber"], LIGHT_BG["amber"], LIGHT_BORDER["amber"]),
@@ -395,7 +413,6 @@ def callout(text_html: str, warn: bool = False) -> None:
     st.markdown(f"<div class='mjp-callout{' warn' if warn else ''}'>{text_html}</div>", unsafe_allow_html=True)
 
 
-# --- charts ---------------------------------------------------------------------------
 def style(fig: go.Figure, height: int = 380, y_title: str = "") -> go.Figure:
     fig.update_layout(
         height=height,
@@ -416,7 +433,7 @@ def style(fig: go.Figure, height: int = 380, y_title: str = "") -> go.Figure:
 
 
 def fan(hist: pd.Series, fc: pd.DataFrame, color: str = ACCENT, name: str = "Forecast") -> go.Figure:
-    """Actual = solid navy; forecast = dashed accent; 80/95% bands in the forecast hue."""
+    """Plot actuals in solid navy and forecast with 80/95% bands in the scenario hue."""
     r, g, b = (int(color[i:i + 2], 16) for i in (1, 3, 5))
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=fc.date, y=fc.hi95, line=dict(width=0), showlegend=False, hoverinfo="skip"))

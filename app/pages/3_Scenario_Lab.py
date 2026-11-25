@@ -8,7 +8,11 @@ page("Scenario lab", "Scenarios",
      "What happens to young workers if manufacturing grows at the NIMP 2030 target pace instead of today's pace?")
 
 labels = scenario_labels()
-chosen = st.multiselect("Compare scenarios", list(labels), default=list(labels), format_func=labels.get) or ["baseline"]
+selected = st.multiselect("Compare scenarios", list(labels), default=list(labels), format_func=labels.get)
+if not selected:
+    callout("<b>No scenario selected.</b> Showing <i>Current pace</i> so charts stay populated. Pick one or more "
+            "scenarios above to compare paths.")
+chosen = selected or ["baseline"]
 s = read_parquet("scenarios")
 cost = read_json("cost")
 

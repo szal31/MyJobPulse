@@ -78,17 +78,30 @@ with right:
     st.caption("Skill-related underemployment by sex, quarterly. The men's series drops sharply in Q1 2024 while the "
                "overall rate stays flat, so part of the widening gap may reflect a survey change; read with care.")
 
-st.markdown("## Explore")
-c = st.columns(3)
-links = [("pages/1_Forecast_to_2030.py", "Forecast to 2030", "Fan charts under four scenarios"),
-         ("pages/2_State_Risk.py", "State risk", "Which states to watch, and why"),
-         ("pages/3_Scenario_Lab.py", "Scenario lab", "NIMP pace vs current pace"),
-         ("pages/4_Parliament_Watch.py", "Parliament watch", "Attention, representation, promises"),
-         ("pages/5_Decision_Playbook.py", "Decision playbook", "From risk to federal and state levers"),
-         ("pages/6_Methods_and_Data.py", "Methods & data", "Sources, accuracy, limitations")]
-for i, (path, label, desc) in enumerate(links):
-    with c[i % 3]:
+st.markdown("## Continue by policy question")
+primary_links = [
+    ("pages/1_Forecast_to_2030.py", "Forecast to 2030", ":material/show_chart:",
+     "Interactive fan charts for youth unemployment and graduate underemployment across four scenarios, with rolling-origin backtest accuracy."),
+    ("pages/2_State_Risk.py", "State risk", ":material/map:",
+     "Malaysia choropleth map, structural vs. cyclical risk matrix, state forecast paths, and exact TreeSHAP drivers."),
+]
+p_cols = st.columns(2, gap="medium")
+for col, (path, label, icon, desc) in zip(p_cols, primary_links):
+    with col:
         with st.container(border=True):
-            st.page_link(path, label=f"**{label}**", icon=":material/arrow_forward:")
+            st.page_link(path, label=f"**{label}**", icon=icon)
+            st.caption(desc)
+
+secondary_links = [
+    ("pages/3_Scenario_Lab.py", "Scenario lab", ":material/tune:", "NIMP pace vs. current pace and RM wage penalty"),
+    ("pages/4_Parliament_Watch.py", "Parliament watch", ":material/account_balance:", "Hansard attention, representation, and promises"),
+    ("pages/5_Decision_Playbook.py", "Decision playbook", ":material/checklist:", "Federal and state levers mapped by risk rule"),
+    ("pages/6_Methods_and_Data.py", "Methods & data", ":material/description:", "DOSM sources, backtest design, and limitations"),
+]
+s_cols = st.columns(4, gap="small")
+for col, (path, label, icon, desc) in zip(s_cols, secondary_links):
+    with col:
+        with st.container(border=True):
+            st.page_link(path, label=f"**{label}**", icon=icon)
             st.caption(desc)
 footer()

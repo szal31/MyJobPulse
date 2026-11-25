@@ -79,8 +79,8 @@ def export(out_dir: Path) -> Path:
     meta = _j("build_meta")
     parts = []
 
-    # 1 Hidden gap
-    now = [r for r in cost["by_scenario"]["baseline"] if r["quarters"] == 4][0]  # first full forecast year
+    # Section 1: Hidden gap
+    now = [r for r in cost["by_scenario"]["baseline"] if r["quarters"] == 4][0]
     y, hd, sr = h.youth_u_rate.dropna(), h.headline_u_rate.dropna(), h.sru_rate.dropna()
     y30 = h["youth_15_30_u_rate"].dropna()
     kpi = (
@@ -107,16 +107,16 @@ def export(out_dir: Path) -> Path:
     ))
     charts_1 = (
         "<div class='chart-grid'>"
-        f"<div class='chart-card'><h3>Everyone vs youth</h3>{_fig(style(f_u, 300, '% of labour force'))}"
-        "<p class='caption'>Monthly unemployment rate, DOSM Labour Force Survey.</p></div>"
-        f"<div class='chart-card'><h3>Workers in jobs below their skills</h3>"
+        f"<figure class='chart-card'><h3>Everyone vs youth</h3>{_fig(style(f_u, 300, '% of labour force'))}"
+        "<figcaption class='caption'>Monthly unemployment rate, DOSM Labour Force Survey.</figcaption></figure>"
+        f"<figure class='chart-card'><h3>Workers in jobs below their skills</h3>"
         f"{_fig(style(f_sru, 300, '% of tertiary-educated employed'))}"
-        "<p class='caption'>Quarterly; separate measure from unemployment, shown on its own axis.</p></div>"
+        "<figcaption class='caption'>Quarterly; separate measure from unemployment, shown on its own axis.</figcaption></figure>"
         "</div>"
     )
     parts.append(_section("hidden-gap", "The hidden gap", kpi + charts_1))
 
-    # 2 Forecast: scenario dropdown via buttons (matching navy/amber/semantic palette)
+    # Section 2: Forecast with scenario dropdown
     f = go.Figure()
     traces = []
     for n in SCEN_ORDER:
@@ -150,7 +150,7 @@ def export(out_dir: Path) -> Path:
         extra_cls="keep-together",
     ))
 
-    # 3 State risk — keep header + intro + map together across print breaks; sort tiles by risk priority
+    # Section 3: State risk (keep heading and map together in print; sort tiles by risk priority)
     pb = pd.DataFrame(_j("playbook"))
     pb_sorted = pb.assign(
         _o=pb.light.map({"red": 0, "amber": 1, "green": 2}),
@@ -176,7 +176,7 @@ def export(out_dir: Path) -> Path:
     )
     parts.append(f'<section id="state-risk" class="page-break-before">{map_block}</section>')
 
-    # 4 Scenario lab — deliberate narrative order + value labels on bars
+    # Section 4: Scenario lab in narrative order with outside bar labels
     d = s[(s.date.dt.year == 2030)].groupby(["series", "scenario"])["mean"].mean().unstack(0).reindex(SCEN_ORDER)
     f = go.Figure([
         go.Bar(x=[SHORT[i] for i in d.index], y=d["youth"], name="Youth unemployment 2030",
@@ -195,7 +195,7 @@ def export(out_dir: Path) -> Path:
         extra_cls="keep-together",
     ))
 
-    # 5 Parliament
+    # Section 5: Parliament watch
     att = _j("attention")
     m = pd.DataFrame(att.get("monthly", []))
     body = ""
@@ -221,27 +221,30 @@ def export(out_dir: Path) -> Path:
                  + html.escape(", ".join(hn.parlimen)) + ".</p>")
     parts.append(_section("parliament", "Parliament watch", body, extra_cls="keep-together"))
 
-    # 6 Playbook — proper <thead>/<tbody> for clean multi-page printing, priority sorted, WCAG-AA badges
+    # Section 6: Decision playbook with keyboard-scrollable wrapper, caption, and header scopes
     rows = "".join(
-        f"<tr><td class='state-col'>{html.escape(r.state)}</td>"
+        f"<tr><th scope='row' class='state-col'>{html.escape(r.state)}</th>"
         f"<td>{_pill(LIGHT_TEXT[r.light], r.light)}</td>"
         f"<td>{_pill(S_TEXT[r.structural] + f' · {r.level_ratio:.2f}×', S_TONE[r.structural])}</td>"
         f"<td>{html.escape('; '.join(r.federal))}</td>"
-        f"<td>{html.escape('; '.join(r.state_levers)) or '—'}</td></tr>"
+        f"<td>{html.escape('; '.join(r.state_levers)) or 'None'}</td></tr>"
         for r in pb_sorted.itertuples()
     )
     parts.append(_section(
         "playbook", "Decision playbook",
         "<p class='lead'>States ordered by cyclical risk, then structural gap relative to the national rate.</p>"
-        "<table><thead><tr><th>State</th><th>Cyclical</th><th>Structural</th>"
-        f"<th>Federal levers</th><th>State / Federal Territory levers</th></tr></thead><tbody>{rows}</tbody></table>",
+        "<div tabindex='0' role='region' aria-labelledby='playbook-cap' class='table-wrapper'>"
+        "<table><caption id='playbook-cap' class='sr-only'>Decision playbook by Malaysian state and territory</caption>"
+        "<thead><tr><th scope='col'>State</th><th scope='col'>Cyclical</th><th scope='col'>Structural</th>"
+        "<th scope='col'>Federal levers</th><th scope='col'>State / Federal Territory levers</th></tr></thead>"
+        f"<tbody>{rows}</tbody></table></div>",
         extra_cls="page-break-before",
     ))
 
-    # 7 Methods
+    # Section 7: Methods and accuracy
     sb = _j("scoreboard_national")
     sb_rows = "".join(
-        f"<tr><td>{html.escape(r['model'])}</td><td class='num'>{r['mase']:.3f}</td>"
+        f"<tr><th scope='row'>{html.escape(r['model'])}</th><td class='num'>{r['mase']:.3f}</td>"
         f"<td class='num'>{r['mape']:.2f}%</td></tr>"
         for r in sb["youth_monthly"]
     )
@@ -249,8 +252,10 @@ def export(out_dir: Path) -> Path:
         "methods", "Methods & accuracy",
         "<p class='lead'><b>Backtest accuracy, youth unemployment (monthly):</b> rolling-origin MASE "
         "(lower is better); compare each model with the naive benchmark.</p>"
-        "<table><thead><tr><th>Model</th><th class='num'>MASE</th><th class='num'>MAPE</th></tr></thead>"
-        f"<tbody>{sb_rows}</tbody></table>"
+        "<div tabindex='0' role='region' aria-labelledby='methods-cap' class='table-wrapper'>"
+        "<table><caption id='methods-cap' class='sr-only'>Rolling-origin backtest accuracy for monthly youth unemployment</caption>"
+        "<thead><tr><th scope='col'>Model</th><th scope='col' class='num'>MASE</th>"
+        f"<th scope='col' class='num'>MAPE</th></tr></thead><tbody>{sb_rows}</tbody></table></div>"
         "<p class='caption'>Prediction intervals are split-conformal bands calibrated from backtest errors. "
         "See README.txt and the Methods &amp; Data page for full sources and limitations.</p>",
         extra_cls="keep-together",
@@ -278,34 +283,61 @@ def export(out_dir: Path) -> Path:
 }}
 *, *::before, *::after {{ box-sizing: border-box; }}
 ::selection {{ background: #DBEAFE; color: var(--mjp-ink); }}
+a[href], button, summary, select, label[for],
+[role="button"], [role="link"], [role="tab"] {{ cursor: pointer; }}
+:disabled, [aria-disabled="true"] {{ cursor: not-allowed; }}
+.sr-only {{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}}
+.skip-link {{
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 100;
+  background: var(--mjp-primary);
+  color: #FFFFFF;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}}
+.skip-link:focus {{ top: 0.75rem; outline: 2px solid var(--mjp-secondary); outline-offset: 2px; }}
 body {{
   font-family: var(--mjp-font);
-  font-size: 15px;
+  font-size: 0.9375rem;
   line-height: 1.55;
   color: var(--mjp-ink);
   background: var(--mjp-bg);
-  max-width: 1120px;
+  max-width: 70rem;
   margin: 0 auto;
-  padding: 24px 20px 36px;
+  padding: 1.5rem 1.25rem 2.25rem;
 }}
 header.doc-head {{
-  padding-bottom: 16px;
-  margin-bottom: 18px;
+  padding-bottom: 1rem;
+  margin-bottom: 1.125rem;
   border-bottom: 1px solid var(--mjp-border-strong);
 }}
 h1 {{
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.025em;
   color: var(--mjp-ink);
-  margin: 0 0 6px;
+  margin: 0 0 0.375rem;
   text-wrap: balance;
 }}
 h1 span {{ color: var(--mjp-primary); }}
 .doc-sub {{
   color: var(--mjp-muted);
-  font-size: 15px;
+  font-size: 0.9375rem;
   max-width: 68ch;
   margin: 0;
   text-wrap: pretty;
@@ -313,107 +345,113 @@ h1 span {{ color: var(--mjp-primary); }}
 nav.toc {{
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
 }}
 nav.toc a {{
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--mjp-primary);
   background: var(--mjp-surface);
   border: 1px solid var(--mjp-border);
   border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 13px;
+  padding: 0 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
   transition: background-color 150ms ease-out, border-color 150ms ease-out;
 }}
 nav.toc a:hover {{ background: var(--mjp-primary-tint); border-color: var(--mjp-primary-border); }}
-nav.toc a:focus-visible {{ outline: 2px solid var(--mjp-secondary); outline-offset: 2px; }}
+nav.toc a:active {{ background: #DBEAFE; border-color: var(--mjp-primary); }}
+nav.toc a:focus-visible, .table-wrapper:focus-visible {{ outline: 2px solid var(--mjp-secondary); outline-offset: 2px; }}
 section {{
   background: var(--mjp-surface);
   border: 1px solid var(--mjp-border);
   border-radius: 12px;
-  padding: 20px 22px;
-  margin: 16px 0;
+  padding: 1.25rem 1.375rem;
+  margin: 1rem 0;
 }}
 h2 {{
-  font-size: 21px;
+  font-size: 1.3125rem;
   line-height: 1.25;
   font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--mjp-ink);
-  margin: 0 0 10px;
+  margin: 0 0 0.625rem;
   text-wrap: balance;
 }}
 h3 {{
-  font-size: 15px;
+  font-size: 0.95rem;
   line-height: 1.3;
   font-weight: 600;
   color: var(--mjp-ink);
-  margin: 0 0 6px;
+  margin: 0 0 0.375rem;
 }}
 p.lead {{
   color: var(--mjp-muted);
-  font-size: 14px;
+  font-size: 0.875rem;
   max-width: 72ch;
-  margin: 0 0 12px;
+  margin: 0 0 0.75rem;
   text-wrap: pretty;
 }}
-p.caption {{
+.caption {{
   color: var(--mjp-muted);
-  font-size: 12.5px;
-  margin: 6px 0 0;
+  font-size: 0.78rem;
+  margin: 0.375rem 0 0;
   line-height: 1.45;
 }}
 .kpis {{
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin: 4px 0 16px;
+  gap: 0.625rem;
+  margin: 0.25rem 0 1rem;
 }}
 .kpi {{
   background: var(--mjp-surface);
   border: 1px solid var(--mjp-border);
   border-radius: 10px;
-  padding: 12px 13px;
+  padding: 0.75rem 0.8125rem;
 }}
 .kpi.pri {{ background: var(--mjp-primary-tint); border-color: var(--mjp-primary-border); }}
 .kpi.hl {{ background: var(--mjp-warn-tint); border-color: var(--mjp-warn-border); }}
-.kpi .lbl {{ display: block; font-size: 12px; font-weight: 600; color: var(--mjp-muted); line-height: 1.3; }}
+.kpi .lbl {{ display: block; font-size: 0.75rem; font-weight: 600; color: var(--mjp-muted); line-height: 1.3; }}
 .kpi.pri .lbl {{ color: #1E3A8A; }}
 .kpi.hl .lbl {{ color: #92400E; }}
 .kpi b {{
   display: block;
-  font: 700 22px/1.2 var(--mjp-mono);
+  font: 700 1.375rem/1.2 var(--mjp-mono);
   color: var(--mjp-ink);
-  margin: 5px 0 3px;
+  margin: 0.3125rem 0 0.1875rem;
   font-variant-numeric: tabular-nums;
 }}
-.kpi .note {{ display: block; font-size: 12px; color: var(--mjp-muted); line-height: 1.35; }}
+.kpi .note {{ display: block; font-size: 0.75rem; color: var(--mjp-muted); line-height: 1.35; }}
 .kpi.hl .note {{ color: #78350F; }}
 .chart-grid {{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 0.875rem;
 }}
-.chart-card {{
+figure.chart-card {{
+  margin: 0;
+  min-width: 0;
   border: 1px solid var(--mjp-border);
   border-radius: 10px;
-  padding: 12px 12px 10px;
+  padding: 0.75rem 0.75rem 0.625rem;
   background: var(--mjp-surface);
 }}
 .tiles {{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 12px;
+  gap: 0.625rem;
+  margin-top: 0.75rem;
 }}
 .tile {{
   border: 1px solid var(--mjp-border);
   border-radius: 10px;
-  padding: 11px 13px;
+  padding: 0.6875rem 0.8125rem;
   background: var(--mjp-surface);
-  font-size: 13px;
+  font-size: 0.8125rem;
 }}
 .tile.tone-red {{ background: {LIGHT_BG['red']}; border-color: {LIGHT_BORDER['red']}; }}
 .tile.tone-amber {{ background: {LIGHT_BG['amber']}; border-color: {LIGHT_BORDER['amber']}; }}
@@ -421,19 +459,19 @@ p.caption {{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
 }}
-.tile-meta {{ color: var(--mjp-muted); font-size: 12.5px; line-height: 1.4; }}
-.tile-foot {{ margin-top: 7px; }}
+.tile-meta {{ color: var(--mjp-muted); font-size: 0.78rem; line-height: 1.4; }}
+.tile-foot {{ margin-top: 0.4375rem; }}
 .pill {{
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  font-size: 12px;
+  gap: 0.3125rem;
+  font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.2;
-  padding: 2px 8px;
+  padding: 0.125rem 0.5rem;
   border-radius: 999px;
   border: 1px solid;
   white-space: nowrap;
@@ -443,16 +481,22 @@ p.caption {{
   background: var(--mjp-primary-tint);
   border: 1px solid var(--mjp-primary-border);
   border-radius: 10px;
-  padding: 12px 14px;
-  margin: 10px 0 12px;
-  font-size: 13.5px;
+  padding: 0.75rem 0.875rem;
+  margin: 0.625rem 0 0.75rem;
+  font-size: 0.84375rem;
   line-height: 1.52;
   max-width: 76ch;
+}}
+.table-wrapper {{
+  overflow-x: auto;
+  max-inline-size: 100%;
+  border-radius: 8px;
 }}
 table {{
   border-collapse: collapse;
   width: 100%;
-  font-size: 13px;
+  min-width: 34rem;
+  font-size: 0.8125rem;
   font-variant-numeric: tabular-nums;
 }}
 thead th {{
@@ -461,38 +505,53 @@ thead th {{
   font-weight: 600;
   border-top: 1px solid var(--mjp-border);
   border-bottom: 1px solid var(--mjp-border-strong);
-  padding: 8px 9px;
+  padding: 0.5rem 0.5625rem;
   text-align: left;
 }}
-tbody td {{
+tbody th, tbody td {{
   border-bottom: 1px solid var(--mjp-border);
-  padding: 8px 9px;
+  padding: 0.5rem 0.5625rem;
   text-align: left;
   vertical-align: top;
 }}
-td.state-col {{ font-weight: 600; white-space: nowrap; }}
+tbody th {{ font-weight: 600; }}
+th.state-col {{ white-space: nowrap; }}
 .num {{ text-align: right; font-family: var(--mjp-mono); }}
 footer.doc-foot {{
-  margin-top: 20px;
-  padding-top: 12px;
+  margin-top: 1.25rem;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--mjp-border);
   color: var(--mjp-muted);
-  font-size: 12px;
+  font-size: 0.75rem;
+}}
+/* Tablet register (601px to 900px) */
+@media screen and (max-width: 900px) {{
+  .kpis {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
 }}
 @media screen and (max-width: 720px) {{
-  .kpis {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }}
-  .chart-grid, .tiles {{ grid-template-columns: 1fr; }}
+  .chart-grid {{ grid-template-columns: 1fr; }}
+}}
+/* Phone register (<= 600px) */
+@media screen and (max-width: 600px) {{
+  body {{ padding: 1rem 0.75rem 1.75rem; }}
+  h1 {{ font-size: 1.5rem; }}
+  h2 {{ font-size: 1.15rem; }}
+  section {{ padding: 1rem; }}
+  .kpis, .tiles {{ grid-template-columns: 1fr; }}
+  .kpi b {{ font-size: 1.25rem; }}
 }}
 @media (prefers-reduced-motion: reduce) {{
   *, *::before, *::after {{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }}
 }}
 @media print {{
   * {{ -webkit-print-color-adjust: exact; print-color-adjust: exact; }}
-  body {{ background: #FFFFFF; padding: 0; max-width: none; font-size: 13.5px; }}
-  nav.toc {{ display: none; }}
-  section {{ border-color: var(--mjp-border); padding: 14px 16px; margin: 12px 0; }}
-  .kpi b {{ font-size: 19px; }}
-  .keep-together, .plotly-graph-div, .kpis, .chart-card, .tile, .callout, tr {{ break-inside: avoid; }}
+  body {{ background: #FFFFFF; padding: 0; max-width: none; font-size: 0.84375rem; }}
+  .skip-link, nav.toc {{ display: none; }}
+  section {{ border-color: var(--mjp-border); padding: 0.875rem 1rem; margin: 0.75rem 0; }}
+  .kpi b {{ font-size: 1.1875rem; }}
+  .table-wrapper {{ overflow: visible; }}
+  table {{ min-width: 0; }}
+  .keep-together, .plotly-graph-div, .kpis, figure.chart-card, .tile, .callout, tr {{ break-inside: avoid; }}
   h2, h3 {{ break-after: avoid; }}
   thead {{ display: table-header-group; }}
   .page-break-before {{ break-before: page; }}
@@ -517,11 +576,13 @@ footer.doc-foot {{
     doc = (
         "<!doctype html><html lang='en'><head><meta charset='utf-8'>"
         "<meta name='viewport' content='width=device-width,initial-scale=1'>"
-        f"<title>MyJobPulse — Youth Job-Quality Dashboard (Offline)</title><style>{css}</style></head><body>"
+        "<meta name='text-scale' content='scale'>"
+        f"<title>MyJobPulse: Youth Job-Quality Dashboard (Offline)</title><style>{css}</style></head><body>"
+        "<a href='#main-content' class='skip-link'>Skip to main content</a>"
         "<header class='doc-head'><h1>My<span>Job</span>Pulse</h1>"
         "<p class='doc-sub'>Offline edition of the MyJobPulse dashboard: youth unemployment, graduate "
         "skill-related underemployment, state risk and parliamentary accountability in Malaysia, forecast to 2030.</p>"
-        f"{toc}</header><main>" + "".join(parts) + f"</main>{foot}</body></html>"
+        f"{toc}</header><main id='main-content' tabindex='-1'>" + "".join(parts) + f"</main>{foot}</body></html>"
     )
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
