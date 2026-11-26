@@ -11,6 +11,9 @@ WHAT IT IS
 WHAT IS IN THIS ZIP
   Data Product.html   Interactive data product, single file, opens offline in any browser
   Data Product.pdf    Static version of the dashboard (for documentation)
+  Data.csv            The data the dashboard plots, one table: date, area (Malaysia or state), series
+                      (headline / youth 15-24 / youth_15_30 / sru = skill-related underemployment, all %),
+                      scenario (actual, baseline, nimp, downturn, tvet_push), value, 80% and 95% ranges
   README.txt          This file
   app/, src/, scripts/  Full source of the interactive Streamlit dashboard and the analysis pipeline
   data/raw/           Official data snapshots used (listed with dates in data/raw/MANIFEST.csv)

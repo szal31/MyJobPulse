@@ -11,7 +11,7 @@ def test_zip_contents(tmp_path):
     z = package.package("TestTeam", tmp_path)
     assert z.name == "TestTeam_Datathon2026_dashboard.zip"
     names = set(zipfile.ZipFile(z).namelist())
-    for must in ["README.txt", "requirements.txt", "Data Product.html", "Data Product.pdf", "app/Home.py",
+    for must in ["README.txt", "requirements.txt", "Data Product.html", "Data Product.pdf", "Data.csv", "app/Home.py",
                  "data/raw/MANIFEST.csv", "outputs/playbook.json"]:
         assert must in names
     assert not any("hansard.jsonl" in n or "__pycache__" in n for n in names)
