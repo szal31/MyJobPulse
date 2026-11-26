@@ -1,4 +1,125 @@
 {
- "status": "pending verification",
- "items": []
+ "status": "verified",
+ "items": [
+  {
+   "date": "2026-10-28",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-28102026.pdf",
+   "speaker_role": "Deputy Minister of Human Resources",
+   "commitment": "Cut skill-related underemployment to 30% (Thirteenth Malaysia Plan)",
+   "quote": "Di bawah Rancangan Malaysia Ketiga Belas (RMK13), Kerajaan MADANI menyasarkan kadar guna tenaga tidak penuh berkaitan kemahiran ini berkurang kepada 30 peratus menjelang 2030.",
+   "target": 30.0,
+   "target_text": "30%",
+   "target_year": 2030,
+   "metric": "sru_rate",
+   "status": "Off track"
+  },
+  {
+   "date": "2023-10-13",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-13102023.pdf",
+   "speaker_role": "Minister of Finance (Budget 2024 speech)",
+   "commitment": "Create 3.3 million jobs with median pay up to RM4,510 a month (NIMP 2030)",
+   "quote": "NIMP menyasarkan jumlah pelaburan keseluruhan sehingga RM95 bilion di samping melibatkan 3.3 juta peluang pekerjaan dengan gaji menengah sehingga RM4,510 sebulan menjelang 2030.",
+   "target": NaN,
+   "target_text": "3.3 million jobs",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2024-03-27",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-27032024.pdf",
+   "speaker_role": "Deputy Minister of Higher Education",
+   "commitment": "Raise KPT TVET enrolment to 300,000 students; skilled workers to 35% of the workforce",
+   "quote": "Usaha-usaha ini seterusnya dapat meningkatkan enrolment sehingga 300,000 pelajar TVET KPT menjelang tahun 2030 bagi merealisasikan hasrat KPT untuk muncul sebagai pengeluar utama tenaga mahir negara yang disasarkan sebanyak 35 peratus menjelang 2030.",
+   "target": NaN,
+   "target_text": "300,000 students",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2025-08-14",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-14082025.pdf",
+   "speaker_role": "Minister of Science, Technology and Innovation",
+   "commitment": "Create 8,000\u201345,000 clean-energy jobs (Hydrogen Economy and Technology Roadmap)",
+   "quote": "HETR mensasarkan 8,000 hingga 45,000 peluang pekerjaan baru di dalam sektor tenaga bersih akan diwujudkan menjelang tahun 2030.",
+   "target": NaN,
+   "target_text": "8,000\u201345,000 jobs",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2023-10-12",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-12102023.pdf",
+   "speaker_role": "Minister of Science, Technology and Innovation",
+   "commitment": "Create 5,000 space-industry jobs (National Space Policy 2030)",
+   "quote": "Namun begitu, bagi memastikan negara mempunyai modal insan yang mencukupi dengan sasaran 5,000 peluang pekerjaan diwujudkan dalam pelbagai industri angkasa menjelang tahun 2030, MYSA sedang mempergiatkan lagi usaha untuk melaksanakan pelbagai program dan inisiatif yang boleh meningkatkan minat dan kesedaran golongan belia dalam bidang teknologi angkasa seperti berikut.",
+   "target": NaN,
+   "target_text": "5,000 jobs",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2024-10-28",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-28102024.pdf",
+   "speaker_role": "Minister of Plantation and Commodities",
+   "commitment": "Create 33,000 new jobs in the biomass sector",
+   "quote": "Hal ini juga dijangka dapat mewujudkan sebanyak 33 ribu peluang pekerjaan baru dalam sektor biojisim menjelang tahun 2030 dengan hanya menggunakan waste yang kita produce dalam aktiviti-aktiviti perladangan dan komoditi.",
+   "target": NaN,
+   "target_text": "33,000 jobs",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2026-10-29",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-29102026.pdf",
+   "speaker_role": "Minister of Finance II",
+   "commitment": "Create 30,000 new jobs for young people (Bakat MADANI)",
+   "quote": "Manakala Bakat MADANI menyasarkan 30,000 peluang pekerjaan baharu pada 2027 untuk anak muda.",
+   "target": NaN,
+   "target_text": "30,000 jobs",
+   "target_year": 2027,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2026-10-14",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-14102026.pdf",
+   "speaker_role": "Minister of Economy",
+   "commitment": "Raise skilled workers to 35% of the workforce (Thirteenth Malaysia Plan)",
+   "quote": "Hal ini akan membolehkan penciptaan lebih banyak peluang pekerjaan berkemahiran sepertimana yang kita gariskan dalam Rancangan Malaysia Ketiga Belas untuk kita tingkatkan komposisi pekerja mahir daripada jumlah tenaga kerja kepada 35 peratus menjelang tahun 2030.",
+   "target": NaN,
+   "target_text": "35%",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2024-11-19",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-19112024.pdf",
+   "speaker_role": "Minister of Agriculture and Food Security",
+   "commitment": "Raise graduate employability to 85% (KPKM target)",
+   "quote": "KPKM juga menetapkan sasaran kebolehpasaran graduan pada kadar 85 peratus menjelang 2030.",
+   "target": NaN,
+   "target_text": "85%",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  },
+  {
+   "date": "2024-10-15",
+   "url": "https://www.parlimen.gov.my/files/hindex/pdf/DR-15102024.pdf",
+   "speaker_role": "Deputy Minister of Economy",
+   "commitment": "Create 100,000 skilled jobs for local talent (Kuala Lumpur start-up ecosystem initiative)",
+   "quote": "Inisiatif ini dijangka berupaya memposisikan Kuala Lumpur di kedudukan 20 teratas dalam ekosistem syarikat 10 DR.15.10.2024 pemula global menjelang 2030 dan mewujudkan 100,000 peluang pekerjaan mahir kepada bakat tempatan.",
+   "target": NaN,
+   "target_text": "100,000 jobs",
+   "target_year": 2030,
+   "metric": NaN,
+   "status": "Tracked: no open data series yet"
+  }
+ ]
 }

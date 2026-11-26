@@ -26,7 +26,7 @@ def test_assess_statuses():
     v = pd.DataFrame({"metric": ["youth_u_rate", "youth_u_rate", "youth_u_rate", "jobs_created"],
                       "target": [9.0, 11.0, 5.0, 30000], "target_year": [2028] * 4})
     out = assess(v, {"youth_u_rate": _fc(10.1, 8.8)})
-    assert out.status.tolist() == ["At risk", "On track", "Off track", "Not testable"]
+    assert out.status.tolist() == ["At risk", "On track", "Off track", "Tracked: no open data series yet"]
 
 
 def test_strips_speaker_names():

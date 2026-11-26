@@ -76,7 +76,17 @@ with tab3:
                 "checks finish.</div>", warn=True)
     else:
         t = pd.DataFrame(pr["items"])
-        st.dataframe(t[["date", "speaker_role", "quote", "target", "target_year", "status"]].rename(
-            columns={"speaker_role": "Role", "quote": "Commitment", "target": "Target", "target_year": "By",
-                     "status": "Status vs forecast"}), hide_index=True, use_container_width=True)
+        st.markdown("#### Commitments register")
+        st.caption("Government commitments on jobs and skills with a stated target and year, found in Dewan Rakyat "
+                   "Hansard and checked by the team against the official record (roles only, no names). Targets that "
+                   "match a series MyJobPulse forecasts are tested against the current-pace forecast; the rest are "
+                   "tracked until official data exist to test them.")
+        st.dataframe(t[["date", "speaker_role", "commitment", "target_text", "target_year", "status", "url"]].rename(
+            columns={"date": "Said on", "speaker_role": "Who", "commitment": "Commitment", "target_text": "Target",
+                     "target_year": "By", "status": "Status vs forecast", "url": "Hansard"}),
+            hide_index=True, use_container_width=True,
+            column_config={"Hansard": st.column_config.LinkColumn("Hansard", display_text="PDF")})
+        with st.expander("Original wording (Bahasa Melayu)"):
+            for r in t.itertuples():
+                st.markdown(f"**{r.date} · {r.speaker_role}:** {r.quote}")
 footer()

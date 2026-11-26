@@ -73,13 +73,13 @@ def assess(verified: pd.DataFrame, forecasts: dict[str, pd.DataFrame]) -> pd.Dat
     out = verified.copy()
     status = []
     for r in out.itertuples(index=False):
-        fc = forecasts.get(r.metric)
-        if fc is None:
-            status.append("Not testable")
+        fc = forecasts.get(r.metric) if isinstance(r.metric, str) else None
+        if fc is None:  # job counts, enrolments etc.: no official open series to test them against yet
+            status.append("Tracked: no open data series yet")
             continue
         yr = fc[fc["date"].dt.year == int(r.target_year)]
         if yr.empty:
-            status.append("Not testable")
+            status.append("Tracked: no open data series yet")
         elif yr["mean"].mean() <= r.target:
             status.append("On track")
         elif yr["lo80"].mean() <= r.target:
