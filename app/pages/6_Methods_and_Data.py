@@ -32,7 +32,7 @@ with tab2:
   words as exposure, youth rate with a 2-month publication lag, Budget-month, COVID and Parliament-term controls);
   lead/lag correlation and Granger tests as secondary checks; constituency speaker parsing with Hansard-to-DOSM
   spelling fixes; ministers, deputy ministers and Deputy Speakers set aside; keyword precision sample (first-pass
-  coding by an AI assistant, spot-checked by the team); numeric commitment extraction pending manual verification.
+  coding by an AI assistant, checked in full by the team); commitments register of 10 government targets with a year, checked against Hansard, with rate targets tested against the forecast.
 """)
 with tab3:
     st.markdown("""
