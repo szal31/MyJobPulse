@@ -23,6 +23,7 @@ from load import (  # noqa: E402
     SHORT, SURFACE, SURFACE_SUBTLE, WARN_BORDER, WARN_TINT, scenario_labels, style,
 )
 from mapviz import state_map  # noqa: E402
+from mjp_paths import state_history  # noqa: E402
 
 S_TEXT = {"high": "Chronically high", "above": "Above national", "below": "Below national"}
 S_TONE = {"high": "red", "above": "amber", "below": "neutral"}
@@ -107,14 +108,14 @@ def export(out_dir: Path) -> Path:
     ))
     charts_1 = (
         "<div class='chart-grid'>"
-        f"<figure class='chart-card'><h3>Everyone vs youth</h3>{_fig(style(f_u, 300, '% of labour force'))}"
+        f"<figure class='chart-card'><h3>Everyone vs Youth</h3>{_fig(style(f_u, 300, '% of labour force'))}"
         "<figcaption class='caption'>Monthly unemployment rate, DOSM Labour Force Survey.</figcaption></figure>"
-        f"<figure class='chart-card'><h3>Workers in jobs below their skills</h3>"
+        f"<figure class='chart-card'><h3>Workers in Jobs Below Their Skills</h3>"
         f"{_fig(style(f_sru, 300, '% of tertiary-educated employed'))}"
         "<figcaption class='caption'>Quarterly; separate measure from unemployment, shown on its own axis.</figcaption></figure>"
         "</div>"
     )
-    parts.append(_section("hidden-gap", "The hidden gap", kpi + charts_1))
+    parts.append(_section("hidden-gap", "The Hidden Gap", kpi + charts_1))
 
     # Section 2: Forecast with scenario dropdown
     f = go.Figure()
@@ -143,7 +144,7 @@ def export(out_dir: Path) -> Path:
                           bgcolor=SURFACE, bordercolor=BORDER_STRONG, font=dict(size=12, color=INK))],
     )
     parts.append(_section(
-        "forecast", "Youth unemployment forecast to 2030",
+        "forecast", "Youth Unemployment Forecast to 2030",
         "<p class='lead'>Solid line: DOSM actuals. Dashed line and shaded band: SARIMAX scenario forecast with "
         "80% split-conformal intervals calibrated from rolling-origin backtest errors.</p>"
         + _fig(f),
@@ -152,6 +153,7 @@ def export(out_dir: Path) -> Path:
 
     # Section 3: State risk (keep heading and map together in print; sort tiles by risk priority)
     pb = pd.DataFrame(_j("playbook"))
+    pb["rate"] = [state_history(s).iloc[-4:].mean() for s in pb.state]  # map hover: last four quarters, %
     pb_sorted = pb.assign(
         _o=pb.light.map({"red": 0, "amber": 1, "green": 2}),
         _s=pb.structural.map({"high": 0, "above": 1, "below": 2}),
@@ -168,10 +170,11 @@ def export(out_dir: Path) -> Path:
     smap = _fig(state_map(pb, _j("states_geo"), 380), is_map=True)
     map_block = (
         "<div class='keep-together'>"
-        "<h2>State risk (all-ages unemployment)</h2>"
-        "<p class='lead'>Colour: state unemployment rate ÷ national rate over the last four quarters "
-        "(blue below, red above). Ring: cyclical warning against the state's own past. "
-        "Boundaries: geoBoundaries (OpenStreetMap contributors, ODbL).</p>"
+        "<h2>State Risk (All-Ages Unemployment)</h2>"
+        "<p class='lead'><b>Colour:</b> state unemployment rate ÷ national rate over the last four quarters "
+        "(blue below, red above).<br><b>Rings:</b> states whose forecast is turning worse against their own past."
+        "<br><b>Boundaries:</b> geoBoundaries (OpenStreetMap contributors, ODbL)."
+        "<br><b>Tip:</b> hover over a state to see its unemployment rate.</p>"
         f"{smap}</div><div class='tiles'>{tiles}</div>"
     )
     parts.append(f'<section id="state-risk" class="page-break-before">{map_block}</section>')
@@ -188,9 +191,9 @@ def export(out_dir: Path) -> Path:
     ])
     f.update_layout(barmode="group", yaxis=dict(range=[0, max(d["sru"].max(), 38) * 1.15]))
     parts.append(_section(
-        "scenario-lab", "Scenario lab (2030)",
+        "scenario-lab", "Scenario Lab (2030)",
         "<p class='lead'>2030 yearly average under four macro/policy paths. *TVET push is illustrative "
-        "(assumes −0.5 pp/yr on underemployment from 2027).</p>"
+        "(assumes underemployment falls an extra 0.5 percentage points a year from 2027).</p>"
         + _fig(style(f, 340, "%")),
         extra_cls="keep-together",
     ))
@@ -219,7 +222,7 @@ def export(out_dir: Path) -> Path:
         hn = r[r.quadrant == "high need · low voice"].sort_values("u_rate", ascending=False).head(10)
         body += ("<p class='lead'><b>Top 10 high-need, low-voice constituencies (backbench seats only):</b> "
                  + html.escape(", ".join(hn.parlimen)) + ".</p>")
-    parts.append(_section("parliament", "Parliament watch", body, extra_cls="keep-together"))
+    parts.append(_section("parliament", "Parliament Watch", body, extra_cls="keep-together"))
 
     # Section 6: Decision playbook with keyboard-scrollable wrapper, caption, and header scopes
     rows = "".join(
@@ -231,7 +234,7 @@ def export(out_dir: Path) -> Path:
         for r in pb_sorted.itertuples()
     )
     parts.append(_section(
-        "playbook", "Decision playbook",
+        "playbook", "Decision Playbook",
         "<p class='lead'>States ordered by cyclical risk, then structural gap relative to the national rate.</p>"
         "<div tabindex='0' role='region' aria-labelledby='playbook-cap' class='table-wrapper'>"
         "<table><caption id='playbook-cap' class='sr-only'>Decision playbook by Malaysian state and territory</caption>"
@@ -249,9 +252,9 @@ def export(out_dir: Path) -> Path:
         for r in sb["youth_monthly"]
     )
     parts.append(_section(
-        "methods", "Methods & accuracy",
-        "<p class='lead'><b>Backtest accuracy, youth unemployment (monthly):</b> rolling-origin MASE "
-        "(lower is better); compare each model with the naive benchmark.</p>"
+        "methods", "Methods & Accuracy",
+        "<p class='lead'><b>Backtest accuracy, youth unemployment (monthly):</b> rolling-origin MASE (Mean Absolute Scaled Error) "
+        "and MAPE (Mean Absolute Percentage Error); lower is better for both. Compare each model with the naive benchmark.</p>"
         "<div tabindex='0' role='region' aria-labelledby='methods-cap' class='table-wrapper'>"
         "<table><caption id='methods-cap' class='sr-only'>Rolling-origin backtest accuracy for monthly youth unemployment</caption>"
         "<thead><tr><th scope='col'>Model</th><th scope='col' class='num'>MASE</th>"

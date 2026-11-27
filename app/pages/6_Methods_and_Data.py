@@ -3,7 +3,7 @@ import streamlit as st
 
 from load import ROOT, footer, page, read_json
 
-page("Methods & data", "Transparency",
+page("Methods & Data", "Transparency",
      "Every source, method and known limitation behind the numbers, so results can be checked and reproduced.")
 
 tab1, tab2, tab3 = st.tabs(["Data sources", "Methods", "Limitations"])

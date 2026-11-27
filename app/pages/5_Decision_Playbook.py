@@ -6,7 +6,7 @@ import streamlit as st
 
 from load import ACCENT, MUTED, PRIMARY, badge, callout, footer, kpis, page, pill, read_json, style
 
-page("Decision playbook", "Action",
+page("Decision Playbook", "Action",
      "Each state is scored on two separate questions: is unemployment about to rise against its own past "
      "(cyclical), and does it sit chronically above the national rate (structural)? Each answer maps to "
      "levers held by the federal government and by the state.")
@@ -19,11 +19,11 @@ kpis([{"label": "Cyclical: high risk", "value": str(counts.get("red", 0)), "note
        "note": "states ≥1.25× the national rate"},
       {"label": "Structural: above national", "value": str((pb.structural == "above").sum()), "note": "states"}])
 
-with st.expander("Decision rules", expanded=False):
+with st.expander("Decision Rules", expanded=False):
     st.markdown(
         "**Cyclical (vs the state's own 2017–2025 history, leaving out the 2020–21 lockdown spike)**\n"
         "- **High risk**: next-4-quarter forecast above the state's 90th percentile, **or** rising 3+ quarters in a "
-        "row (≥0.1 pp each)\n"
+        "row (at least 0.1 percentage points each)\n"
         "- **Watch**: above the 75th percentile, **or** rising 2 quarters in a row\n"
         "- **Normal**: otherwise\n\n"
         "**Structural (vs the national rate, last 4 quarters)**\n"
@@ -34,7 +34,7 @@ with st.expander("Decision rules", expanded=False):
 st.caption("Both axes use all-ages state unemployment: DOSM publishes no quarterly youth or graduate "
            "underemployment series by state.")
 
-with st.expander("Would the warning have worked? Replay 2019–2026", expanded=False):
+with st.expander("Would the Warning Have Worked? Replay 2019–2026", expanded=False):
     rp = pd.DataFrame(read_json("warning_replay")).assign(date=lambda d: pd.to_datetime(d.date))
     rp["flagged"] = rp.red + rp.amber
     fig = go.Figure()

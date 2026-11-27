@@ -4,7 +4,7 @@ import streamlit as st
 
 from load import SCEN_COLOR, SCEN_DASH, SHORT, callout, footer, kpis, page, read_json, read_parquet, scenario_labels, style
 
-page("Scenario lab", "Scenarios",
+page("Scenario Lab", "Scenarios",
      "What happens to young workers if manufacturing grows at the NIMP 2030 target pace instead of today's pace?")
 
 labels = scenario_labels()
@@ -26,12 +26,12 @@ y, u = yr("youth"), yr("sru")
 if "baseline" in chosen and "nimp" in chosen:
     kpis([{"label": "Youth unemployment 2030, current pace", "value": f"{y.loc['baseline', 'mean']:.1f}%", "tone": "pri"},
           {"label": "…at NIMP pace", "value": f"{y.loc['nimp', 'mean']:.1f}%", "tone": "hl",
-           "note": f"{y.loc['nimp', 'mean'] - y.loc['baseline', 'mean']:+.1f} pp"},
-          {"label": "Underemployment 2030, NIMP vs current", "value": f"{u.loc['nimp', 'mean'] - u.loc['baseline', 'mean']:+.1f} pp",
+           "note": f"{y.loc['nimp', 'mean'] - y.loc['baseline', 'mean']:+.1f} percentage points"},
+          {"label": "Underemployment 2030, NIMP vs current", "value": f"{u.loc['nimp', 'mean']:.1f}% vs {u.loc['baseline', 'mean']:.1f}%",
            "note": "no measurable link to output growth (39 quarters)"}])
 
 c1, c2 = st.columns(2, gap="large")
-for col, d, title in [(c1, y, "Youth unemployment in 2030"), (c2, u, "Skill-related underemployment in 2030")]:
+for col, d, title in [(c1, y, "Youth Unemployment in 2030"), (c2, u, "Skill-Related Underemployment in 2030")]:
     fig = go.Figure(go.Bar(x=[SHORT[i] for i in d.index], y=d["mean"], marker_color=[SCEN_COLOR[i] for i in d.index],
                            error_y=dict(type="data", symmetric=False, array=d.hi80 - d["mean"],
                                         arrayminus=d["mean"] - d.lo80, color="#475569"),
@@ -42,7 +42,7 @@ for col, d, title in [(c1, y, "Youth unemployment in 2030"), (c2, u, "Skill-rela
         st.plotly_chart(style(fig, 340, "%"), use_container_width=True)
 st.caption("* TVET push is illustrative. Error bars show 80% ranges calibrated from backtest errors.")
 
-st.markdown("## Wage penalty of underemployment")
+st.markdown("## Wage Penalty of Underemployment")
 fig = go.Figure()
 for n in chosen:
     c = pd.DataFrame(cost["by_scenario"][n]).query("quarters == 4")  # full years only
@@ -50,7 +50,7 @@ for n in chosen:
                              line=dict(color=SCEN_COLOR[n], width=2.5, dash=SCEN_DASH[n])))
 st.plotly_chart(style(fig, 320, "RM bn per year (central estimate)"), use_container_width=True)
 
-st.markdown("## Reading the result")
+st.markdown("## Reading the Result")
 rob = read_json("drivers")["robustness"]["youth"]
 h = read_parquet("history").set_index("date")["sru_rate"].dropna()
 sru_now, d_now = h.iloc[-1], h.index[-1]
@@ -64,12 +64,12 @@ st.markdown(
     "effect in or out, so growth alone cannot be relied on to fix the skills mismatch.\n"
     f"- In backtests a simple 'no change' forecast beats every model for underemployment, so the latest value "
     f"(**{sru_now:.1f}%**, {d_now:%b %Y}) is the safer reference than the modelled 2030 path. Reaching **30% by 2030** "
-    f"from there needs about **{(sru_now - 30) / years_left:.1f} pp a year**: a target for policy, not a forecast.")
+    f"from there needs about **{(sru_now - 30) / years_left:.1f} percentage points a year**: a target for policy, not a forecast.")
 drv = read_json("drivers")["youth"]["ipi"]
 callout(f"<b>How to read NIMP vs current pace.</b> The model links youth unemployment to the industrial production index "
         f"(coefficient {drv['coef']:.3f}, 95% CI {drv['lo95']:.3f} to {drv['hi95']:.3f}, p = {drv['p']:.3f}). This is a "
         "short-run co-movement extrapolated to a much higher 2030 output level: treat the gap as a sensitivity, not a "
         "causal promise. IPI also covers mining and electricity, not only manufacturing.", warn=True)
 st.caption("Scenario mechanics: industrial production follows each path; other drivers continue their 2-year trend. "
-           "TVET push assumes −0.5 pp/yr from 2027.")
+           "TVET push assumes underemployment falls an extra 0.5 percentage points a year from 2027.")
 footer()

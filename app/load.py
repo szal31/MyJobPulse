@@ -321,7 +321,17 @@ a:focus-visible, button:focus-visible, [role="tab"]:focus-visible, input:focus-v
   .block-container {{ padding-top: 1.8rem; padding-left: 1.25rem; padding-right: 1.25rem; }}
   .mjp-title {{ font-size: 1.75rem; }}
 }}
+/* tablets and narrow laptops: side-by-side charts stack; card grids (4+ columns) go two-up; no chart toolbar */
+@media (max-width: 1100px) {{
+  [data-testid="stHorizontalBlock"] {{ flex-wrap: wrap !important; row-gap: 1rem !important; }}
+  [data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {{ flex: 1 1 100% !important; min-width: 100% !important; }}
+  [data-testid="stHorizontalBlock"]:has(> [data-testid="stColumn"]:nth-child(4)) > [data-testid="stColumn"] {{
+    flex: 1 1 calc(50% - 1rem) !important; min-width: calc(50% - 1rem) !important; }}
+  .modebar-container {{ display: none !important; }}
+}}
 @media (max-width: 600px) {{
+  [data-testid="stHorizontalBlock"]:has(> [data-testid="stColumn"]:nth-child(4)) > [data-testid="stColumn"] {{
+    flex: 1 1 100% !important; min-width: 100% !important; }}
   .block-container {{ padding-top: 1.25rem; padding-left: 0.9rem; padding-right: 0.9rem; }}
   .mjp-title {{ font-size: 1.5rem; }}
   .mjp-kpi .val {{ font-size: 1.5rem; }}
@@ -373,7 +383,7 @@ def scenario_labels() -> dict[str, str]:
 
 def page(title: str, eyebrow: str = "", subtitle: str = "") -> None:
     """Configure page layout, CSS tokens, sidebar brand, and main heading."""
-    st.set_page_config(page_title=f"{title} · MyJobPulse", layout="wide", initial_sidebar_state="expanded")
+    st.set_page_config(page_title=f"{title} · MyJobPulse", layout="wide", initial_sidebar_state="auto")
     st.markdown(_CSS, unsafe_allow_html=True)
     with st.sidebar:
         st.markdown("<div class='mjp-brand-box'><div class='mjp-brand'>My<span>Job</span>Pulse</div>"

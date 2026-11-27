@@ -6,7 +6,7 @@ import streamlit as st
 from load import ACCENT, ACCENT_SOFT, BORDER_STRONG, INK, LIGHT, PRIMARY, callout, footer, kpis, page, pill, read_json, read_parquet, style
 
 att = read_json("attention")
-page("Parliament watch", "Accountability · SDG 16",
+page("Parliament Watch", "Accountability · SDG 16",
      f"Dewan Rakyat Hansard, {pd.Timestamp(att['coverage_start']):%b %Y} – {pd.Timestamp(att['coverage_end']):%b %Y}: "
      f"{att['n_sittings']} sittings scanned for youth-job keywords in Malay and English.")
 
@@ -20,7 +20,7 @@ kpis([{"label": "Sittings analysed", "value": f"{att['n_sittings']}", "note": "2
       {"label": "High need, low voice seats", "value": f"{len(hn)}",
        "note": f"of {int((~r.quadrant.isin(['no data', 'executive or chair role'])).sum())} backbench seats with enough speech"}])
 
-tab1, tab2, tab3 = st.tabs(["Attention gap", "Representation gap", "Promise vs forecast"])
+tab1, tab2, tab3 = st.tabs(["Attention Gap", "Representation Gap", "Promise vs Forecast"])
 with tab1:
     m = pd.DataFrame(att["monthly"]).assign(date=lambda d: pd.to_datetime(d.date)).set_index("date")["mentions_per_100k"]
     h = read_parquet("history").set_index("date")["youth_u_rate"].dropna()
@@ -63,7 +63,7 @@ with tab2:
                f"{exe} seats whose MP held a minister, deputy minister or Deputy Speaker post (read from Hansard "
                f"attendance lists) are left out, because their floor speech is portfolio or chair duty. {nodata} more "
                "seats have too little parsed speech (<2,000 words) to judge.")
-    st.markdown(f"### {len(hn)} constituencies: above-median unemployment, rarely raised in the chamber")
+    st.markdown(f"### {len(hn)} Constituencies: Above-Median Unemployment, Rarely Raised in the Chamber")
     st.dataframe(hn[["parlimen", "state", "u_rate"]].rename(
         columns={"parlimen": "Constituency", "state": "State", "u_rate": "Unemployment %"}),
         hide_index=True, use_container_width=True, height=320)
@@ -76,7 +76,7 @@ with tab3:
                 "checks finish.</div>", warn=True)
     else:
         t = pd.DataFrame(pr["items"])
-        st.markdown("#### Commitments register")
+        st.markdown("#### Commitments Register")
         st.caption("Government commitments on jobs and skills with a stated target and year, found in Dewan Rakyat "
                    "Hansard and checked by the team against the official record (roles only, no names). Targets that "
                    "match a series MyJobPulse forecasts are tested against the current-pace forecast; the rest are "
@@ -86,7 +86,7 @@ with tab3:
                      "target_year": "By", "status": "Status vs forecast", "url": "Hansard"}),
             hide_index=True, use_container_width=True,
             column_config={"Hansard": st.column_config.LinkColumn("Hansard", display_text="PDF")})
-        with st.expander("Original wording (Bahasa Melayu)"):
+        with st.expander("Original Wording (Bahasa Melayu)"):
             for r in t.itertuples():
                 st.markdown(f"**{r.date} · {r.speaker_role}:** {r.quote}")
 footer()

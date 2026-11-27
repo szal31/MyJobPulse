@@ -86,11 +86,11 @@ def _light(history: pd.Series, forecast: pd.Series) -> tuple[str, str]:
     if nxt > p90:
         return "red", f"{lvl}: above the 90th percentile"
     if run >= 3:
-        return "red", f"{lvl}: rising {run} quarters in a row (≥{MIN_STEP} pp each)"
+        return "red", f"{lvl}: rising {run} quarters in a row (at least {MIN_STEP} percentage points each)"
     if nxt > p75:
         return "amber", f"{lvl}: above the 75th percentile"
     if run >= 2:
-        return "amber", f"{lvl}: rising {run} quarters in a row (≥{MIN_STEP} pp each)"
+        return "amber", f"{lvl}: rising {run} quarters in a row (at least {MIN_STEP} percentage points each)"
     return "green", f"{lvl}: within normal range"
 
 

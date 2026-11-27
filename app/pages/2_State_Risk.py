@@ -3,12 +3,13 @@ import html
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+import streamlit.components.v1 as components
 
 from load import ACCENT, GRID, LIGHT, LIGHT_SYMBOL, LIGHT_TEXT, MUTED, PRIMARY, badge, callout, footer, page, read_json, read_parquet, style
 from mapviz import state_map
 from mjp_paths import state_history
 
-page("State risk", "States",
+page("State Risk", "States",
      "All-ages unemployment by state (DOSM publishes no quarterly youth series by state), forecast with a LightGBM "
      "model pooled across 16 states and reconciled to the national forecast.")
 
@@ -17,14 +18,24 @@ cl = read_parquet("clusters").set_index("state")
 sf = read_parquet("state_forecast")
 nxt = sf.sort_values("date").groupby("state")["mean"].apply(lambda s: s.iloc[:4].mean()).rename("next4")
 df = pb.join(cl).join(nxt).sort_values("next4", ascending=False).reset_index()
+df["rate"] = [state_history(s).iloc[-4:].mean() for s in df.state]  # map hover: last four quarters, %
 
-st.markdown("## Where the risk sits")
-st.plotly_chart(state_map(df, read_json("states_geo")), use_container_width=True)
-st.caption("Colour: each state's jobless rate over the last four quarters relative to the national rate (blue below, "
-           "red above). Rings: states whose forecast is turning worse against their own past. Boundaries: "
-           "geoBoundaries (OpenStreetMap contributors, ODbL).")
+st.markdown("## Where the Risk Sits")
+ev = st.plotly_chart(state_map(df, read_json("states_geo"), 460, click_hint=True), use_container_width=True,
+                     on_select="rerun", selection_mode="points", key="risk_map", config={"displayModeBar": False})
+picked = next((p.get("customdata") for p in ev.selection.points if p.get("customdata")), None)
+picked = picked[0] if isinstance(picked, list) else picked
+if picked and picked != st.session_state.get("_map_pick"):  # a new click: open that state's forecast below
+    st.session_state["_map_pick"] = picked
+    st.session_state["state_pick"] = picked
+    st.session_state["_scroll_to_state"] = True
+st.caption("**Colour:** each state's unemployment rate over the last four quarters compared with the national rate "
+           "(blue below, red above).  \n"
+           "**Rings:** states whose forecast is turning worse against their own past.  \n"
+           "**Boundaries:** geoBoundaries (OpenStreetMap contributors, ODbL).  \n"
+           "**Tip:** hover over a state to see its rate; click it to jump to its forecast.")
 
-st.markdown("## Two kinds of risk")
+st.markdown("## Two Kinds of Risk")
 callout("<b>Chronic is not the same as sudden.</b> A state can be calm against its own past and still sit far above "
         "the national rate for years. The horizontal axis shows that chronic level; the colour shows whether the "
         "forecast is turning worse against the state's own history.")
@@ -49,7 +60,7 @@ st.plotly_chart(fig, use_container_width=True)
 st.caption("Both axes use all-ages unemployment; DOSM publishes no quarterly youth or graduate underemployment "
            "series by state. Rules and levers: Decision playbook page.")
 
-st.markdown("## Next four quarters")
+st.markdown("## Next Four Quarters")
 cols = st.columns(4)
 for i, r in df.iterrows():
     tone_cls = f" tone-{r.light}" if r.light != "green" else ""
@@ -60,19 +71,23 @@ for i, r in df.iterrows():
             f"<div class='mjp-card-val'>{r.next4:.1f}%</div>"
             f"<div class='meta'>{html.escape(r.facts)}</div></div>", unsafe_allow_html=True)
 
-st.markdown("## Forecast path by state")
-state = st.selectbox("State", df.state.tolist())
+st.markdown("## Forecast Path by State")
+state = st.selectbox("State", df.state.tolist(), key="state_pick")
+if st.session_state.pop("_scroll_to_state", False):  # scroll the page to this section after a map click
+    components.html("<script>setTimeout(() => { const e = window.parent.document.getElementById("
+                    "'forecast-path-by-state'); if (e) e.scrollIntoView({behavior: 'smooth', block: 'start'}); }, 400)"
+                    "</script>", height=0)
 hist = state_history(state)
 g = sf[sf.state == state].sort_values("date")
 fig = go.Figure()
-fig.add_trace(go.Scatter(x=g.date, y=g.hi95, line=dict(width=0), showlegend=False, hoverinfo="skip"))
-fig.add_trace(go.Scatter(x=g.date, y=g.lo95, fill="tonexty", fillcolor="rgba(217,119,6,0.15)", line=dict(width=0),
+fig.add_trace(go.Scatter(x=g.date, y=g.hi95, mode="lines", line=dict(width=0), showlegend=False, hoverinfo="skip"))
+fig.add_trace(go.Scatter(x=g.date, y=g.lo95, mode="lines", fill="tonexty", fillcolor="rgba(217,119,6,0.15)", line=dict(width=0),
                          name="95% range", hoverinfo="skip"))
 fig.add_trace(go.Scatter(x=hist.index, y=hist.values, line=dict(color=PRIMARY, width=2.2), name="Actual"))
 fig.add_trace(go.Scatter(x=g.date, y=g["mean"], line=dict(color=ACCENT, width=2.6, dash="dash"), name="Forecast"))
 st.plotly_chart(style(fig, 340, "% unemployed (all ages)"), use_container_width=True)
 
-st.markdown(f"## What drives {state}'s forecast")
+st.markdown(f"## What Drives {state}'s Forecast")
 sh = read_parquet("shap")
 top = sh[sh.state == state].nlargest(6, "mean_abs_shap")
 nice = {"u_rate_lag1": "Last quarter's rate", "u_rate_lag2": "Rate 2 quarters ago", "u_rate_lag3": "Rate 3 quarters ago",
@@ -86,5 +101,5 @@ st.caption("Mean absolute SHAP value: how many percentage points each input move
            "on average (exact TreeSHAP).")
 
 sb = pd.DataFrame(read_json("scoreboard_state"))
-st.caption("State model backtest (MASE, lower is better): " + " · ".join(f"{r.model} {r.mase:.3f}" for r in sb.itertuples()))
+st.caption("State model backtest (MASE, Mean Absolute Scaled Error; lower is better): " + " · ".join(f"{r.model} {r.mase:.3f}" for r in sb.itertuples()))
 footer()
