@@ -446,11 +446,11 @@ def fan(hist: pd.Series, fc: pd.DataFrame, color: str = ACCENT, name: str = "For
     """Plot actuals in solid navy and forecast with 80/95% bands in the scenario hue."""
     r, g, b = (int(color[i:i + 2], 16) for i in (1, 3, 5))
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.hi95, line=dict(width=0), showlegend=False, hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo95, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.11)",
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.hi95, mode="lines", line=dict(width=0), showlegend=False, hoverinfo="skip"))
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo95, mode="lines", fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.11)",
                              line=dict(width=0), name="95% range", hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.hi80, line=dict(width=0), showlegend=False, hoverinfo="skip"))
-    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo80, fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.22)",
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.hi80, mode="lines", line=dict(width=0), showlegend=False, hoverinfo="skip"))
+    fig.add_trace(go.Scatter(x=fc.date, y=fc.lo80, mode="lines", fill="tonexty", fillcolor=f"rgba({r},{g},{b},0.22)",
                              line=dict(width=0), name="80% range", hoverinfo="skip"))
     fig.add_trace(go.Scatter(x=hist.index, y=hist.values, line=dict(color=PRIMARY, width=2.3), name="Actual"))
     fig.add_trace(go.Scatter(x=fc.date, y=fc["mean"], line=dict(color=color, width=2.6, dash="dash"), name=name))
